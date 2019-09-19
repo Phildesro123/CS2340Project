@@ -12,13 +12,16 @@ public class Player {
      * @param name The player's name
      * @param skillPoints The starting skill points for player
      */
-    public Player(String name, int skillPoints) {
+    public Player(String name, int skillPoints, double credits) {
         this.name = name;
         this.skillPoints = skillPoints;
         skillSet = new int[]{0,0,0,0};
-        credits = 0.0;
+        this.credits = credits;
     }
 
+    public Player(String name, int skillPoints) {
+        this(name, skillPoints, 0);
+    }
     /**
      * Return the player's name
      * @return the player's name
