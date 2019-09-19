@@ -9,8 +9,9 @@ public class Player {
 
     /**
      * Creates a player object
-     * @param name The player's name
-     * @param skillPoints The starting skill points for player
+     * @param name Name of player
+     * @param skillPoints Number of skill points
+     * @param credits Number of credits
      */
     public Player(String name, int skillPoints, double credits) {
         this.name = name;
@@ -19,11 +20,8 @@ public class Player {
         this.credits = credits;
     }
 
-    public Player(String name, int skillPoints) {
-        this(name, skillPoints, 0);
-    }
     /**
-     * Return the player's name
+     * Returns the player's name
      * @return the player's name
      */
     public String getName() {
@@ -31,11 +29,27 @@ public class Player {
     }
 
     /**
-     *
+     * Returns the number of credits
      * @return Number of credits the player has
      */
     public double getCredits() {
         return credits;
+    }
+
+    /**
+     * Sets the credits
+     * @param credits Number of credits
+     */
+    public void setCredits(double credits) {
+        this.credits = credits;
+    }
+
+    /**
+     * Sets the skill points
+     * @param skillPoints The number of skill points
+     */
+    public void setSkillPoints(int skillPoints) {
+        this.skillPoints = skillPoints;
     }
 
     /**
