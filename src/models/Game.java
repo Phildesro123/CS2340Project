@@ -22,9 +22,9 @@ public class Game {
 		this.difficulty = difficulty;
 	}
 
-	// main method shows the welcome screen?
-	// display startButton
-	/* if(startButton.isPressed()) {
+	//main method shows the welcome screen?
+	//display startButton
+	/*if(startButton.isPressed()) {
 		//change to Config screen
 	}
 
