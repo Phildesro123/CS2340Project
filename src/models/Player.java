@@ -16,8 +16,16 @@ public class Player {
     public Player(String name, int skillPoints, double credits) {
         this.name = name;
         this.skillPoints = skillPoints;
-        skillSet = new int[]{0,0,0,0};
+        skillSet = new int[]{0, 0, 0, 0};
         this.credits = credits;
+    }
+
+    /**
+     * Change the name of players
+     * @param name Name to change player to
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -70,7 +78,8 @@ public class Player {
 
     /**
      * This is to add skill point to a skill set
-     * @param index Index of skill point (0 is pilot, 1 is fighter, 2 is merchant, 3 is engineer)
+     * @param index Index of skill point
+     * (0 is pilot, 1 is fighter, 2 is merchant, 3 is engineer)
      */
     public void addToSkillSet(int index) {
         //If player doesn't have enough points don't allow them to change
@@ -83,10 +92,13 @@ public class Player {
 
     /**
      * Remove skill point from a skill in the skill set
-     * @param index Index of skill point (0 is pilot, 1 is fighter, 2 is merchant, 3 is engineer)
+     * @param index Index of skill point
+     * (0 is pilot, 1 is fighter, 2 is merchant, 3 is engineer)
      */
     public void removeFromSkillSet(int index) {
-        //If skill set point is at 0, don't allow the player to take away from it
+        /*
+        If skill set point is at 0, don't allow the player to take away from it
+         */
         if (skillSet[index] <= 0) {
             return;
         }
