@@ -24,16 +24,21 @@ public class Game {
 	}
 
 	String tempName = nameBox.output(); //can be blank
+	//later on the confirm selection button will update game.player.setName()
 
+	//based on which button is pressed, the Game object is created, which creates the appropriate player
+	Game game;
 	if(easyButton.isPressed()) {
-		Game game = new Game(16, tempName);
+		game = new Game(16, tempName);
 	} 
 	if(medButton.isPressed()) {
-		Game game = new Game(12, tempName);
+		game = new Game(12, tempName);
 	}
 	if(hardButton.isPressed()) {
-		Game game = new Game(8, tempName);
+		game = new Game(8, tempName);
 	}
+
+
 
 	*/
 
