@@ -21,6 +21,14 @@ public class Player {
     }
 
     /**
+     * Change the name of players
+     * @param name Name to change player to
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Returns the player's name
      * @return the player's name
      */
