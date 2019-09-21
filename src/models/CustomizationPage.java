@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import models.Game;
 
 public class CustomizationPage {
-
+    private Game game;
 
 
     /**
@@ -16,7 +16,7 @@ public class CustomizationPage {
      */
 
     public CustomizationPage() {
-        Game game = new Game(16, "");
+        game = new Game(16, "");
         Player player = game.getPlayer();
 
         JFrame frame = new JFrame("Character Customization");
