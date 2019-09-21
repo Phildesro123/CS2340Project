@@ -1,14 +1,15 @@
-package models;
+package screens;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import models.Game;
+import models.*;
 
 public class CustomizationPage {
-    private Game game;
 
+
+    protected Game game;
+    private Player player;
 
     /**
      * This creates the GUI and shows it.
@@ -17,7 +18,8 @@ public class CustomizationPage {
 
     public CustomizationPage() {
         game = new Game(16, "");
-        Player player = game.getPlayer();
+
+        player = game.getPlayer();
 
         JFrame frame = new JFrame("Character Customization");
 
@@ -34,11 +36,18 @@ public class CustomizationPage {
         JLabel incFighter = new JLabel("Fighter: 0");
         JLabel incMerchant = new JLabel("Merchant: 0");
 
+        JLabel[] infoArray = {incPilot, incFighter, incMerchant, incEngineer};
+        String[] infoTxt = {"Pilot: ", "Fighter: ", "Merchant: ", "Engineer: "};
+
         //Buttons
         JButton confirm = new JButton(new AbstractAction("Confirm") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Load next page with information and game object
+                player.setName(characterName.getText());
+                //This is just to see if it actually works
+                charNameLabel.setText("Character Name: " + player.getName());
+                game.setPlayer(player);
             }
         });
 
@@ -63,7 +72,7 @@ public class CustomizationPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.removeFromSkillSet(0);
-                incMerchant.setText("Pilot: " + player.getSkillSet()[0]);
+                incPilot.setText("Pilot: " + player.getSkillSet()[0]);
                 currPoints.setText("Current skill points: "
                         + player.getSkillPoints());
             }
@@ -110,7 +119,7 @@ public class CustomizationPage {
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.removeFromSkillSet(1);
-                incFighter.setText("Fighter: " + player.getSkillSet()[2]);
+                incFighter.setText("Fighter: " + player.getSkillSet()[1]);
                 currPoints.setText("Current skill points: "
                         + player.getSkillPoints());
 
@@ -140,11 +149,58 @@ public class CustomizationPage {
             }
         });
 
-        //Need to add action handlers to change upon selection
-        JRadioButton easy = new JRadioButton("Easy");
+        //Radio Buttons
+        JRadioButton easy = new JRadioButton(new AbstractAction("Easy") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game = new Game(16, "");
+                player = game.getPlayer();
+                int i = 0;
+                for (JLabel txt: infoArray) {
+                    txt.setText(infoTxt[i] + "0");
+                    i++;
+                }
+                currPoints.setText("Current skill points: "
+                        + player.getSkillPoints());
+                currCredits.setText("Current credits: "
+                        + player.getCredits());
+            }
+        });
         easy.setSelected(true);
-        JRadioButton normal = new JRadioButton("Normal");
-        JRadioButton hard = new JRadioButton("Hard");
+
+        JRadioButton normal = new JRadioButton(new AbstractAction("Normal") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game = new Game(12, "");
+                player = game.getPlayer();
+                int i = 0;
+                for (JLabel txt: infoArray) {
+                    txt.setText(infoTxt[i] + "0");
+                    i++;
+                }
+                currPoints.setText("Current skill points: "
+                        + player.getSkillPoints());
+                currCredits.setText("Current credits: "
+                        + player.getCredits());
+            }
+        });
+
+        JRadioButton hard = new JRadioButton(new AbstractAction("Hard") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game = new Game(8, "");
+                player = game.getPlayer();
+                int i = 0;
+                for (JLabel txt: infoArray) {
+                    txt.setText(infoTxt[i] + "0");
+                    i++;
+                }
+                currPoints.setText("Current skill points: "
+                        + player.getSkillPoints());
+                currCredits.setText("Current credits: "
+                        + player.getCredits());
+            }
+        });
 
 
 
@@ -239,7 +295,7 @@ public class CustomizationPage {
 
     }
 
-    public Game getGame(){
+    public Game getGame() {
         return game;
     }
 
