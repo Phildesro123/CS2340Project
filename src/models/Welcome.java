@@ -3,6 +3,7 @@ import java.awt.*;
 public class Welcome {
     JPanel wel = new JPanel();
     JLabel text = new JLabel("Welcome");
+    JButton button = new JButton("Start");
     Font font = new Font("Calibri (Body)", Font.BOLD, 100);
     Welcome() {
        text.setFont(font);
