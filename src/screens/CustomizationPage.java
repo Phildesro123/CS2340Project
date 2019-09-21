@@ -21,8 +21,8 @@ public class CustomizationPage {
 
         player = game.getPlayer();
 
-        JFrame frame = new JFrame("Character Customization");
 
+        JFrame frame = new JFrame("Character Customization");
         //Text Fields
         JTextField characterName = new JTextField(30);
 

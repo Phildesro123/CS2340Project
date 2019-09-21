@@ -1,3 +1,4 @@
+package screens;
 import javax.swing.*;
 import java.awt.*;
 public class Welcome {
@@ -22,9 +23,9 @@ public class Welcome {
         f.setVisible(true);
     }
     public static void main (String[] args) {
-        SwingUtilities.invokeLater(new Runnable() 
+        SwingUtilities.invokeLater(new Runnable()
           {
-             public void run() 
+             public void run()
              {
                 cASGUI();
              }
