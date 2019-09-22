@@ -1,4 +1,3 @@
-import screens.CustomizationPage;
 import screens.Welcome;
 public class Launcher {
     public static void main(String[] args) {
