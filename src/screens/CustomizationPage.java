@@ -48,6 +48,8 @@ public class CustomizationPage {
                 //This is just to see if it actually works
                 charNameLabel.setText("Character Name: " + player.getName());
                 game.setPlayer(player);
+                DisplayScreen disp = new DisplayScreen(game);
+                frame.setVisible(false);
             }
         });
 
