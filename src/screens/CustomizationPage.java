@@ -207,6 +207,7 @@ public class CustomizationPage {
 
         //Panels
         JPanel container = new JPanel(new BorderLayout());
+        container.setPreferredSize(new Dimension(640, 480));
         JPanel centerPanel = new JPanel();
         JPanel professionPanel = new JPanel();
         JPanel difficultyPanel = new JPanel();
@@ -289,8 +290,8 @@ public class CustomizationPage {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setContentPane(container);
-
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
