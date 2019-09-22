@@ -9,6 +9,7 @@ public class CustomizationPage {
 
 
     protected Game game;
+    protected JFrame frame = new JFrame("Character Customization");
     private Player player;
 
     /**
@@ -22,7 +23,6 @@ public class CustomizationPage {
         player = game.getPlayer();
 
 
-        JFrame frame = new JFrame("Character Customization");
         //Text Fields
         JTextField characterName = new JTextField(30);
 
@@ -299,7 +299,7 @@ public class CustomizationPage {
         return game;
     }
 
- /* public static void main(String[] args) {
+    /* public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShow();
