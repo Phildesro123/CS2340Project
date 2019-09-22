@@ -7,7 +7,9 @@ import models.*;
 
 public class CustomizationPage {
 
+
     protected Game game;
+    protected JFrame frame = new JFrame("Character Customization");
     private Player player;
 
     /**
@@ -17,9 +19,9 @@ public class CustomizationPage {
 
     public CustomizationPage() {
         game = new Game(16, "");
+
         player = game.getPlayer();
 
-        JFrame frame = new JFrame("Character Customization");
 
         //Text Fields
         JTextField characterName = new JTextField(30);
@@ -46,6 +48,8 @@ public class CustomizationPage {
                 //This is just to see if it actually works
                 charNameLabel.setText("Character Name: " + player.getName());
                 game.setPlayer(player);
+                DisplayScreen disp = new DisplayScreen(game);
+                frame.setVisible(false);
             }
         });
 
@@ -205,6 +209,7 @@ public class CustomizationPage {
 
         //Panels
         JPanel container = new JPanel(new BorderLayout());
+        //container.setPreferredSize(new Dimension(640, 480));
         JPanel centerPanel = new JPanel();
         JPanel professionPanel = new JPanel();
         JPanel difficultyPanel = new JPanel();
@@ -287,8 +292,8 @@ public class CustomizationPage {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setContentPane(container);
-
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
@@ -297,7 +302,7 @@ public class CustomizationPage {
         return game;
     }
 
- /* public static void main(String[] args) {
+    /* public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShow();
