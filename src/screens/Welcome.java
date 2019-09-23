@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 public class Welcome {
     JPanel wel = new JPanel();
-    JLabel text = new JLabel("Welcome");
-    Font font = new Font("Calibri (Body)", Font.BOLD, 100);
+    JLabel text = new JLabel("Welcome To Space Trader!");
+    Font font = new Font("Calibri (Body)", Font.BOLD, 45);
     JButton button = new JButton("Start");
 
     public Welcome() {
@@ -22,6 +22,7 @@ public class Welcome {
             public void actionPerformed(ActionEvent e) {
                 CustomizationPage customizationPage = new CustomizationPage();
                 f.setVisible(false);
+                f.dispose();
             }
         });
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

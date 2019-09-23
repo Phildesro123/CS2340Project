@@ -50,6 +50,7 @@ public class CustomizationPage {
                 game.setPlayer(player);
                 DisplayScreen disp = new DisplayScreen(game);
                 frame.setVisible(false);
+                frame.dispose();
             }
         });
 
