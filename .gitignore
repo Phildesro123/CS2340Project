@@ -81,3 +81,5 @@ lint/tmp/
 
 
 *.DS_Store
+
+run_checkstyle.py
