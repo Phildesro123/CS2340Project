@@ -17,7 +17,7 @@ public class CustomizationPage {
      * This creates the GUI and shows it.
      */
     public CustomizationPage() {
-        game = new Game("Easy", "");
+        game = new Game("EASY", "");
 
         player = game.getPlayer();
 
@@ -155,7 +155,7 @@ public class CustomizationPage {
         JRadioButton easy = new JRadioButton(new AbstractAction("Easy") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game = new Game("Easy", "");
+                game = new Game("EASY", "");
                 player = game.getPlayer();
                 int i = 0;
                 for (JLabel txt : infoArray) {
@@ -173,7 +173,7 @@ public class CustomizationPage {
         JRadioButton normal = new JRadioButton(new AbstractAction("Normal") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game = new Game("Medium", "");
+                game = new Game("MEDIUM", "");
                 player = game.getPlayer();
                 int i = 0;
                 for (JLabel txt : infoArray) {
@@ -190,7 +190,7 @@ public class CustomizationPage {
         JRadioButton hard = new JRadioButton(new AbstractAction("Hard") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                game = new Game("Hard", "");
+                game = new Game("HARD", "");
                 player = game.getPlayer();
                 int i = 0;
                 for (JLabel txt : infoArray) {
