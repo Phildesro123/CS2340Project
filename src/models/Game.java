@@ -50,7 +50,7 @@ public class Game {
      *
      * @return Difficulty of the game
      */
-    public int getDifficulty() {
+    public Difficulty getDifficulty() {
         return difficulty;
     }
 
