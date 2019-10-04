@@ -40,18 +40,18 @@ public class Universe {
         Random gen = new Random();
         TechLevel tech[] = TechLevel.values();
         for (int i = 0; i < regions.size(); i++) {
-            int x = gen.nextInt(51);
-            int y = gen.nextInt(51);
+            int x = gen.nextInt(201);
+            int y = gen.nextInt(201);
             int nameInt = gen.nextInt(names.length);
             int techInt = gen.nextInt(tech.length);
             int j = 0;
             boolean tester = true;
             while (tester) {
                 if (Math.abs(x - regions.get(j).getX()) <= 5) {
-                    x = gen.nextInt(101);
+                    x = gen.nextInt(201);
                     j = 0;
                 } else if (Math.abs(y - regions.get(j).getY()) <= 5) {
-                    y = gen.nextInt(101);
+                    y = gen.nextInt(201);
                     j = 0;
                 } else if (names[nameInt].equals(regions.get(j).getName())) {
                     nameInt = gen.nextInt(names.length);
