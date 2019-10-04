@@ -10,14 +10,15 @@ public enum Difficulty {
      */
     public int skillPoints() {
         switch (this) {
-            case EASY:
-                return 16;
-            case MEDIUM:
-                return 12;
-            case HARD:
-                return 8;
+        case EASY:
+            return 16;
+        case MEDIUM:
+            return 12;
+        case HARD:
+            return 8;
+        default:
+            throw new IllegalStateException("Unexpected value: " + this);
         }
-        return 0;
     }
 
     /**
@@ -27,13 +28,14 @@ public enum Difficulty {
      */
     public double credits() {
         switch (this) {
-            case EASY:
-                return 1000.0;
-            case MEDIUM:
-                return 500.0;
-            case HARD:
-                return 100.0;
+        case EASY:
+            return 1000.0;
+        case MEDIUM:
+            return 500.0;
+        case HARD:
+            return 100.0;
+        default:
+            throw new IllegalStateException("Unexpected value: " + this);
         }
-        return 0;
     }
 }
