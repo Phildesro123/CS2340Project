@@ -1,6 +1,5 @@
 package models;
 import models.enums.TechLevel;
-import models.Region;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -15,7 +14,6 @@ public class Universe {
         }
         // initialization logic
         this.names = names;
-        
     }
 
     public static Universe getInstance(String[] names) {
@@ -26,13 +24,13 @@ public class Universe {
         return uni;
     }
     public Region getRegion(int n) {
-        return regions.get(n); 
+        return regions.get(n);
     }
     public int uniSize() {
         return regions.size();
     }
+
     public void doStuff(String names[]) {
-        
         for (int i = 0; i < 10; i++) {
             Region start = new Region(0,0,"null", TechLevel.PREAG);
             regions.add(start);
