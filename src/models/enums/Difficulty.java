@@ -9,14 +9,15 @@ public enum Difficulty {
      * @return The number of skill points
      */
     public int skillPoints() {
-    	switch (this) {
-    		case EASY:
-    			return 16;
-    		case MEDIUM:
-    			return 12;
-    		case HARD:
-    			return 8;
-    	}
+        switch (this) {
+            case EASY:
+                return 16;
+            case MEDIUM:
+                return 12;
+            case HARD:
+                return 8;
+        }
+        return 0;
     }
 
     /**
@@ -25,13 +26,14 @@ public enum Difficulty {
      * @return The number of credits
      */
     public double credits() {
-    	switch (this) {
-    		case EASY:
-    			return 1000.0;
-    		case MEDIUM:
-    			return 500.0;
-    		case HARD:
-    			return 100.0;
-    	}
+        switch (this) {
+            case EASY:
+                return 1000.0;
+            case MEDIUM:
+                return 500.0;
+            case HARD:
+                return 100.0;
+        }
+        return 0;
     }
 }
