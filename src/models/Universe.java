@@ -7,19 +7,6 @@ import java.util.ArrayList;
 public class Universe {
     private ArrayList<Region> regions = new ArrayList<>();
     private String names[];
-    public static void main(String[] args) {
-        String names[]= new String[] {"cat", "fuck", "i hate this", "kill me", "nekrotafeyo", "hi", "fuck arrays", "shit", "nsfw", "heeihl", "afshgjashg", "sdfjsdaf"};
-        uni.getInstance(names);
-        for (int i = 0; i < uni.uniSize(); i++) {
-            System.out.println("Region num: " + i);
-            Region f = uni.getRegion(i);
-            System.out.print("x " + uni.getRegion(i).getX());
-            System.out.print("; y " + uni.getRegion(i).getY());
-            System.out.print("; name " + uni.getRegion(i).getName());
-            System.out.print("; tech " + uni.getRegion(i).getTechLevel() + "\n");
-        }
-    }
-
     private static Universe uni;
 
     private Universe(String names[]) {
