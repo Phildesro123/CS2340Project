@@ -1,4 +1,5 @@
 package models;
+
 import models.enums.TechLevel;
 
 public class Region {
@@ -30,5 +31,6 @@ public class Region {
     public TechLevel getTechLevel() {
         return techLevel;
     }
+
 
 }
