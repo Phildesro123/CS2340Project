@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.*;
+import models.enums.Difficulty;
 
 
 public class DisplayScreen {
@@ -20,11 +21,11 @@ public class DisplayScreen {
         player = game.getPlayer();
         int[] skillpoints = player.getSkillSet();
         JLabel difficulty = new JLabel("Difficulty: ");
-        if (game.getDifficulty() == 16) {
+        if (game.getDifficulty() == Difficulty.EASY) {
             difficulty.setText("Difficulty: Easy");
-        } else if (game.getDifficulty() == 12) {
+        } else if (game.getDifficulty() == Difficulty.MEDIUM) {
             difficulty.setText("Difficulty: Medium");
-        } else if (game.getDifficulty() == 8) {
+        } else if (game.getDifficulty() == Difficulty.HARD) {
             difficulty.setText("Difficulty: Hard");
         }
         JLabel playerName = new JLabel("Name: " + player.getName() + "\n");

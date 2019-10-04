@@ -1,5 +1,4 @@
 package models;
-
 import models.enums.Difficulty;
 
 public class Game {
@@ -19,9 +18,8 @@ public class Game {
     public Game(String difficulty, String name) {
         this.difficulty = Difficulty.valueOf(difficulty);
         player = new Player(name, this.difficulty.skillPoints(), this.difficulty.credits());
-        regionNames = new String[]{"Brigid", "Duscur", "Almyra", "Fodlan", "Gronder", "Adrestia", "Faerghus", "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
+        regionNames = new String[] {"Brigid", "Duscur", "Almyra", "Fodlan", "Gronder", "Adrestia", "Faerghus", "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
     }
-
     /**
      * Returns the current player
      *
@@ -55,14 +53,14 @@ public class Game {
      * @return Region names in the game
      */
     public String[] getRegionNames() {
-        return regionNames;
+    	return regionNames;
     }
 
     /**
      * Creates the universe based on region names
      */
     public void startGame() {
-        universe = universe.getInstance(regionNames);
+    	universe = universe.getInstance(regionNames);
     }
 
 
