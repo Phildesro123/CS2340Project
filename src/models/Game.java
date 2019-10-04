@@ -18,7 +18,7 @@ public class Game {
     public Game(String difficulty, String name) {
         this.difficulty = Difficulty.valueOf(difficulty);
         player = new Player(name, this.difficulty.skillPoints(), this.difficulty.credits());
-        regionNames = new String[] {"Brigid", "Duscur", "Almyra", "Fodlan", "Gronder", "Adrestia", "Faerghus", "Leicester", "Dagda", "Shambhala"};
+        regionNames = new String[] {"Brigid", "Duscur", "Almyra", "Fodlan", "Gronder", "Adrestia", "Faerghus", "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
     }
     /**
      * Returns the current player
@@ -60,9 +60,7 @@ public class Game {
      * Creates the universe based on region names
      */
     public void startGame() {
-    	if (universe == null) {
-    		universe = universe.getInstance();
-    	}
+    	universe = universe.getInstance(regionNames);
     }
 
 
