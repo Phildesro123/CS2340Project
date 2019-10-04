@@ -62,6 +62,7 @@ public class Game {
      */
     public void startGame() {
         universe = universe.getInstance(regionNames);
+        player.setCurrentRegion(universe.getRegion(0));
     }
 
 
