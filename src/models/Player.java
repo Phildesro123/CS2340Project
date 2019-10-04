@@ -6,7 +6,7 @@ public class Player {
     private double credits;
     //[Pilot, Fighter, Merchant, Engineer]
     private int[] skillSet;
-
+    private Region currentRegion;
     /**
      * Creates a player object
      * @param name Name of player
@@ -104,5 +104,22 @@ public class Player {
         }
         skillSet[index]--;
         skillPoints++;
+    }
+
+    public Region getCurrentRegion() {
+        return currentRegion;
+    }
+
+    public void setCurrentRegion(Region currentRegion) {
+        this.currentRegion = currentRegion;
+    }
+
+    public double distance(Region region) {
+        double x1 = currentRegion.getX();
+        double x2 = region.getX();
+        double y1 = currentRegion.getY();
+        double y2 = region.getY();
+        return Math.sqrt(Math.pow((x2 - x1), 2)
+                + Math.pow((y2 - y1), 2));
     }
 }
