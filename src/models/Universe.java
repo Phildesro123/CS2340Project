@@ -5,10 +5,11 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Universe {
-    //public Universe {
     private ArrayList<Region> regions = new ArrayList<>();
+    private String names[];
     public static void main(String[] args) {
-        uni.getInstance();
+        String names[]= new String[] {"cat", "fuck", "i hate this", "kill me", "nekrotafeyo", "hi", "fuck arrays", "shit", "nsfw", "heeihl", "afshgjashg", "sdfjsdaf"};
+        uni.getInstance(names);
         for (int i = 0; i < uni.uniSize(); i++) {
             System.out.println("Region num: " + i);
             Region f = uni.getRegion(i);
@@ -21,18 +22,19 @@ public class Universe {
 
     private static Universe uni;
 
-    private Universe() {
+    private Universe(String names[]) {
         if (uni != null){
             throw new RuntimeException("Use getInstance()");
         }
         // initialization logic
+        this.names = names;
         
     }
 
-    public static Universe getInstance() {
+    public static Universe getInstance(String[] names) {
         if (uni == null) {
-            uni = new Universe();
-            uni.doStuff();
+            uni = new Universe(names);
+            uni.doStuff(names);
         }
         return uni;
     }
@@ -42,32 +44,18 @@ public class Universe {
     public int uniSize() {
         return regions.size();
     }
-    public void doStuff() {
+    public void doStuff(String names[]) {
         
         for (int i = 0; i < 10; i++) {
             Region start = new Region(0,0,"null", TechLevel.PREAG);
             regions.add(start);
         }
         Random gen = new Random();
-        ArrayList<String> names = new ArrayList<>();
-        names.add("a");
-        names.add("b");
-        names.add("c");
-        names.add("d");
-        names.add("f");
-        names.add("g");
-        names.add("h");
-        names.add("i");
-        names.add("j");
-        names.add("k");
-        names.add("l");
-        names.add("m");
-        names.add("n");
         TechLevel tech[] = TechLevel.values();
         for (int i = 0; i < regions.size(); i++) {
             int x = gen.nextInt(51);
             int y = gen.nextInt(51);
-            int nameInt = gen.nextInt(names.size());
+            int nameInt = gen.nextInt(names.length);
             int techInt = gen.nextInt(tech.length);
             int j = 0;
             boolean tester = true;
@@ -78,8 +66,8 @@ public class Universe {
                 } else if (Math.abs(y - regions.get(j).getY()) <= 5) {
                     y = gen.nextInt(101);
                     j = 0;
-                } else if (names.get(nameInt).equals(regions.get(j).getName())) {
-                    nameInt = gen.nextInt(names.size());
+                } else if (names[nameInt].equals(regions.get(j).getName())) {
+                    nameInt = gen.nextInt(names.length);
                     j = 0;
                 } else {
                     j++;
@@ -90,7 +78,7 @@ public class Universe {
                     }
                 }
             }
-            Region temp = new Region(x,y,names.get(nameInt), tech[techInt]);
+            Region temp = new Region(x,y,names[nameInt], tech[techInt]);
             regions.set(i, temp);
         }
     }
