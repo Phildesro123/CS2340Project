@@ -2,9 +2,6 @@ package screens;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import models.*;
 import models.enums.Difficulty;
 
@@ -12,10 +9,11 @@ import models.enums.Difficulty;
 public class DisplayScreen {
     private Game game;
     private Player player;
-    JLabel text = new JLabel("Display Page");
+    private JLabel text;
     protected JPanel disp = new JPanel();
 
     public DisplayScreen(Game game) {
+        text = new JLabel("Display Page");
         disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
         this.game = game;
         player = game.getPlayer();

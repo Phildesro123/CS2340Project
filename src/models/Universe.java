@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Universe {
     private ArrayList<Region> regions = new ArrayList<>();
-    private String names[];
+    private String[] names;
     private static Universe uni;
 
-    private Universe(String names[]) {
-        if (uni != null){
+    private Universe(String[] names) {
+        if (uni != null) {
             throw new RuntimeException("Use getInstance()");
         }
         // initialization logic
@@ -30,13 +30,13 @@ public class Universe {
         return regions.size();
     }
 
-    public void doStuff(String names[]) {
+    public void doStuff(String[] names) {
         for (int i = 0; i < 10; i++) {
-            Region start = new Region(0,0,"null", TechLevel.PREAG);
+            Region start = new Region(0, 0, "null", TechLevel.PREAG);
             regions.add(start);
         }
         Random gen = new Random();
-        TechLevel tech[] = TechLevel.values();
+        TechLevel[] tech = TechLevel.values();
         for (int i = 0; i < regions.size(); i++) {
             int x = gen.nextInt(201);
             int y = gen.nextInt(201);
@@ -56,14 +56,10 @@ public class Universe {
                     j = 0;
                 } else {
                     j++;
-                    if (j < i) {
-                        tester = true;
-                    } else {
-                        tester = false;
-                    }
+                    tester = j < i;
                 }
             }
-            Region temp = new Region(x,y,names[nameInt], tech[techInt]);
+            Region temp = new Region(x, y, names[nameInt], tech[techInt]);
             regions.set(i, temp);
         }
     }
