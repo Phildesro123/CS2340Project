@@ -1,6 +1,5 @@
 package models;
 import models.enums.TechLevel;
-import models.Region;
 import java.util.Random;
 import java.util.ArrayList;
 
