@@ -3,6 +3,7 @@ package screens;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
 import models.*;
 
 public class CustomizationPage {
@@ -14,9 +15,7 @@ public class CustomizationPage {
 
     /**
      * This creates the GUI and shows it.
-     *
      */
-
     public CustomizationPage() {
         game = new Game(16, "");
 
@@ -66,7 +65,7 @@ public class CustomizationPage {
                 player.addToSkillSet(0);
                 incPilot.setText("Pilot: " + player.getSkillSet()[0]);
                 currPoints.setText("Current skill points: "
-                + player.getSkillPoints());
+                        + player.getSkillPoints());
             }
         });
 
@@ -159,7 +158,7 @@ public class CustomizationPage {
                 game = new Game(16, "");
                 player = game.getPlayer();
                 int i = 0;
-                for (JLabel txt: infoArray) {
+                for (JLabel txt : infoArray) {
                     txt.setText(infoTxt[i] + "0");
                     i++;
                 }
@@ -177,7 +176,7 @@ public class CustomizationPage {
                 game = new Game(12, "");
                 player = game.getPlayer();
                 int i = 0;
-                for (JLabel txt: infoArray) {
+                for (JLabel txt : infoArray) {
                     txt.setText(infoTxt[i] + "0");
                     i++;
                 }
@@ -194,7 +193,7 @@ public class CustomizationPage {
                 game = new Game(8, "");
                 player = game.getPlayer();
                 int i = 0;
-                for (JLabel txt: infoArray) {
+                for (JLabel txt : infoArray) {
                     txt.setText(infoTxt[i] + "0");
                     i++;
                 }
@@ -204,8 +203,6 @@ public class CustomizationPage {
                         + player.getCredits());
             }
         });
-
-
 
 
         //Panels

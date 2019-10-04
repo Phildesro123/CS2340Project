@@ -1,4 +1,5 @@
 package screens;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,10 +12,10 @@ public class Welcome {
     JButton button = new JButton("Start");
 
     public Welcome() {
-       text.setFont(font);
-       wel.setPreferredSize(new Dimension(640, 480));
-       wel.add(text);
-       wel.add(button);
+        text.setFont(font);
+        wel.setPreferredSize(new Dimension(640, 480));
+        wel.add(text);
+        wel.add(button);
 
         JFrame f = new JFrame("SpaceTrader");
         button.addActionListener(new ActionListener() {
@@ -31,7 +32,8 @@ public class Welcome {
         f.setLocationRelativeTo(null);
         f.setVisible(true);
     }
+
     public JComponent getMainComponent() {
-      return wel;
+        return wel;
     }
 }

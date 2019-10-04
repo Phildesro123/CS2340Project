@@ -1,16 +1,19 @@
 package screens;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import models.*;
 
 
 public class DisplayScreen {
-    Game game;
-    Player player;
+    private Game game;
+    private Player player;
     JLabel text = new JLabel("Display Page");
     protected JPanel disp = new JPanel();
+
     public DisplayScreen(Game game) {
         disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
         this.game = game;
@@ -19,14 +22,12 @@ public class DisplayScreen {
         JLabel difficulty = new JLabel("Difficulty: ");
         if (game.getDifficulty() == 16) {
             difficulty.setText("Difficulty: Easy");
-        }
-        else if (game.getDifficulty() == 12) {
+        } else if (game.getDifficulty() == 12) {
             difficulty.setText("Difficulty: Medium");
-        }
-        else if (game.getDifficulty() == 8) {
+        } else if (game.getDifficulty() == 8) {
             difficulty.setText("Difficulty: Hard");
         }
-        JLabel playerName  = new JLabel("Name: " + player.getName() + "\n");
+        JLabel playerName = new JLabel("Name: " + player.getName() + "\n");
         JLabel startingCredits = new JLabel("Starting credits: " + player.getCredits() + "\n");
         JLabel pilotSkill = new JLabel("Pilot: " + skillpoints[0]);
         JLabel fighterSkills = new JLabel("Fighter: " + skillpoints[1]);
@@ -51,6 +52,7 @@ public class DisplayScreen {
         f.setLocationRelativeTo(null);
         f.setVisible(true);
     }
+
     public JComponent getMainComponent() {
         return disp;
     }
