@@ -1,4 +1,5 @@
 package models;
+import models.enums.Difficulty
 
 public class Game {
     //private int difficulty; //16 = Easy, 12 = Medium, 8 = Hard
@@ -59,8 +60,8 @@ public class Game {
      * Creates the universe based on region names
      */
     public void startGame() {
-    	if (universe == NULL) {
-    		universe = new Universe(regionNames);
+    	if (universe == null) {
+    		universe = universe.getInstance();
     	}
     }
 

@@ -7,18 +7,6 @@ import java.util.ArrayList;
 public class Universe {
     //public Universe {
     private ArrayList<Region> regions = new ArrayList<>();
-    public static void main(String[] args) {
-        uni.getInstance();
-        for (int i = 0; i < uni.uniSize(); i++) {
-            System.out.println("Region num: " + i);
-            Region f = uni.getRegion(i);
-            System.out.print("x " + uni.getRegion(i).getX());
-            System.out.print("; y " + uni.getRegion(i).getY());
-            System.out.print("; name " + uni.getRegion(i).getName());
-            System.out.print("; tech " + uni.getRegion(i).getTechLevel() + "\n");
-        }
-    }
-
     private static Universe uni;
 
     private Universe() {
@@ -26,7 +14,7 @@ public class Universe {
             throw new RuntimeException("Use getInstance()");
         }
         // initialization logic
-        
+
     }
 
     public static Universe getInstance() {
@@ -37,13 +25,13 @@ public class Universe {
         return uni;
     }
     public Region getRegion(int n) {
-        return regions.get(n); 
+        return regions.get(n);
     }
     public int uniSize() {
         return regions.size();
     }
     public void doStuff() {
-        
+
         for (int i = 0; i < 10; i++) {
             Region start = new Region(0,0,"null", TechLevel.PREAG);
             regions.add(start);
