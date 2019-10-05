@@ -10,6 +10,7 @@ import models.Region;
 import models.Universe;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 public class Map {
@@ -22,7 +23,6 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         Region[] regions = new Region[universe.getRegions().length - 1];
-
         int cnt = 0;
         for (Region region: universe.getRegions()) {
             if (!region.equals(player.getCurrentRegion())) {
@@ -30,11 +30,12 @@ public class Map {
                 cnt++;
             }
         }
-        //find a way to automate the buttons?
-        JButton currentRegion =
-                new JButton("You are here");
+        JButton currentRegion = new JButton("You are here");
         JButton firstRegion =
-                new JButton(new AbstractAction(regions[0].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[0].getName(),
+                        player.distance(regions[0]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[0]);
@@ -44,7 +45,10 @@ public class Map {
                     }
                 });
         JButton secondRegion =
-                new JButton(new AbstractAction(regions[1].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[1].getName(),
+                        player.distance(regions[1]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[1]);
@@ -54,7 +58,10 @@ public class Map {
                     }
                 });
         JButton thirdRegion =
-                new JButton(new AbstractAction(regions[2].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[2].getName(),
+                        player.distance(regions[2]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[2]);
@@ -64,7 +71,10 @@ public class Map {
                     }
                 });
         JButton fourthRegion =
-                new JButton(new AbstractAction(regions[3].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[3].getName(),
+                        player.distance(regions[3]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[3]);
@@ -74,7 +84,10 @@ public class Map {
                     }
                 });
         JButton fifthRegion =
-                new JButton(new AbstractAction(regions[4].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[4].getName(),
+                        player.distance(regions[4]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[4]);
@@ -84,7 +97,10 @@ public class Map {
                     }
                 });
         JButton sixthRegion =
-                new JButton(new AbstractAction(regions[5].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[5].getName(),
+                        player.distance(regions[5]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[5]);
@@ -94,7 +110,10 @@ public class Map {
                     }
                 });
         JButton seventhRegion =
-                new JButton(new AbstractAction(regions[6].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[6].getName(),
+                        player.distance(regions[6]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[6]);
@@ -104,7 +123,10 @@ public class Map {
                     }
                 });
         JButton eighthRegion =
-                new JButton(new AbstractAction(regions[7].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> " 
+                                + "Distance from you: %.2f</html>", 
+                        regions[7].getName(), 
+                        player.distance(regions[7]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[7]);
@@ -114,7 +136,10 @@ public class Map {
                     }
                 });
         JButton ninthRegion =
-                new JButton(new AbstractAction(regions[8].getName()) {
+                new JButton(new AbstractAction(String.format("<html> %s <br> "
+                                + "Distance from you: %.2f</html>",
+                        regions[8].getName(),
+                        player.distance(regions[8]))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[8]);
@@ -123,7 +148,6 @@ public class Map {
                         hide();
                     }
                 });
-
         showButtons(currentRegion, player.getCurrentRegion());
         showButtons(firstRegion, regions[0]);
         showButtons(secondRegion, regions[1]);
@@ -134,25 +158,15 @@ public class Map {
         showButtons(seventhRegion, regions[6]);
         showButtons(eighthRegion, regions[7]);
         showButtons(ninthRegion, regions[8]);
-
-        panel.setLayout(null);
-
         JButton[] buttons = {firstRegion, secondRegion, thirdRegion,
             fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
             ninthRegion, currentRegion};
-
         for (JButton button : buttons) {
             panel.add(button);
         }
-
+        panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1366, 768));
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(panel);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
+        frameStuff();
     }
 
     private void hide() {
@@ -161,9 +175,18 @@ public class Map {
     }
 
     private void showButtons(JButton button, Region region) {
-        button.setSize(100, 50);
+        button.setFont(new Font("Calibri (Body)", Font.BOLD, 12));
+        button.setSize(200, 100);
         button.setLocation((int) (region.getX() * 3.0) + 50,
                 (int) (region.getY() * 3.0) + 50);
+    }
+
+    private void frameStuff() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(panel);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
 
