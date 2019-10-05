@@ -26,6 +26,16 @@ public class Universe {
     public Region getRegion(int n) {
         return regions.get(n);
     }
+
+    public Region[] getRegions() {
+        Region[] tmp = new Region[regions.size()];
+        int cnt = 0;
+        for (Region r : regions) {
+            tmp[cnt] = r;
+            cnt++;
+        }
+        return tmp;
+    }
     public int uniSize() {
         return regions.size();
     }

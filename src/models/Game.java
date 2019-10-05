@@ -57,11 +57,16 @@ public class Game {
         return regionNames;
     }
 
+    public Universe getUniverse() {
+        return universe;
+    }
+
     /**
      * Creates the universe based on region names
      */
     public void startGame() {
         universe = universe.getInstance(regionNames);
+        player.setCurrentRegion(universe.getRegion(0));
     }
 
 
