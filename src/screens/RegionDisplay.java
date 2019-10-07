@@ -37,7 +37,4 @@ public class RegionDisplay {
         return panel;
     }
 
-//    public static void main(String[] args) {
-//        RegionDisplay rg = new RegionDisplay();
-//    }
 }
