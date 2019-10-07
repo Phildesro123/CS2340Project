@@ -43,6 +43,7 @@ public class CustomizationPage {
         JButton confirm = new JButton(new AbstractAction("Confirm") {
             @Override
             public void actionPerformed(ActionEvent e) {
+                game.startGame();
                 player.setName(characterName.getText());
                 charNameLabel.setText("Character Name: " + player.getName());
                 game.setPlayer(player);

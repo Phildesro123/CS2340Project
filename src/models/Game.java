@@ -57,6 +57,10 @@ public class Game {
         return regionNames;
     }
 
+    public Universe getUniverse() {
+        return universe;
+    }
+
     /**
      * Creates the universe based on region names
      */
