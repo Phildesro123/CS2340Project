@@ -28,7 +28,6 @@ public class CustomizationPage {
     public CustomizationPage() {
         game = new Game("EASY", "");
         player = game.getPlayer();
-        //Text Fields
         JTextField characterName = new JTextField(30);
         //Labels
         JLabel currCredits = new JLabel("" + player.getCredits());
