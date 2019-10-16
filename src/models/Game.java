@@ -63,6 +63,7 @@ public class Game {
 
     /**
      * Creates the universe based on region names
+     * Also sets the current region to a random region
      */
     public void startGame() {
         universe = universe.getInstance(regionNames);
