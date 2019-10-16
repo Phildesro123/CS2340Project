@@ -1,0 +1,95 @@
+package models.enums;
+
+public enum ShipType {
+    SEIROSCO,
+    EMPIREWCORP,
+    BLACKEAGLE,
+    KINGDOMCCO,
+    BLUELION,
+    ALLIANCEDCO,
+    GOLDENDEER;
+
+    public int shipHealth() {
+        switch (this) {
+        case BLUELION: //More Damage
+            return 550;
+        case SEIROSCO: //Good stats all around
+            return 700;
+        case BLACKEAGLE: //Middle between Deer & Lion
+            return 400;
+        case GOLDENDEER: //Speedy Merchant class
+            return 350;
+        case KINGDOMCCO: // Good damage and combat
+            return 800;
+        case ALLIANCEDCO: // Speedy Merchant class
+            return 750;
+        case EMPIREWCORP: // More well rounded than Seiros
+            return 850;
+        default :
+                throw new IllegalStateException("Unexpected value: " + this);
+        }
+    }
+
+    public String shipName() {
+        switch (this) {
+        case BLUELION:
+            return "Blue Lion: Luin";
+        case SEIROSCO:
+            return "Seiros Company";
+        case BLACKEAGLE:
+            return "Black Eagle: Aymr";
+        case GOLDENDEER:
+            return "Golden Deer: Blutgang";
+        case KINGDOMCCO:
+            return "Kingdom Calvary Company MKV";
+        case ALLIANCEDCO:
+            return "Alliance Duelist Company MKV";
+        case EMPIREWCORP:
+            return "Empire Wyvern Company MKV";
+        default :
+            throw new IllegalStateException("Unexpected value: " + this);
+        }
+    }
+
+    public int cargoSpace() {
+        switch (this) {
+        case BLUELION:
+            return 3;
+        case SEIROSCO:
+            return 7;
+        case BLACKEAGLE:
+            return 4;
+        case GOLDENDEER:
+            return 6;
+        case KINGDOMCCO:
+            return 8;
+        case ALLIANCEDCO:
+            return 15;
+        case EMPIREWCORP:
+            return 10;
+        default :
+            throw new IllegalStateException("Unexpected value: " + this);
+        }
+    }
+
+    public double shipFuel() {
+        switch (this) {
+        case BLUELION:
+            return 2000.0;
+        case SEIROSCO:
+            return 3500.0;
+        case BLACKEAGLE:
+            return 2750.0;
+        case GOLDENDEER:
+            return 3000.0;
+        case KINGDOMCCO:
+            return 2500.0;
+        case ALLIANCEDCO:
+            return 4500.0;
+        case EMPIREWCORP:
+            return 5000.0;
+        default:
+            throw new IllegalStateException("Unexpected value: " + this);
+        }
+    }
+}

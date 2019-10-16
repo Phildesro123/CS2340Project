@@ -8,4 +8,6 @@ public enum TechLevel {
     INDUSTRIAL,
     MODERN,
     FUTURISTIC
+
+
 }
