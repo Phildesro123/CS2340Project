@@ -9,6 +9,10 @@ public enum ShipType {
     ALLIANCEDCO,
     GOLDENDEER;
 
+    /**
+     * Gets the the health of a shit
+     * @return Ship's health
+     */
     public int shipHealth() {
         switch (this) {
         case BLUELION: //More Damage
@@ -25,11 +29,15 @@ public enum ShipType {
             return 750;
         case EMPIREWCORP: // More well rounded than Seiros
             return 850;
-        default :
-                throw new IllegalStateException("Unexpected value: " + this);
+        default:
+            throw new IllegalStateException("Unexpected value: " + this);
         }
     }
 
+    /**
+     * Get ship's name
+     * @return Ship's name
+     */
     public String shipName() {
         switch (this) {
         case BLUELION:
@@ -51,6 +59,10 @@ public enum ShipType {
         }
     }
 
+    /**
+     * Gets cargo space of ship
+     * @return Cargo space of ship
+     */
     public int cargoSpace() {
         switch (this) {
         case BLUELION:
@@ -72,6 +84,10 @@ public enum ShipType {
         }
     }
 
+    /**
+     * Get the ship's fuel
+     * @return Ship's fuel
+     */
     public double shipFuel() {
         switch (this) {
         case BLUELION:

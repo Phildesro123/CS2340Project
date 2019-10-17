@@ -11,3 +11,6 @@ public enum TechLevel {
 
 
 }
+
+
+// May add items for tech levels
