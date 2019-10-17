@@ -106,14 +106,27 @@ public class Player {
         skillPoints++;
     }
 
+    /**
+     * Get player's current region
+     * @return Current region
+     */
     public Region getCurrentRegion() {
         return currentRegion;
     }
 
+    /**
+     * Change the current region
+     * @param currentRegion Region to change current region to
+     */
     public void setCurrentRegion(Region currentRegion) {
         this.currentRegion = currentRegion;
     }
 
+    /**
+     * Distance from current region to another region
+     * @param region Other region
+     * @return Distance from current region to other region
+     */
     public double distance(Region region) {
         double x1 = currentRegion.getX();
         double x2 = region.getX();
