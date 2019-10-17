@@ -53,12 +53,9 @@ public class RegionDisplay {
         return panel;
     }
 
-    private void hide() {
+    public void hide() {
         f.setVisible(false);
         f.dispose();
     }
 
-//    public static void main(String[] args) {
-//        RegionDisplay rg = new RegionDisplay();
-//    }
 }

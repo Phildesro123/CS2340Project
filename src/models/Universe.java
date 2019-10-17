@@ -1,4 +1,5 @@
 package models;
+import models.enums.ItemType;
 import models.enums.TechLevel;
 import java.util.Random;
 import java.util.ArrayList;
@@ -36,22 +37,28 @@ public class Universe {
         }
         return tmp;
     }
+
     public int uniSize() {
         return regions.size();
     }
 
     public void doStuff(String[] names) {
         for (int i = 0; i < 10; i++) {
-            Region start = new Region(0, 0, "null", TechLevel.PREAG);
+            Region start = new Region(0, 0,
+                    "null", TechLevel.PREAG,
+                    new Market(new Item[10]));
             regions.add(start);
         }
         Random gen = new Random();
         TechLevel[] tech = TechLevel.values();
+        ItemType[] type = ItemType.values();
         for (int i = 0; i < regions.size(); i++) {
             int x = gen.nextInt(201);
             int y = gen.nextInt(201);
             int nameInt = gen.nextInt(names.length);
             int techInt = gen.nextInt(tech.length);
+            int itemInt = gen.nextInt(type.length);
+            Item[] tempItems = new Item[10];
             int j = 0;
             boolean tester = true;
             while (tester) {
@@ -69,7 +76,14 @@ public class Universe {
                     tester = j < i;
                 }
             }
-            Region temp = new Region(x, y, names[nameInt], tech[techInt]);
+
+            //This is to randomly assign a price modifier to the item
+            for (int f = 0; f < 10; f++) {
+                tempItems[f] = new Item(Math.random() * 100, type[itemInt]);
+                itemInt = gen.nextInt(type.length);
+            }
+            Region temp = new Region(x, y, names[nameInt], tech[techInt],
+                    new Market(tempItems));
             regions.set(i, temp);
         }
     }

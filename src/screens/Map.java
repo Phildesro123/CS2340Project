@@ -9,8 +9,7 @@ import models.Player;
 import models.Region;
 import models.Universe;
 
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class Map {
@@ -179,6 +178,8 @@ public class Map {
         button.setSize(200, 100);
         button.setLocation((int) (region.getX() * 3.0) + 50,
                 (int) (region.getY() * 3.0) + 50);
+
+        button.setBackground(region.getColor());
     }
 
     private void frameStuff() {

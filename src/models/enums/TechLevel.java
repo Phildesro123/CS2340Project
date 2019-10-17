@@ -8,4 +8,9 @@ public enum TechLevel {
     INDUSTRIAL,
     MODERN,
     FUTURISTIC
+
+
 }
+
+
+// May add items for tech levels
