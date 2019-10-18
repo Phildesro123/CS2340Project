@@ -10,6 +10,9 @@ import javax.swing.*;
 
 
 public class RegionDisplay {
+    //This will display the region's market and stuff
+    //Should display player's fuel
+    //Will handle price calculation(?)
     private Player player;
     protected Region region;
     protected JPanel panel = new JPanel();
