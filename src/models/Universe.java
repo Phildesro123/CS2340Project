@@ -78,7 +78,6 @@ public class Universe {
 
             //This is to randomly assign a price modifier to the item
             for (int f = 0; f < 10; f++) {
-                tempItems[f] = new Item(Math.random() * 100, type[itemInt]);
                 itemInt = gen.nextInt(type.length);
             }
             Region temp = new Region(x, y, names[nameInt], tech[techInt]);

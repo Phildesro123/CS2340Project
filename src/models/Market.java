@@ -19,4 +19,12 @@ public class Market {
         items = i;
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for (Item i : items) {
+            s += String.format("Name: %s\n", i.getName());
+        }
+        return s;
+    }
 }
