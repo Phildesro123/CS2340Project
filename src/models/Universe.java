@@ -45,8 +45,7 @@ public class Universe {
     public void doStuff(String[] names) {
         for (int i = 0; i < 10; i++) {
             Region start = new Region(0, 0,
-                    "null", TechLevel.PREAG,
-                    new Market(new Item[10]));
+                    "null", TechLevel.PREAG);
             regions.add(start);
         }
         Random gen = new Random();
@@ -82,8 +81,7 @@ public class Universe {
                 tempItems[f] = new Item(Math.random() * 100, type[itemInt]);
                 itemInt = gen.nextInt(type.length);
             }
-            Region temp = new Region(x, y, names[nameInt], tech[techInt],
-                    new Market(tempItems));
+            Region temp = new Region(x, y, names[nameInt], tech[techInt]);
             regions.set(i, temp);
         }
     }

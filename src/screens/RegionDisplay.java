@@ -25,6 +25,7 @@ public class RegionDisplay {
         region = player.getCurrentRegion();
         System.out.println(region);
         System.out.println(region.getName());
+        System.out.println(region.getMarket());
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
         JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");

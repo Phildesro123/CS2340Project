@@ -18,4 +18,5 @@ public class Market {
     public void setItems(Item[] i) {
         items = i;
     }
+
 }
