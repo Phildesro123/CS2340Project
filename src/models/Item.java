@@ -1,5 +1,5 @@
 package models;
-
+import models.enums.ItemData;
 import models.enums.ItemType;
 
 public class Item {
@@ -15,6 +15,13 @@ public class Item {
         this.basePrice = p;
         this.type = t;
     }
+
+
+    public Item(ItemData item) {
+        this(item.getPrice(), item.getType());
+    }
+
+
 
     /**
      * Get the item type

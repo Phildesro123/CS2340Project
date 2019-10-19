@@ -21,9 +21,8 @@ public class Region {
      * @param y Y Coordinate
      * @param name Name of region
      * @param techLevel Techlevel of region
-     * @param m Market for the region
      */
-    public Region(int x, int y, String name, TechLevel techLevel, Market m) {
+    public Region(int x, int y, String name, TechLevel techLevel) {
         this.x = x;
         this.y = y;
         this.name = name;
@@ -33,7 +32,7 @@ public class Region {
                 (int) (Math.random() * 200));
         this.inflationB = calculateInflationB(techLevel);
         this.inflationS = calculateInflationS(techLevel);
-        this.market = m;
+        this.market = techLevel.getMarket();
     }
 
 
