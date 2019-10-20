@@ -88,22 +88,22 @@ public enum ShipType {
      * Get the ship's fuel
      * @return Ship's fuel
      */
-    public double shipFuel() {
+    public int shipFuel() {
         switch (this) {
         case BLUELION:
-            return 2000.0;
+            return 2000;
         case SEIROSCO:
-            return 3500.0;
+            return 3500;
         case BLACKEAGLE:
-            return 2750.0;
+            return 2750;
         case GOLDENDEER:
-            return 3000.0;
+            return 3000;
         case KINGDOMCCO:
-            return 2500.0;
+            return 2500;
         case ALLIANCEDCO:
-            return 4500.0;
+            return 4500;
         case EMPIREWCORP:
-            return 5000.0;
+            return 5000;
         default:
             throw new IllegalStateException("Unexpected value: " + this);
         }
