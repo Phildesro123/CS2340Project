@@ -8,12 +8,14 @@ import models.Game;
 import models.Player;
 import models.Region;
 import models.Universe;
+import models.Travel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class Map {
     private Player player;
+    private Travel travel;
     protected JFrame frame = new JFrame("Map *scaled by 3x*");
     protected JPanel panel = new JPanel();
     protected RegionDisplay disp;
@@ -21,6 +23,7 @@ public class Map {
     public Map(Game game) {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
+        travel = game.getTravel();
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -32,9 +35,11 @@ public class Map {
         JButton currentRegion = new JButton("You are here");
         JButton firstRegion =
                 new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
+                                + "Distance from you: %.2f<br>"
+                                + "Fuel cost: %d</html>",
                         regions[0].getName(),
-                        player.distance(regions[0]))) {
+                        player.distance(regions[0]),
+                        travel.fuelCost(player.distance(regions[0])))) {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         player.setCurrentRegion(regions[0]);
