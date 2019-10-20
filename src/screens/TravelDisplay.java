@@ -14,9 +14,10 @@ public class TravelDisplay {
     //private Player player;
     private Ship ship;
     protected JPanel panel = new JPanel();
-    protected JFrame f = new JFrame("Current Region");
+    protected JFrame f = new JFrame("Failed to Travel");
 
     public TravelDisplay(Game game, double dist) {
+        Font font;
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         //Universe universe = game.getUniverse();
         //player = game.getPlayer();
@@ -24,9 +25,13 @@ public class TravelDisplay {
         ship = game.getShip();
         int cost = travel.fuelCost(dist);
         int currFuel = ship.getFuel();
-        JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n");
-        JLabel currShipFuel = new JLabel("Current amount of fuel" + currFuel
-                + "\n");
+        JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n",
+                SwingConstants.CENTER);
+        JLabel currShipFuel = new JLabel("Current amount of fuel: " + currFuel
+                + "\n", SwingConstants.CENTER);
+        font = new Font("Calibri (Body)", Font.BOLD, 15);
+        fuelCost.setFont(font);
+        currShipFuel.setFont(font);
         JButton openMap = new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,7 +42,8 @@ public class TravelDisplay {
         openMap.setText("Open Map");
         panel.add(fuelCost);
         panel.add(currShipFuel);
-        panel.setPreferredSize(new Dimension(640, 480));
+        panel.add(openMap);
+        panel.setPreferredSize(new Dimension(320, 120));
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().add(getMainComponent());
