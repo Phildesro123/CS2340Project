@@ -4,23 +4,32 @@ import models.enums.Difficulty;
 
 public class Travel {
     private Player player;
-    private Game game;
-    private Ship ship1;
+    private Ship ship;
+    private double diff;
+    private int[] skills;
 
+    public Travel(Ship ship, double diff, int[] skills) {
+        this.ship = ship;
+        this.diff = diff;
+        this.skills = skills;
+    }
     public int fuelCost(double dist) {
         int fuel;
-        Difficulty diff = game.getDifficulty();
-        double diffMod = diff.modifier();
-        int pilot = player.getSkillSet()[0];
-        double pilotMult = (pilot * 1.27) / 100.0;
-        fuel = (int) ((dist * diffMod) * pilotMult);
+        int pilot = skills[0];
+        double pilotMult = 1.0 + (Math.pow(1.27, pilot) / 100.0);
+        fuel = (int) ((dist * diff) / pilotMult);
         return fuel;
     }
-    public Travel(Ship ship) {
-        this.ship1 = ship;
-    }
-    public Travel() {
-
+    public boolean canTravel(double dist) {
+        int fuel = ship.getFuel();
+        return (fuel > fuelCost(dist));
     }
 
+    public void traveling(double dist) {
+        int fuel = ship.getFuel();
+        if (canTravel(dist)) {
+            fuel = fuel - fuelCost(dist);
+            ship.setFuel(fuel);
+        }
+    }
 }
