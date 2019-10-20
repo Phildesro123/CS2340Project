@@ -87,4 +87,5 @@ run_checkstyle.py
 cs2340_checks.xml
 checkstyle-8.24-all.jar
 
+bash.exe.stackdump
 
