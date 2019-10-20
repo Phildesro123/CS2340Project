@@ -21,11 +21,7 @@ public class RegionDisplay {
     public RegionDisplay(Game game) {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         this.player = game.getPlayer();
-        System.out.println(player);
         region = player.getCurrentRegion();
-        System.out.println(region);
-        System.out.println(region.getName());
-        System.out.println(region.getMarket());
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
         JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");

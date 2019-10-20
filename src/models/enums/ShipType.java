@@ -93,7 +93,7 @@ public enum ShipType {
         case BLUELION:
             return 2000;
         case SEIROSCO:
-            return 3500;
+            return 300;
         case BLACKEAGLE:
             return 2750;
         case GOLDENDEER:
