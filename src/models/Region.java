@@ -94,22 +94,22 @@ public class Region {
      */
     private double calculateInflationS(TechLevel l) {
         switch (l) {
-            case PREAG:
-                return 2;
-            case MODERN:
-                return 1;
-            case MEDIEVAL:
-                return 1.5;
-            case FUTURISTIC:
-                return 0.9;
-            case INDUSTRIAL:
-                return 1;
-            case AGRICULTURE:
-                return 1.8;
-            case RENAISSANCE:
-                return 1;
-            default:
-                throw new IllegalStateException("Unexpected input: " + l);
+        case PREAG:
+            return 2;
+        case MODERN:
+            return 1;
+        case MEDIEVAL:
+            return 1.5;
+        case FUTURISTIC:
+            return 0.9;
+        case INDUSTRIAL:
+            return 1;
+        case AGRICULTURE:
+            return 1.8;
+        case RENAISSANCE:
+            return 1;
+        default:
+            throw new IllegalStateException("Unexpected input: " + l);
         }
     }
 
@@ -121,22 +121,22 @@ public class Region {
      */
     private double calculateInflationB(TechLevel l) {
         switch (l) {
-            case PREAG:
-                return 0.4;
-            case MODERN:
-                return 1.2;
-            case MEDIEVAL:
-                return 0.7;
-            case FUTURISTIC:
-                return 1.4;
-            case INDUSTRIAL:
-                return 1.1;
-            case AGRICULTURE:
-                return 0.5;
-            case RENAISSANCE:
-                return 0.9;
-            default:
-                throw new IllegalStateException("Unexpected input: " + l);
+        case PREAG:
+            return 0.4;
+        case MODERN:
+            return 1.2;
+        case MEDIEVAL:
+            return 0.7;
+        case FUTURISTIC:
+            return 1.4;
+        case INDUSTRIAL:
+            return 1.1;
+        case AGRICULTURE:
+            return 0.5;
+        case RENAISSANCE:
+            return 0.9;
+        default:
+            throw new IllegalStateException("Unexpected input: " + l);
         }
     }
 
