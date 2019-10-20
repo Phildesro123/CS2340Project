@@ -1,5 +1,7 @@
 package models;
 
+import models.enums.ShipType;
+
 public class Player {
     private String name;
     private int skillPoints;
@@ -7,6 +9,7 @@ public class Player {
     //[Pilot, Fighter, Merchant, Engineer]
     private int[] skillSet;
     private Region currentRegion;
+    private Ship ship;
     /**
      * Creates a player object
      * @param name Name of player
@@ -18,6 +21,7 @@ public class Player {
         this.skillPoints = skillPoints;
         skillSet = new int[]{0, 0, 0, 0};
         this.credits = credits;
+        this.ship = generateShip((int) Math.round(Math.random() * 7));
     }
 
     /**
@@ -134,5 +138,32 @@ public class Player {
         double y2 = region.getY();
         return Math.sqrt(Math.pow((x2 - x1), 2)
                 + Math.pow((y2 - y1), 2));
+    }
+
+    private Ship generateShip(int val) {
+        switch (val) {
+        case 0:
+            return new Ship(ShipType.values()[0]);
+        case 1:
+            return new Ship(ShipType.values()[1]);
+        case 2:
+            return new Ship(ShipType.values()[2]);
+        case 3:
+            return new Ship(ShipType.values()[3]);
+        case 4:
+            return new Ship(ShipType.values()[4]);
+        case 5:
+            return new Ship(ShipType.values()[5]);
+        default:
+            return new Ship(ShipType.values()[6]);
+        }
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 }
