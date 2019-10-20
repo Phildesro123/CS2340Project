@@ -5,7 +5,6 @@ public enum Difficulty {
 
     /**
      * Returns number of skillpoints for each difficulty
-     *
      * @return The number of skill points
      */
     public int skillPoints() {
@@ -23,7 +22,6 @@ public enum Difficulty {
 
     /**
      * Returns number of credits for each difficulty
-     *
      * @return The number of credits
      */
     public double credits() {
@@ -38,4 +36,7 @@ public enum Difficulty {
             throw new IllegalStateException("Unexpected value: " + this);
         }
     }
+
+
+    //Difficulty modifier
 }

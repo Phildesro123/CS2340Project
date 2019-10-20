@@ -10,6 +10,9 @@ import javax.swing.*;
 
 
 public class RegionDisplay {
+    //This will display the region's market and stuff
+    //Should display player's fuel
+    //Will handle price calculation(?)
     private Player player;
     protected Region region;
     protected JPanel panel = new JPanel();
@@ -22,6 +25,7 @@ public class RegionDisplay {
         region = player.getCurrentRegion();
         System.out.println(region);
         System.out.println(region.getName());
+        System.out.println(region.getMarket());
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
         JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");

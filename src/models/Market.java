@@ -1,6 +1,10 @@
 package models;
 
 public class Market {
+    /*
+    Will have a list of items it can sell based on tech level of region
+    The tech level class will have a list of items for each tech level
+     */
     //[Sword, Axe, Lance, Bow, Gauntlet, Staff, Club, Crossbow, Scythe, Dagger]
     private Item[] items;
     public Market(Item[] i) {
@@ -13,5 +17,14 @@ public class Market {
 
     public void setItems(Item[] i) {
         items = i;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (Item i : items) {
+            s += String.format("Name: %s\n", i.getName());
+        }
+        return s;
     }
 }
