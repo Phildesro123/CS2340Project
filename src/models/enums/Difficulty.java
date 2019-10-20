@@ -25,7 +25,7 @@ public enum Difficulty {
      * @return The number of credits
      */
     public double credits() {
-        switch (this) {
+        switch  (this) {
         case EASY:
             return 1000.0;
         case MEDIUM:
@@ -39,4 +39,16 @@ public enum Difficulty {
 
 
     //Difficulty modifier
+    public double modifier() {
+        switch (this) {
+        case EASY:
+            return 1;
+        case MEDIUM:
+            return 1.5;
+        case HARD:
+            return 2;
+        default:
+            throw new IllegalStateException("Unexpected value: " + this);
+        }
+    }
 }

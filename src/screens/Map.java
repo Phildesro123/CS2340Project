@@ -8,19 +8,23 @@ import models.Game;
 import models.Player;
 import models.Region;
 import models.Universe;
+import models.Travel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class Map {
     private Player player;
+    private Travel travel;
     protected JFrame frame = new JFrame("Map *scaled by 3x*");
     protected JPanel panel = new JPanel();
     protected RegionDisplay disp;
+    protected TravelDisplay trav;
 
     public Map(Game game) {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
+        travel = game.getTravel();
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -30,123 +34,15 @@ public class Map {
             }
         }
         JButton currentRegion = new JButton("You are here");
-        JButton firstRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[0].getName(),
-                        player.distance(regions[0]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[0]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton secondRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[1].getName(),
-                        player.distance(regions[1]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[1]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton thirdRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[2].getName(),
-                        player.distance(regions[2]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[2]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton fourthRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[3].getName(),
-                        player.distance(regions[3]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[3]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton fifthRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[4].getName(),
-                        player.distance(regions[4]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[4]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton sixthRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[5].getName(),
-                        player.distance(regions[5]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[5]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton seventhRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[6].getName(),
-                        player.distance(regions[6]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[6]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton eighthRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> " 
-                                + "Distance from you: %.2f</html>", 
-                        regions[7].getName(), 
-                        player.distance(regions[7]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[7]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
-        JButton ninthRegion =
-                new JButton(new AbstractAction(String.format("<html> %s <br> "
-                                + "Distance from you: %.2f</html>",
-                        regions[8].getName(),
-                        player.distance(regions[8]))) {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        player.setCurrentRegion(regions[8]);
-                        game.setPlayer(player);
-                        disp = new RegionDisplay(game);
-                        hide();
-                    }
-                });
+        JButton firstRegion = buttons(0, game);
+        JButton secondRegion = buttons(1, game);
+        JButton thirdRegion = buttons(2, game);
+        JButton fourthRegion = buttons(3, game);
+        JButton fifthRegion = buttons(4, game);
+        JButton sixthRegion = buttons(5, game);
+        JButton seventhRegion = buttons(6, game);
+        JButton eighthRegion = buttons(7, game);
+        JButton ninthRegion = buttons(8, game);
         showButtons(currentRegion, player.getCurrentRegion());
         showButtons(firstRegion, regions[0]);
         showButtons(secondRegion, regions[1]);
@@ -167,7 +63,43 @@ public class Map {
         panel.setPreferredSize(new Dimension(1366, 768));
         frameStuff();
     }
-
+    private JButton buttons(int n, Game game) {
+        Universe universe = game.getUniverse();
+        player = game.getPlayer();
+        travel = game.getTravel();
+        Region[] regions = new Region[universe.getRegions().length - 1];
+        int cnt = 0;
+        for (Region region: universe.getRegions()) {
+            if (!region.equals(player.getCurrentRegion())) {
+                regions[cnt] = region;
+                cnt++;
+            }
+        }
+        double dist = player.distance(regions[n]);
+        JButton region = new JButton(new AbstractAction(String.format("<html> %s <br> "
+                        + "Distance from you: %.2f<br>"
+                        + "Fuel cost: %d</html>",
+                regions[n].getName(),
+                dist,
+                travel.fuelCost(dist))) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (travel.canTravel(dist)) {
+                    travel.traveling(dist);
+                    player.setCurrentRegion(regions[n]);
+                    game.setPlayer(player);
+                    disp = new RegionDisplay(game);
+                    hide();
+                } else {
+                    player.setCurrentRegion(player.getCurrentRegion());
+                    game.setPlayer(player);
+                    trav = new TravelDisplay(game, dist);
+                    hide();
+                }
+            }
+        });
+        return region;
+    }
     private void hide() {
         frame.setVisible(false);
         frame.dispose();
