@@ -19,6 +19,7 @@ public class Map {
     protected JFrame frame = new JFrame("Map *scaled by 3x*");
     protected JPanel panel = new JPanel();
     protected RegionDisplay disp;
+    protected TravelDisplay trav;
 
     public Map(Game game) {
         Universe universe = game.getUniverse();
@@ -34,7 +35,6 @@ public class Map {
         }
         JButton currentRegion = new JButton("You are here");
         JButton firstRegion = buttons(0, game);
-
         JButton secondRegion = buttons(1, game);
         JButton thirdRegion = buttons(2, game);
         JButton fourthRegion = buttons(3, game);
@@ -75,18 +75,27 @@ public class Map {
                 cnt++;
             }
         }
+        double dist = player.distance(regions[n]);
         JButton region = new JButton(new AbstractAction(String.format("<html> %s <br> "
                         + "Distance from you: %.2f<br>"
                         + "Fuel cost: %d</html>",
                 regions[n].getName(),
-                player.distance(regions[n]),
-                travel.fuelCost(player.distance(regions[n])))) {
+                dist,
+                travel.fuelCost(dist))) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                player.setCurrentRegion(regions[n]);
-                game.setPlayer(player);
-                disp = new RegionDisplay(game);
-                hide();
+                if (travel.canTravel(dist)) {
+                    travel.traveling(dist);
+                    player.setCurrentRegion(regions[n]);
+                    game.setPlayer(player);
+                    disp = new RegionDisplay(game);
+                    hide();
+                } else {
+                    player.setCurrentRegion(player.getCurrentRegion());
+                    game.setPlayer(player);
+                    trav = new TravelDisplay(game, dist);
+                    hide();
+                }
             }
         });
         return region;

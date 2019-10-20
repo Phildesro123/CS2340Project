@@ -70,6 +70,9 @@ public class Game {
         return travel;
     }
 
+    public Ship getShip() {
+        return ship;
+    }
     /**
      * Creates the universe based on region names
      * Also sets the current region to a random region

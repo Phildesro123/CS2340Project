@@ -1,9 +1,7 @@
 package models;
-import models.enums.Difficulty;
 
 
 public class Travel {
-    private Player player;
     private Ship ship;
     private double diff;
     private int[] skills;
@@ -16,8 +14,8 @@ public class Travel {
     public int fuelCost(double dist) {
         int fuel;
         int pilot = skills[0];
-        double pilotMult = 1.0 + (Math.pow(1.27, pilot) / 100.0);
-        fuel = (int) ((dist * diff) / pilotMult);
+        double pilotMult = 1.0 - (Math.pow(1.273, pilot) / 100.0);
+        fuel = (int) ((dist * diff) * pilotMult);
         return fuel;
     }
     public boolean canTravel(double dist) {

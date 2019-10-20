@@ -1,32 +1,32 @@
 package screens;
 
 import models.Game;
-import models.Player;
-import models.Region;
+import models.Travel;
+import models.Ship;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-
-public class RegionDisplay {
-    //This will display the region's market and stuff
-    //Should display player's fuel
-    //Will handle price calculation(?)
-    private Player player;
-    protected Region region;
+public class TravelDisplay {
+    private Travel travel;
+    //private Player player;
+    private Ship ship;
     protected JPanel panel = new JPanel();
     protected JFrame f = new JFrame("Current Region");
 
-    public RegionDisplay(Game game) {
+    public TravelDisplay(Game game, double dist) {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        this.player = game.getPlayer();
-        region = player.getCurrentRegion();
-        JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
-        JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
-        JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");
-        JLabel techLevel = new JLabel("Tech Level: "
-                + region.getTechLevel() + "\n");
+        //Universe universe = game.getUniverse();
+        //player = game.getPlayer();
+        travel = game.getTravel();
+        ship = game.getShip();
+        int cost = travel.fuelCost(dist);
+        int currFuel = ship.getFuel();
+        JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n");
+        JLabel currShipFuel = new JLabel("Current amount of fuel" + currFuel
+                + "\n");
         JButton openMap = new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,11 +35,8 @@ public class RegionDisplay {
             }
         });
         openMap.setText("Open Map");
-        panel.add(regionName);
-        panel.add(xCoor);
-        panel.add(yCoor);
-        panel.add(techLevel);
-        panel.add(openMap);
+        panel.add(fuelCost);
+        panel.add(currShipFuel);
         panel.setPreferredSize(new Dimension(640, 480));
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,8 +44,8 @@ public class RegionDisplay {
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-
     }
+
     public JComponent getMainComponent() {
         return panel;
     }
@@ -57,5 +54,4 @@ public class RegionDisplay {
         f.setVisible(false);
         f.dispose();
     }
-
 }
