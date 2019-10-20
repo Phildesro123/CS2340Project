@@ -7,7 +7,7 @@ public class Game {
     private Player player;
     private String[] regionNames;
     private static Universe universe;
-
+    private Travel travel;
     /**
      * Creates a game object
      *
@@ -59,6 +59,10 @@ public class Game {
 
     public Universe getUniverse() {
         return universe;
+    }
+
+    public Travel getTravel() {
+        return travel;
     }
 
     /**
