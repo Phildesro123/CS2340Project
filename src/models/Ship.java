@@ -99,4 +99,8 @@ public class Ship {
         return type;
     }
 
+    public boolean canAddCargo() {
+        return cargo.size() + 1 < maxCargo;
+    }
+
 }
