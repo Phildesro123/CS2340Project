@@ -64,4 +64,10 @@ public class Item {
             return Math.round(price * modifier);
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Item i = (Item) obj;
+        return name == i.getName() && type == i.getItemType();
+    }
 }
