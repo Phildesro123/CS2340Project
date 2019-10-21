@@ -56,10 +56,13 @@ public class RegionDisplay {
         for (Item i : region.getMarket().getItems()) {
             JPanel tempPanel = new JPanel();
             tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.X_AXIS));
+            tempPanel.add(new JLabel("Buying Price: "
+                    + priceBuyCalculator(i)));
             tempPanel.add(createMarketBttn(i, true, playerCreds, inventory));
             tempPanel.add(new JLabel(i.getName()));
             tempPanel.add(createMarketBttn(i, false, playerCreds, inventory));
-            System.out.println(tempPanel);
+            tempPanel.add(new JLabel("Selling Price: "
+                    + priceSellCalculator(i)));
             buttons.add(tempPanel);
         }
         openMap.setText("Open Map");
@@ -89,18 +92,20 @@ public class RegionDisplay {
     }
 
     private double priceSellCalculator(Item item) {
-        if (player.getSkillSet()[3] > 0) {
+        if (player.getSkillSet()[2] > 0) {
+            System.out.println(player.getSkillSet()[2] * 1.08);
             return item.price(item.price(region.getInflationS()),
-                    player.getSkillSet()[3] * 0.2);
+                    player.getSkillSet()[2] * 0.8);
         } else {
             return item.price(region.getInflationS());
         }
     }
 
     private double priceBuyCalculator(Item item) {
-        if (player.getSkillSet()[3] > 0) {
+        System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
+        if (player.getSkillSet()[2] > 0) {
             return item.price(item.price(region.getInflationB()),
-                    1 / player.getSkillSet()[3]);
+                    1.0 / 1 + (player.getSkillSet()[2] / 100.0));
         } else {
             return item.price(region.getInflationB());
         }
@@ -149,6 +154,7 @@ public class RegionDisplay {
             return new JButton(new AbstractAction("Sell") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    //If the arraylist has the item, then sell, otherwise error
                     if (player.getShip().getCargo().contains(item)) {
                         player.setCredits(player.getCredits()
                                 + priceSellCalculator(item));

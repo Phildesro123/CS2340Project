@@ -58,8 +58,8 @@ public class Item {
     }
 
     public double price(double modifier, double price) {
-        if (price * modifier < 50.0) {
-            return 50.0;
+        if (price * modifier < 5.0) {
+            return 5.0;
         } else {
             return Math.round(price * modifier);
         }
