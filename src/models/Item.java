@@ -24,7 +24,7 @@ public class Item {
      * @param item ItemData object that holds information about the item
      */
     public Item(ItemData item) {
-        this(item.getPrice(), item.getType(), item.toString());
+        this(item.getPrice(), item.getType(), item.getName());
     }
 
 
@@ -51,5 +51,23 @@ public class Item {
      */
     public double getBasePrice() {
         return basePrice;
+    }
+
+    public double price(double modifier) {
+        return Math.round(basePrice * modifier);
+    }
+
+    public double price(double modifier, double price) {
+        if (price * modifier < 50.0) {
+            return 50.0;
+        } else {
+            return Math.round(price * modifier);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Item i = (Item) obj;
+        return name == i.getName() && type == i.getItemType();
     }
 }

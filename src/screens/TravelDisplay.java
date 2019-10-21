@@ -24,7 +24,7 @@ public class TravelDisplay {
         travel = game.getTravel();
         ship = game.getShip();
         int cost = travel.fuelCost(dist);
-        int currFuel = ship.getFuel();
+        double currFuel = ship.getFuel();
         JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n",
                 SwingConstants.CENTER);
         JLabel currShipFuel = new JLabel("Current amount of fuel: " + currFuel

@@ -19,12 +19,12 @@ public class Travel {
         return fuel;
     }
     public boolean canTravel(double dist) {
-        int fuel = ship.getFuel();
+        double fuel = ship.getFuel();
         return (fuel > fuelCost(dist));
     }
 
     public void traveling(double dist) {
-        int fuel = ship.getFuel();
+        double fuel = ship.getFuel();
         if (canTravel(dist)) {
             fuel = fuel - fuelCost(dist);
             ship.setFuel(fuel);

@@ -17,9 +17,10 @@ public class Region {
 
     /**
      * Creates a new region
-     * @param x X coordinate
-     * @param y Y Coordinate
-     * @param name Name of region
+     *
+     * @param x         X coordinate
+     * @param y         Y Coordinate
+     * @param name      Name of region
      * @param techLevel Techlevel of region
      */
     public Region(int x, int y, String name, TechLevel techLevel) {
@@ -38,6 +39,7 @@ public class Region {
 
     /**
      * Gets the name of a region
+     *
      * @return Name of region
      */
     public String getName() {
@@ -46,6 +48,7 @@ public class Region {
 
     /**
      * Get x coordinate of region
+     *
      * @return X coord. of region
      */
     public int getX() {
@@ -54,6 +57,7 @@ public class Region {
 
     /**
      * Get y coordinate of region
+     *
      * @return Y coord. of region
      */
     public int getY() {
@@ -62,6 +66,7 @@ public class Region {
 
     /**
      * Get the market of the region
+     *
      * @return Market of region
      */
     public Market getMarket() {
@@ -74,6 +79,7 @@ public class Region {
 
     /**
      * Get the techlevel of region
+     *
      * @return Techlevel of region
      */
     public TechLevel getTechLevel() {
@@ -82,6 +88,7 @@ public class Region {
 
     /**
      * Calculates the modifier of prices for selling based on techlevel
+     *
      * @param l Techlevel of region
      * @return Price modifier for selling prices of that region
      */
@@ -101,13 +108,14 @@ public class Region {
             return 1.8;
         case RENAISSANCE:
             return 1;
-        default :
+        default:
             throw new IllegalStateException("Unexpected input: " + l);
         }
     }
 
     /**
      * Calculates buying price modifier for region based on techlevel
+     *
      * @param l Region's techlevel
      * @return Price modifier for buying prices of that region
      */
@@ -134,6 +142,7 @@ public class Region {
 
     /**
      * Get price modifier of region
+     *
      * @return Selling price modifier of region
      */
     public double getInflationS() {
@@ -142,9 +151,11 @@ public class Region {
 
     /**
      * Get buying price modifier of region
+     *
      * @return Buying price modifier of region
      */
     public double getInflationB() {
         return inflationB;
     }
+
 }

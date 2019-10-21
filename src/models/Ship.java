@@ -5,7 +5,7 @@ import models.enums.ShipType;
 import java.util.ArrayList;
 
 public class Ship {
-    private int fuel;
+    private double fuel;
     private ArrayList<Item> cargo;
     private int health;
     private String type;
@@ -55,7 +55,7 @@ public class Ship {
      * Get the ship's fuel
      * @return Ship's fuel
      */
-    public int getFuel() {
+    public double getFuel() {
         return fuel;
     }
 
@@ -63,7 +63,7 @@ public class Ship {
      * Set the ship's fuel
      * @param fuel Fuel to set the ship's fuel
      */
-    public void setFuel(int fuel) {
+    public void setFuel(double fuel) {
         this.fuel = fuel;
     }
 
@@ -97,6 +97,10 @@ public class Ship {
      */
     public String getType() {
         return type;
+    }
+
+    public boolean canAddCargo() {
+        return cargo.size() + 1 < maxCargo;
     }
 
 }
