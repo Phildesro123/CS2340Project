@@ -137,7 +137,7 @@ public class RegionDisplay {
                             player.getShip().addCargo(item);
                             cargoDisp.setText("Current Cargo: ");
                             creds.setText("Current Credits: " + player.getCredits()
-                            + " (-" + priceBuyCalculator(item) + ")");
+                                + " (-" + priceBuyCalculator(item) + ")");
                             for (Item i : player.getShip().getCargo()) {
                                 String txt = cargoDisp.getText();
                                 System.out.println(txt);
