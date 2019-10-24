@@ -51,6 +51,27 @@ public class Ship {
         }
     }
 
+    public Item findItemToRemove(Item item) {
+        if (cargo.indexOf(item) > -1) {
+            return item;
+        } else {
+            boolean foundType = false;
+            boolean compare = false;
+            int i = 0;
+            Item foundItem = null;
+            while (!foundType && i < cargo.size()) {
+                compare = cargo.get(i).getWeaponClass()
+                        .equals(item.getWeaponClass());
+                if (compare) {
+                    foundType = true;
+                    foundItem = cargo.get(i);
+                }
+                i++;
+            }
+            return foundItem;
+        }
+    }
+
     /**
      * Get the ship's fuel
      * @return Ship's fuel
