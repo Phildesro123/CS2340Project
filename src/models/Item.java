@@ -13,6 +13,7 @@ public class Item {
      * @param p Price of item
      * @param t Type of item
      * @param name Name of item
+     * @param wc Class of the weapon
      */
     public Item(double p, ItemType t, String name, String wc) {
         this.basePrice = p;
