@@ -17,8 +17,8 @@ public class RegionDisplay {
     private Player player;
     protected Region region;
     protected JPanel container = new JPanel();
+    protected JPanel holder = new JPanel();
     protected JPanel info = new JPanel();
-    protected JPanel marketDisp = new JPanel();
     protected JPanel buttons = new JPanel();
     protected JFrame frame = new JFrame("Current Region");
 
@@ -26,6 +26,7 @@ public class RegionDisplay {
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
         info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
+        holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         //Make a method that returns a panel and add it to buttons
         this.player = game.getPlayer();
         region = player.getCurrentRegion();
@@ -46,16 +47,23 @@ public class RegionDisplay {
                 hide();
             }
         });
-        System.out.println("Buttons?");
-        buttons.add(inventory);
+        holder.add(inventory);
         buttons.add(playerCreds);
         for (Item i : region.getMarket().getItems()) {
             JPanel tempPanel = new JPanel();
             tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.X_AXIS));
+            tempPanel.add(new JLabel("Buying Price: "
+                    + priceBuyCalculator(i)));
+            tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             tempPanel.add(createMarketBttn(i, true, playerCreds, inventory));
+            tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             tempPanel.add(new JLabel(i.getName()));
+            tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             tempPanel.add(createMarketBttn(i, false, playerCreds, inventory));
-            System.out.println(tempPanel);
+            tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
+            tempPanel.add(new JLabel("Selling Price: "
+                    + priceSellCalculator(i)));
+            tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             buttons.add(tempPanel);
         }
         openMap.setText("Open Map");
@@ -64,9 +72,12 @@ public class RegionDisplay {
         info.add(yCoor);
         info.add(techLevel);
         info.add(openMap);
+        container.add(Box.createRigidArea(new Dimension(10, 0)));
         container.add(info);
+        container.add(Box.createRigidArea(new Dimension(5, 10)));
         container.add(buttons);
-        container.setPreferredSize(new Dimension(1280, 860));
+        holder.add(container);
+        holder.setPreferredSize(new Dimension(640, 500));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(getMainComponent());
@@ -76,7 +87,7 @@ public class RegionDisplay {
 
     }
     public JComponent getMainComponent() {
-        return container;
+        return holder;
     }
 
     public void hide() {
@@ -85,18 +96,20 @@ public class RegionDisplay {
     }
 
     private double priceSellCalculator(Item item) {
-        if (player.getSkillSet()[3] > 0) {
+        if (player.getSkillSet()[2] > 0) {
+            System.out.println(player.getSkillSet()[2] * 1.08);
             return item.price(item.price(region.getInflationS()),
-                    player.getSkillSet()[3] * 0.2);
+                    player.getSkillSet()[2] * 0.8);
         } else {
             return item.price(region.getInflationS());
         }
     }
 
     private double priceBuyCalculator(Item item) {
-        if (player.getSkillSet()[3] > 0) {
+        System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
+        if (player.getSkillSet()[2] > 0) {
             return item.price(item.price(region.getInflationB()),
-                    1 / player.getSkillSet()[3]);
+                    1.0 / 1 + (player.getSkillSet()[2] / 100.0));
         } else {
             return item.price(region.getInflationB());
         }
@@ -122,8 +135,9 @@ public class RegionDisplay {
                             player.setCredits(player.getCredits()
                                     - priceBuyCalculator(item));
                             player.getShip().addCargo(item);
-                            cargoDisp.setText("");
-                            creds.setText("Current Credits: " + player.getCredits());
+                            cargoDisp.setText("Current Cargo: ");
+                            creds.setText("Current Credits: " + player.getCredits()
+                                + " (-" + priceBuyCalculator(item) + ")");
                             for (Item i : player.getShip().getCargo()) {
                                 String txt = cargoDisp.getText();
                                 System.out.println(txt);
@@ -145,12 +159,15 @@ public class RegionDisplay {
             return new JButton(new AbstractAction("Sell") {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (player.getShip().getCargo().contains(item)) {
+                    //If the arraylist has the item, then sell, otherwise error
+                    if (player.getShip().findItemToRemove(item) != null) {
+                        Item sItem = player.getShip().findItemToRemove(item);
                         player.setCredits(player.getCredits()
-                                + priceSellCalculator(item));
-                        player.getShip().removeCargo(item);
-                        cargoDisp.setText("");
-                        creds.setText("Current Credits: " + player.getCredits());
+                                + priceSellCalculator(sItem));
+                        player.getShip().removeCargo(sItem);
+                        cargoDisp.setText("Current Cargo: ");
+                        creds.setText("Current Credits: " + player.getCredits()
+                                + " (+" + priceSellCalculator(sItem) + ")");
                         for (Item i : player.getShip().getCargo()) {
                             cargoDisp.setText(cargoDisp.getText()
                                     + i.getName() + ", ");

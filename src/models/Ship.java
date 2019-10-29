@@ -5,7 +5,7 @@ import models.enums.ShipType;
 import java.util.ArrayList;
 
 public class Ship {
-    private int fuel;
+    private double fuel;
     private ArrayList<Item> cargo;
     private int health;
     private String type;
@@ -51,11 +51,32 @@ public class Ship {
         }
     }
 
+    public Item findItemToRemove(Item item) {
+        if (cargo.indexOf(item) > -1) {
+            return item;
+        } else {
+            boolean foundType = false;
+            boolean compare = false;
+            int i = 0;
+            Item foundItem = null;
+            while (!foundType && i < cargo.size()) {
+                compare = cargo.get(i).getWeaponClass()
+                        .equals(item.getWeaponClass());
+                if (compare) {
+                    foundType = true;
+                    foundItem = cargo.get(i);
+                }
+                i++;
+            }
+            return foundItem;
+        }
+    }
+
     /**
      * Get the ship's fuel
      * @return Ship's fuel
      */
-    public int getFuel() {
+    public double getFuel() {
         return fuel;
     }
 
@@ -63,7 +84,7 @@ public class Ship {
      * Set the ship's fuel
      * @param fuel Fuel to set the ship's fuel
      */
-    public void setFuel(int fuel) {
+    public void setFuel(double fuel) {
         this.fuel = fuel;
     }
 
