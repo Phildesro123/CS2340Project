@@ -11,13 +11,13 @@ import models.enums.Difficulty;
 public class DisplayScreen {
     private Player player;
     private JLabel text;
-    protected JFrame f = new JFrame("SpaceTrader Stats");
+    protected JFrame f = new JFrame("Display Page");
     protected JPanel disp = new JPanel();
 
     public DisplayScreen(Game game) {
-        text = new JLabel("Display Page");
         disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
         player = game.getPlayer();
+        Ship ship = player.getShip();
         int[] skillpoints = player.getSkillSet();
         JLabel difficulty = new JLabel("Difficulty: ");
         if (game.getDifficulty() == Difficulty.EASY) {
@@ -32,7 +32,7 @@ public class DisplayScreen {
         JLabel pilotSkill = new JLabel("Pilot: " + skillpoints[0]);
         JLabel fighterSkills = new JLabel("Fighter: " + skillpoints[1]);
         JLabel merchantSkills = new JLabel("Merchant: " + skillpoints[2]);
-        JLabel engineerSkills = new JLabel("Engineer: " + skillpoints[3]);
+        JLabel engineerSkills = new JLabel("<html>Engineer: " + skillpoints[3] + "<br></html>");
         JButton nextPage = new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,11 +40,16 @@ public class DisplayScreen {
                 hide();
             }
         });
+        JLabel shipName = new JLabel("Ship Type: " + ship.getShipType().getName() + "\n");
+        JLabel shipDesc = new JLabel("<html> <i>" + ship.getShipType().getDesc()
+                + "</i><br>" + "</html>");
+        JLabel shipStats = new JLabel("<html>Health: " + ship.getShipType().shipHealth()
+                + "<br>Fuel: " + ship.getShipType().shipFuel()
+                + "<br>Cargo Space: " + ship.getShipType().cargoSpace() + "</html>");
         nextPage.setText("Confirm and start");
 
 
         disp.setPreferredSize(new Dimension(640, 480));
-        disp.add(text, BorderLayout.CENTER);
         disp.add(playerName);
         disp.add(difficulty);
         disp.add(startingCredits);
@@ -52,7 +57,9 @@ public class DisplayScreen {
         disp.add(fighterSkills);
         disp.add(merchantSkills);
         disp.add(engineerSkills);
-        disp.add(playerName);
+        disp.add(shipName);
+        disp.add(shipDesc);
+        disp.add(shipStats);
         disp.add(nextPage);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().add(getMainComponent());

@@ -8,9 +8,7 @@ public class Game {
     private Player player;
     private String[] regionNames;
     private static Universe universe;
-    private Travel travel;
     private Ship ship = new Ship(ShipType.SEIROSCO);
-    private Encounter encounter;
     /**
      * Creates a game object
      *
@@ -24,10 +22,6 @@ public class Game {
         regionNames = new String[] {"Brigid", "Duscur", "Almyra", "Fodlan",
             "Gronder", "Adrestia", "Faerghus",
             "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
-        travel = new Travel(ship, this.difficulty.modifier(),
-                player.getSkillSet());
-        encounter = new Encounter(ship.getCargo(), player.getCredits(),
-                this.difficulty.modifier());
     }
     /**
      * Returns the current player
@@ -69,16 +63,7 @@ public class Game {
         return universe;
     }
 
-    public Travel getTravel() {
-        return travel;
-    }
 
-    public Ship getShip() {
-        return ship;
-    }
-    public Encounter getEncounter() {
-        return encounter;
-    }
     /**
      * Creates the universe based on region names
      * Also sets the current region to a random region
