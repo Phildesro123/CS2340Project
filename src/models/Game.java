@@ -10,6 +10,7 @@ public class Game {
     private static Universe universe;
     private Travel travel;
     private Ship ship = new Ship(ShipType.SEIROSCO);
+    private Encounter encounter;
     /**
      * Creates a game object
      *
@@ -25,6 +26,8 @@ public class Game {
             "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
         travel = new Travel(ship, this.difficulty.modifier(),
                 player.getSkillSet());
+        encounter = new Encounter(ship.getCargo(), player.getCredits(),
+                this.difficulty.modifier());
     }
     /**
      * Returns the current player
@@ -72,6 +75,9 @@ public class Game {
 
     public Ship getShip() {
         return ship;
+    }
+    public Encounter getEncounter() {
+        return encounter;
     }
     /**
      * Creates the universe based on region names

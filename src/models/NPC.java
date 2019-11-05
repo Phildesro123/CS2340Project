@@ -18,5 +18,4 @@ public abstract class NPC {
 
     //Any other abstract methods?
 
-
 }
