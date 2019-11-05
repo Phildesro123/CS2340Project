@@ -8,5 +8,4 @@ public interface NPC {
 
     public abstract void interact();
 
-
 }
