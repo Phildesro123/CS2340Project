@@ -4,11 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import models.Game;
-import models.Player;
-import models.Region;
-import models.Universe;
-import models.Travel;
+import models.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +12,7 @@ import java.awt.event.ActionEvent;
 public class Map {
     private Player player;
     private Travel travel;
+    private Encounter encounter;
     protected JFrame frame = new JFrame("Map *scaled by 3x*");
     protected JPanel panel = new JPanel();
     protected RegionDisplay disp;
@@ -25,6 +22,8 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         travel = game.getTravel();
+        encounter = new Encounter(player.getShip().getCargo(),
+                player.getCredits(), game.getDifficulty().modifier());
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
