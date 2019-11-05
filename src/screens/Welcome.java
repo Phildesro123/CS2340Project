@@ -8,14 +8,12 @@ import java.awt.event.ActionListener;
 public class Welcome {
     private JPanel wel;
     private JLabel text;
-    private Font font;
-    private JButton button;
 
     public Welcome() {
         wel = new JPanel();
         text = new JLabel("Welcome To Space Trader!");
-        font = new Font("Calibri (Body)", Font.BOLD, 45);
-        button = new JButton("Start");
+        Font font = new Font("Calibri (Body)", Font.BOLD, 45);
+        JButton button = new JButton("Start");
         text.setFont(font);
         wel.setPreferredSize(new Dimension(640, 480));
         wel.add(text);
