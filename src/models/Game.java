@@ -1,6 +1,6 @@
 package models;
 import models.enums.Difficulty;
-import models.enums.ShipType;
+
 
 public class Game {
     //private int difficulty; //16 = Easy, 12 = Medium, 8 = Hard
