@@ -21,8 +21,10 @@ public class Map {
     public Map(Game game) {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
-        travel = game.getTravel();
-        encounter = game.getEncounter();
+        travel = new Travel(player.getShip(),
+                game.getDifficulty().modifier(), player.getSkillSet());
+        encounter = new Encounter(player.getShip().getCargo(),
+                player.getCredits(), game.getDifficulty().modifier());
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
