@@ -3,7 +3,7 @@ package models.enums;
 public enum ShipType {
     SEIROSCO("Immaculate Cruiser", 700, 7, 300, 2, "Produced by the Seiros Company, "
             + "it is a Cruiser that is well rounded."),
-    EMPIREWCORP("Wyvern MKV", 850, 10,5000, 3 , "An Imperial Battle Cruiser"
+    EMPIREWCORP("Wyvern MKV", 850, 10, 5000, 3, "An Imperial Battle Cruiser"
             + " produced by the Empire Wyvern Company. "
             + "Very well rounded and great for long sieges."),
     BLACKEAGLE("Black Eagle: Aymr", 400, 4, 2750, 1, "An Imperial "
@@ -65,7 +65,7 @@ public enum ShipType {
      * @return Cargo space of ship
      */
     public int cargoSpace() {
-       return cargoSpace;
+        return cargoSpace;
     }
 
     /**
@@ -73,7 +73,7 @@ public enum ShipType {
      * @return Ship's fuel
      */
     public int shipFuel() {
-       return fuel;
+        return fuel;
     }
 
     /**

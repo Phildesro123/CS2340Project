@@ -12,19 +12,17 @@ import javax.swing.*;
 public class TravelDisplay {
     private Travel travel;
     //private Player player;
-    private Ship ship;
     protected JPanel panel = new JPanel();
     protected JFrame f = new JFrame("Failed to Travel");
 
     public TravelDisplay(Game game, double dist) {
         Font font;
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        //Universe universe = game.getUniverse();
-        //player = game.getPlayer();
         travel = game.getTravel();
-        ship = game.getShip();
-        int cost = travel.fuelCost(dist);
-        double currFuel = ship.getFuel();
+        int cost = travel.fuelCost(game.getPlayer().getShip(), dist);
+        double currFuel = game.getPlayer().getShip().getFuel();
+        System.out.println(game.getPlayer().getShip().getFuel());
+        System.out.println(game.getPlayer().getShip().getFuel());
         JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n",
                 SwingConstants.CENTER);
         JLabel currShipFuel = new JLabel("Current amount of fuel: " + currFuel

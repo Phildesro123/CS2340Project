@@ -86,11 +86,11 @@ public class Map {
                         + "Fuel cost: %d</html>",
                 regions[n].getName(),
                 dist,
-                travel.fuelCost(dist))) {
+                travel.fuelCost(player.getShip(), dist))) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (travel.canTravel(dist)) {
-                    travel.traveling(dist);
+                if (travel.canTravel(player.getShip(), dist)) {
+                    travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);
                     disp = new RegionDisplay(game);
