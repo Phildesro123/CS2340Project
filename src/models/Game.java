@@ -1,6 +1,6 @@
 package models;
 import models.enums.Difficulty;
-
+import models.enums.ShipType;
 
 public class Game {
     //private int difficulty; //16 = Easy, 12 = Medium, 8 = Hard
@@ -8,7 +8,7 @@ public class Game {
     private Player player;
     private String[] regionNames;
     private static Universe universe;
-    private Ship ship = new Ship(ShipType.SEIROSCO);
+    private Travel travel;
     /**
      * Creates a game object
      *
@@ -22,6 +22,8 @@ public class Game {
         regionNames = new String[] {"Brigid", "Duscur", "Almyra", "Fodlan",
             "Gronder", "Adrestia", "Faerghus",
             "Leicester", "Dagda", "Shambhala", "Nekrotafeyo"};
+        travel = new Travel(this.difficulty.modifier(),
+                player.getSkillSet());
     }
     /**
      * Returns the current player
@@ -63,6 +65,9 @@ public class Game {
         return universe;
     }
 
+    public Travel getTravel() {
+        return travel;
+    }
 
     /**
      * Creates the universe based on region names
