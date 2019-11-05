@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class Ship {
     private double fuel;
+    private double maxFuel;
     private ArrayList<Item> cargo;
     private int health;
     private String type;
     private int maxCargo;
+    private ShipType shipType;
 
     /**
      * Creates a ship object
@@ -17,10 +19,12 @@ public class Ship {
      */
     public Ship(ShipType shipType) {
         fuel = shipType.shipFuel();
+        maxFuel = fuel;
         cargo = new ArrayList<>();
         health = shipType.shipHealth();
-        type = shipType.shipName();
+        type = shipType.getName();
         maxCargo = shipType.cargoSpace();
+        this.shipType = shipType;
     }
 
     /**
@@ -120,8 +124,15 @@ public class Ship {
         return type;
     }
 
+    public double getMaxFuel() {
+        return maxFuel;
+    }
+
     public boolean canAddCargo() {
         return cargo.size() + 1 < maxCargo;
     }
 
+    public ShipType getShipType() {
+        return shipType;
+    }
 }

@@ -1,12 +1,10 @@
 package screens;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import models.Game;
 import models.Player;
 import models.Region;
+import models.Ship;
 import models.Universe;
 import models.Travel;
 
@@ -18,6 +16,8 @@ public class Map {
     private Travel travel;
     protected JFrame frame = new JFrame("Map *scaled by 3x*");
     protected JPanel panel = new JPanel();
+    protected JPanel cont = new JPanel();
+    protected JPanel fuelDisp = new JPanel();
     protected RegionDisplay disp;
     protected TravelDisplay trav;
 
@@ -33,6 +33,9 @@ public class Map {
                 cnt++;
             }
         }
+        Ship ship = player.getShip();
+        JLabel fuel = new JLabel("Current fuel: " + ship.getFuel() + "/" + ship.getMaxFuel());
+        fuelDisp.add(fuel);
         JButton currentRegion = new JButton("You are here");
         JButton firstRegion = buttons(0, game);
         JButton secondRegion = buttons(1, game);
@@ -61,6 +64,8 @@ public class Map {
         }
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1366, 768));
+        cont.add(fuelDisp);
+        cont.add(panel);
         frameStuff();
     }
     private JButton buttons(int n, Game game) {
@@ -116,7 +121,7 @@ public class Map {
 
     private void frameStuff() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(panel);
+        frame.setContentPane(cont);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
