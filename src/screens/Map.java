@@ -1,8 +1,5 @@
 package screens;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import models.*;
 
@@ -12,17 +9,17 @@ import java.awt.event.ActionEvent;
 public class Map {
     private Player player;
     private Travel travel;
-    private Encounter encounter;
-    protected JFrame frame = new JFrame("Map *scaled by 3x*");
-    protected JPanel panel = new JPanel();
-    protected RegionDisplay disp;
-    protected TravelDisplay trav;
-
+    private JFrame frame;
+    private RegionDisplay disp;
+    private TravelDisplay trav;
+    private JPanel cont = new JPanel();
     public Map(Game game) {
+        JPanel panel = new JPanel();
+        frame = new JFrame("Map *scaled by 3x*");
         Universe universe = game.getUniverse();
         player = game.getPlayer();
-        travel = game.getTravel();
-        encounter = new Encounter(player.getShip().getCargo(),
+        travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
+        Encounter encounter = new Encounter(player.getShip().getCargo(),
                 player.getCredits(), game.getDifficulty().modifier());
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
@@ -32,6 +29,10 @@ public class Map {
                 cnt++;
             }
         }
+        Ship ship = player.getShip();
+        JPanel fuelDisp = new JPanel();
+        JLabel fuel = new JLabel("Current fuel: " + ship.getFuel() + "/" + ship.getMaxFuel());
+        fuelDisp.add(fuel);
         JButton currentRegion = new JButton("You are here");
         JButton firstRegion = buttons(0, game);
         JButton secondRegion = buttons(1, game);
@@ -60,12 +61,13 @@ public class Map {
         }
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1366, 768));
+        cont.add(fuelDisp);
+        cont.add(panel);
         frameStuff();
     }
     private JButton buttons(int n, Game game) {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
-        travel = game.getTravel();
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -75,16 +77,15 @@ public class Map {
             }
         }
         double dist = player.distance(regions[n]);
-        JButton region = new JButton(new AbstractAction(String.format("<html> %s <br> "
+        return new JButton(new AbstractAction(String.format("<html> %s <br> "
                         + "Distance from you: %.2f<br>"
                         + "Fuel cost: %d</html>",
-                regions[n].getName(),
-                dist,
+                regions[n].getName(), dist,
                 travel.fuelCost(dist))) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (travel.canTravel(dist)) {
-                    travel.traveling(dist);
+                if (travel.canTravel(player.getShip(), dist)) {
+                    travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);
                     disp = new RegionDisplay(game);
@@ -97,7 +98,6 @@ public class Map {
                 }
             }
         });
-        return region;
     }
     private void hide() {
         frame.setVisible(false);
@@ -115,7 +115,7 @@ public class Map {
 
     private void frameStuff() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(panel);
+        frame.setContentPane(cont);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

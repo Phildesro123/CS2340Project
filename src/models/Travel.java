@@ -9,7 +9,7 @@ public class Travel {
         this.diff = diff;
         this.skills = skills;
     }
-    public int fuelCost(Ship ship, double dist) {
+    public int fuelCost(double dist) {
         int fuel;
         int pilot = skills[0];
         double pilotMult = 1.0 - (Math.pow(1.273, pilot) / 100.0);
@@ -18,13 +18,13 @@ public class Travel {
     }
     public boolean canTravel(Ship ship, double dist) {
         double fuel = ship.getFuel();
-        return (fuel > fuelCost(ship, dist));
+        return (fuel >= fuelCost(dist));
     }
 
     public void traveling(Ship ship, double dist) {
         double fuel = ship.getFuel();
         if (canTravel(ship, dist)) {
-            fuel = fuel - fuelCost(ship, dist);
+            fuel = fuel - fuelCost(dist);
             ship.setFuel(fuel);
         }
     }

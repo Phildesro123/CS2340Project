@@ -1,10 +1,13 @@
-package models;
+package models.NPC;
+import models.Item;
+
+import javax.swing.*;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Police {
+public class Police implements NPC {
     private ArrayList<Item> cargo;
     private double credits;
     private Random gen = new Random();
@@ -20,7 +23,7 @@ public class Police {
         if (cargo.size() == 1) {
             contraband.put(cargo.get(0), 0);
         } else if (cargo.size() == 2) {
-            for (int i= 0; i < cargo.size(); i++) {
+            for (int i = 0; i < cargo.size(); i++) {
                 contraband.put(cargo.get(i), i);
             }
         } else {
@@ -34,5 +37,30 @@ public class Police {
             }
         }
         return contraband;
+    }
+
+    @Override
+    public void interact() {
+
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public ImageIcon getImage() {
+        return null;
+    }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public void setImage(ImageIcon icon) {
+
     }
 }

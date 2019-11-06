@@ -10,7 +10,6 @@ import models.enums.Difficulty;
 
 public class DisplayScreen {
     private Player player;
-    private JLabel text;
     protected JFrame f = new JFrame("Display Page");
     protected JPanel disp = new JPanel();
 
@@ -73,7 +72,7 @@ public class DisplayScreen {
         f.dispose();
     }
 
-    public JComponent getMainComponent() {
+    private JComponent getMainComponent() {
         return disp;
     }
 }

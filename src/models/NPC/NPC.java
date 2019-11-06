@@ -1,4 +1,4 @@
-package models;
+package models.NPC;
 
 
 import javax.swing.*;

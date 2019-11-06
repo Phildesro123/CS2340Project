@@ -1,15 +1,11 @@
 package models;
 import java.util.Random;
 import java.util.ArrayList;
-
-
+import models.NPC.*;
 public class Encounter {
     private ArrayList<Item> cargo;
     private double credits;
     private double diff;
-    private Police police;
-    private Bandit bandit;
-    private Trader trader;
     Random gen = new Random();
     public Encounter(ArrayList<Item> cargo, double credits, double diff) {
         this.cargo = cargo;
@@ -25,28 +21,30 @@ public class Encounter {
                 return createBandit();
             } else if (npc <= (300 + 50 * diff)
                     || npc >= (700 - 50 * diff)) {
-                createTrader();
+                return createTrader();
             }
         } else {
             if (npc >= (800 - 50 * diff)) {
-                createBandit();
+                return createBandit();
             } else if (npc <= (300 + 50 * diff)
                     || npc >= (700 - 50 * diff)) {
-                createTrader();
+                return createTrader();
             }
         }
+        return null;
     }
+
+
     private Police createPolice() {
-        police = new Police(cargo, credits);
-        return police;
+        return new Police(cargo, credits);
     }
+
     private Bandit createBandit() {
-        bandit = new Bandit();
-        return bandit;
+        return new Bandit();
     }
+
     private Trader createTrader() {
-        trader = new Trader();
-        return trader;
+        return new Trader();
     }
 
 }
