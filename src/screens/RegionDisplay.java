@@ -14,13 +14,17 @@ public class RegionDisplay {
     //This will display the region's market and stuff
     //Should display player's fuel
     //Will handle price calculation(?)
+
+
+    //Getting rid of player instance variable soon
+    //Should not have an instance of player, just get it from the game
     private Player player;
-    protected Region region;
-    protected JPanel container = new JPanel();
-    protected JPanel holder = new JPanel();
-    protected JPanel info = new JPanel();
-    protected JPanel buttons = new JPanel();
-    protected JFrame frame = new JFrame("Current Region");
+    private Region region;
+    private JPanel container = new JPanel();
+    private JPanel holder = new JPanel();
+    private JPanel info = new JPanel();
+    private JPanel buttons = new JPanel();
+    private JFrame frame = new JFrame("Current Region");
 
     public RegionDisplay(Game game) {
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
@@ -28,7 +32,7 @@ public class RegionDisplay {
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
         holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         //Make a method that returns a panel and add it to buttons
-        this.player = game.getPlayer();
+        player = game.getPlayer();
         region = player.getCurrentRegion();
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
@@ -95,6 +99,8 @@ public class RegionDisplay {
         frame.dispose();
     }
 
+    //This is going into another class.
+    //UIs should NOT have any logic
     private double priceSellCalculator(Item item) {
         if (player.getSkillSet()[2] > 0) {
             System.out.println(player.getSkillSet()[2] * 1.08);
@@ -105,6 +111,8 @@ public class RegionDisplay {
         }
     }
 
+    //This is going into another class
+    //UIs should NOt have any logic like this
     private double priceBuyCalculator(Item item) {
         System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
         if (player.getSkillSet()[2] > 0) {

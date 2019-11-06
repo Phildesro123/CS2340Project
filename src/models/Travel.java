@@ -2,12 +2,10 @@ package models;
 
 
 public class Travel {
-    private Ship ship;
     private double diff;
     private int[] skills;
 
-    public Travel(Ship ship, double diff, int[] skills) {
-        this.ship = ship;
+    public Travel(double diff, int[] skills) {
         this.diff = diff;
         this.skills = skills;
     }
@@ -18,14 +16,14 @@ public class Travel {
         fuel = (int) ((dist * diff) * pilotMult);
         return fuel;
     }
-    public boolean canTravel(double dist) {
+    public boolean canTravel(Ship ship, double dist) {
         double fuel = ship.getFuel();
-        return (fuel > fuelCost(dist));
+        return (fuel >= fuelCost(dist));
     }
 
-    public void traveling(double dist) {
+    public void traveling(Ship ship, double dist) {
         double fuel = ship.getFuel();
-        if (canTravel(dist)) {
+        if (canTravel(ship, dist)) {
             fuel = fuel - fuelCost(dist);
             ship.setFuel(fuel);
         }
