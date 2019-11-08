@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Police implements NPC {
+public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
     private Random gen = new Random();
@@ -15,6 +15,8 @@ public class Police implements NPC {
     public Police(ArrayList<Item> cargo, double credits) {
         this.cargo = cargo;
         this.credits = credits;
+        name = "Seteth"; //make random somehow later
+        //image = cop.png; I don't think this is the right way to access the image
     }
     /*
     Ok you need a random gen for the items so you will have to check how many i would say a max of 3
@@ -41,26 +43,6 @@ public class Police implements NPC {
 
     @Override
     public void interact() {
-
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        return null;
-    }
-
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public void setImage(ImageIcon icon) {
-
+        System.out.println("Wee woo wee woo");
     }
 }

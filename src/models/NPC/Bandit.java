@@ -2,29 +2,18 @@ package models.NPC;
 
 import javax.swing.*;
 
-public class Bandit implements NPC {
+public class Bandit extends NPC {
+    private String name;
+    private ImageIcon image;
+
+    public Bandit() {
+        name = "Flayn"; //make random somehow later
+        //image = bandit.png; I don't think this is the right way to access the image
+
+    }
+
     @Override
     public void interact() {
-
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        return null;
-    }
-
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public void setImage(ImageIcon icon) {
-
+        System.out.println("Vibe check");
     }
 }
