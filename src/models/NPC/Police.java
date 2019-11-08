@@ -12,14 +12,12 @@ public class Police extends NPC {
     private double credits;
     private Random gen = new Random();
     private Map<Item, Integer> contraband = new HashMap<>();
-    private Player player;
 
 
     public Police(ArrayList<Item> cargo, double credits, Player player) {
-        super("Police", "assets/img/cop.png");
+        super("Police", "assets/img/cop.png", player);
         this.cargo = cargo;
         this.credits = credits;
-        this.player = player;
     }
 
     /*
