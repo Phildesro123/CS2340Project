@@ -8,11 +8,8 @@ import java.util.Random;
 public class Bandit extends NPC {
     private double demand;
     private Player player;
-<<<<<<< HEAD
-    private Random gen = new Random();
-=======
+
     private Random gen;
->>>>>>> e935a72b7d7802d96bdf3502fedabfda0aa5e381
     public Bandit(Player player) {
         super("Flayn", "assets/img/bandit.png", player);
         gen = new Random();

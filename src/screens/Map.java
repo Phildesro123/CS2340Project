@@ -86,12 +86,12 @@ public class Map {
                 if (travel.canTravel(player.getShip(), dist)) {
                     Random rand = new Random();
                     int encounterChance = rand.nextInt(100);
-//                    if (20 * game.getDifficulty().modifier() > 1) {
+                    if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
 
                         EncounterDisplay encounterDisplay = new EncounterDisplay(newEncounter, game);
-//                    }
+                    }
 
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
