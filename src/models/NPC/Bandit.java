@@ -18,6 +18,7 @@ public class Bandit extends NPC {
     @Override
     public void interact() {
         System.out.println("Vibe check");
+        //display the bandit's credit demands
         //choose between paying credits, fleeing, or fighting
     }
 

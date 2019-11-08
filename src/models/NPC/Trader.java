@@ -17,8 +17,8 @@ public class Trader extends NPC {
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();
         //Generates a new wares every time
-        //gets 9 normal items and then 1 regalia item
-        for (int i = 0; i < 9; i++) {
+        //gets 4 normal items and then 1 regalia item
+        for (int i = 0; i < 4; i++) {
             wares.add(new Item(itemData[rand.nextInt(itemData.length - 4)]));
         }
         wares.add(new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]));
@@ -49,7 +49,7 @@ public class Trader extends NPC {
      */
     public void commitRobbery() {
         //fighter value skill check
-        int num = rand.nextInt(16);
+        int num = rand.nextInt(11); //traders aren't great fighters
         //if player wins
         if(num <= player.getSkillSet()[1]) {
             //Random number between 1-3 items
@@ -115,7 +115,7 @@ public class Trader extends NPC {
             //if player succeeds
             if (num <= player.getSkillSet()[2]) {
                 negotiated = true;
-                modifier = 0.8;
+                modifier = 0.625;
                 return true;
             } else {
                 negotiated = true;
