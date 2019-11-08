@@ -12,9 +12,11 @@ public class Police extends NPC {
     private double credits;
     private Random gen = new Random();
     private Map<Item, Integer> contraband = new HashMap<>();
-    public Police(ArrayList<Item> cargo, double credits) {
+    private Player player;
+    public Police(ArrayList<Item> cargo, double credits, Player player) {
         this.cargo = cargo;
         this.credits = credits;
+        this.player = player;
         name = "Seteth"; //make random somehow later
         //image = cop.png; I don't think this is the right way to access the image
     }

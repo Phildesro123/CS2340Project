@@ -6,11 +6,13 @@ public class Encounter {
     private ArrayList<Item> cargo;
     private double credits;
     private double diff;
+    private Player player;
     Random gen = new Random();
-    public Encounter(ArrayList<Item> cargo, double credits, double diff) {
+    public Encounter(ArrayList<Item> cargo, double credits, double diff, Player player) {
         this.cargo = cargo;
         this.credits = credits;
         this.diff = diff;
+        this.player = player;
     }
     public Object generateNPC() {
         int npc = gen.nextInt(1001);
@@ -36,15 +38,15 @@ public class Encounter {
 
 
     private Police createPolice() {
-        return new Police(cargo, credits);
+        return new Police(cargo, credits, player);
     }
 
     private Bandit createBandit() {
-        return new Bandit();
+        return new Bandit(player);
     }
 
     private Trader createTrader() {
-        return new Trader();
+        return new Trader(player);
     }
 
 }
