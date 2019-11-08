@@ -1,21 +1,25 @@
 package models.NPC;
 import models.Item;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Police implements NPC {
+
+public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
     private Random gen = new Random();
     private Map<Item, Integer> contraband = new HashMap<>();
+
     public Police(ArrayList<Item> cargo, double credits) {
+        super("Police", "assets/img/cop.png");
         this.cargo = cargo;
         this.credits = credits;
     }
+
+
     /*
     Ok you need a random gen for the items so you will have to check how many i would say a max of 3
      */
@@ -41,26 +45,7 @@ public class Police implements NPC {
 
     @Override
     public void interact() {
-
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public ImageIcon getImage() {
-        return null;
-    }
-
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public void setImage(ImageIcon icon) {
+        //Do stuff
 
     }
 }
