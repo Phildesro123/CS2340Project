@@ -2,29 +2,23 @@ package screens;
 
 import models.Game;
 import models.Travel;
-import models.Ship;
-
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 public class TravelDisplay {
     private Travel travel;
-    //private Player player;
-    private Ship ship;
-    protected JPanel panel = new JPanel();
-    protected JFrame f = new JFrame("Failed to Travel");
+    private JPanel panel = new JPanel();
+    private JFrame f = new JFrame("Failed to Travel");
 
     public TravelDisplay(Game game, double dist) {
         Font font;
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        //Universe universe = game.getUniverse();
-        //player = game.getPlayer();
-        travel = game.getTravel();
-        ship = game.getShip();
+        travel = new Travel(game.getDifficulty().modifier(), game.getPlayer().getSkillSet());
         int cost = travel.fuelCost(dist);
-        double currFuel = ship.getFuel();
+        double currFuel = game.getPlayer().getShip().getFuel();
+        System.out.println(game.getPlayer().getShip().getFuel());
+        System.out.println(game.getPlayer().getShip().getFuel());
         JLabel fuelCost = new JLabel("Fuel need to travel: " + cost + "\n",
                 SwingConstants.CENTER);
         JLabel currShipFuel = new JLabel("Current amount of fuel: " + currFuel
@@ -52,11 +46,11 @@ public class TravelDisplay {
         f.setVisible(true);
     }
 
-    public JComponent getMainComponent() {
+    private JComponent getMainComponent() {
         return panel;
     }
 
-    public void hide() {
+    private void hide() {
         f.setVisible(false);
         f.dispose();
     }

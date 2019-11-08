@@ -32,6 +32,10 @@ public enum ItemData {
     KILLERBOW(75.0, ItemType.KILLER, "Killer Bow", "Bow"),
     KILLERHAMMER(78.0, ItemType.KILLER, "Killer Hammer", "Hammer"),
     AUTOCROSSBOW(90.0, ItemType.BRAVE, "Auto Cross Bow", "Bow");
+    MERCURIUS(100.0, ItemType.REGALIA, "Mercurius", "Sword");
+    GRADIVUS(100.0, ItemType.REGALIA, "Gradivus", "Lance");
+    HAUTCLERE(100.0, ItemType.REGALIA, "Hautclere", "Axe");
+    PARTHIA(100.0, ItemType.REGALIA, "Parthia", "Bow");
     private double price;
     private ItemType type;
     private String name;

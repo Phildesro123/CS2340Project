@@ -6,5 +6,6 @@ public enum ItemType {
     STEEL,
     SILVER,
     BRAVE,
-    KILLER
+    KILLER,
+    REGALIA
 }
