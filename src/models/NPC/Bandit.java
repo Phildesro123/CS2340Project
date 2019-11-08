@@ -1,4 +1,5 @@
 package models.NPC;
+
 public class Bandit extends NPC {
     public Bandit() {
         super("Bandit", "assets/img/bandit.png");
@@ -6,8 +7,7 @@ public class Bandit extends NPC {
 
     @Override
     public void interact() {
-
+        System.out.println("Vibe check");
     }
-
-
 }
+

@@ -5,10 +5,9 @@ import models.enums.ItemData;
 import java.util.ArrayList;
 import java.util.Random;
 public class Trader extends NPC {
-
     private ArrayList<Item> cargo;
-    private boolean angry;
 
+    private boolean angry;
     private Player player;
 
     public Trader(Player p) {
@@ -65,9 +64,8 @@ public class Trader extends NPC {
             return foundItem;
         }
     }
-
     @Override
     public void interact() {
-
+        System.out.println("Is that the one? Thanks a bunch!");
     }
 }

@@ -12,9 +12,6 @@ public abstract class NPC {
         this.icon = icon;
     }
 
-    /**
-     * NPC's interaction method
-     */
     public abstract void interact();
 
     /**
@@ -32,7 +29,6 @@ public abstract class NPC {
     public String getIcon() {
         return icon;
     }
-
     /**
      * Sets name of the NPC
      * @param name Name of NPC
@@ -48,5 +44,5 @@ public abstract class NPC {
     public void setImage(String icon) {
         this.icon = icon;
     }
-
 }
+
