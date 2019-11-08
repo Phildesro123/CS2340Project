@@ -31,6 +31,7 @@ public class Trader extends NPC {
             }
 
         }
+        //return number
     }
     public void setAngry(boolean angry) {
         this.angry = angry;
