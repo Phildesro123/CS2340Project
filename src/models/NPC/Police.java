@@ -6,10 +6,6 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9944f43e57d49caf3bc4ec2467f96e148bbcd8e3
 public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
@@ -20,8 +16,6 @@ public class Police extends NPC {
         super("Police", "assets/img/cop.png");
         this.cargo = cargo;
         this.credits = credits;
-        name = "Seteth"; //make random somehow later
-        //image = cop.png; I don't think this is the right way to access the image
     }
 
 
@@ -50,11 +44,6 @@ public class Police extends NPC {
 
     @Override
     public void interact() {
-<<<<<<< HEAD
-        //Do stuff
-
-=======
         System.out.println("Wee woo wee woo");
->>>>>>> 9944f43e57d49caf3bc4ec2467f96e148bbcd8e3
     }
 }
