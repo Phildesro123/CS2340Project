@@ -12,12 +12,14 @@ public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
     private Map<Item, Integer> contraband = new HashMap<>(); //what's the point in making it a map?
+    private Player player;
     private Random gen = new Random();
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
+        this.player = player;
     }
 
     /**
@@ -55,8 +57,17 @@ public class Police extends NPC {
      * Forfeit your items to the police
      */
     public void forfeit() {
-        for (Item i : contraband) { //I have no idea if this works for a map tbh
-            player.getShip().removeCargo(i);
+        //I have no idea if this works for a map tbh
+        for (Map.Entry<Item, Integer> i : contraband.entrySet()) {
+            //this should work but it's kinda weird, dont really know what to do with the integer
+            if (i.getValue() > 1) {
+                //Since this is counting how many items you have then you just loop that many times to remove it?
+                for (int j = 1; j < i.getValue(); j++) {
+                    player.getShip().removeCargo(i.getKey());
+                }
+            } else {
+                player.getShip().removeCargo(i.getKey());
+            }
         }
         //continue traveling
     }
