@@ -12,7 +12,11 @@ public class Encounter {
         this.credits = credits;
         this.diff = diff;
     }
-    public Object generateNPC() {
+
+    public boolean startEncounter() {
+        NPC npc = generateNPC();
+    }
+    private NPC generateNPC() {
         int npc = gen.nextInt(1001);
         if (cargo.size() > 0) {
             if (npc <= (100 + 50 * diff)) {
