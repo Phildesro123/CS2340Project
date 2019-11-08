@@ -38,21 +38,22 @@ public class EncounterDisplay {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     bandit.getIcon(),
                     banditOptions, banditOptions[0]);
-                    switch (selectedValue) {
-                        case 0:
-                            bandit.pay();
-                            showInventory();
-                            break;
-                        case 1:
-                            bandit.flee();
-                            showInventory();
-                            break;
-                        case 2:
-                            bandit.fight();
-                            showInventory();
-                            break;
-                    }
-
+            switch (selectedValue) {
+            case 0:
+                bandit.pay();
+                showInventory();
+                break;
+            case 1:
+                bandit.flee();
+                showInventory();
+                break;
+            case 2:
+                bandit.fight();
+                showInventory();
+                break;
+            default:
+                break;
+            }
         }
         if (npc instanceof Police) {
             Police police = (Police) npc;
@@ -64,21 +65,23 @@ public class EncounterDisplay {
                     police.getIcon(),
                     policeOptions, policeOptions[0]);
             switch (selectedValue) {
-                case 0:
-                    police.forfeit();
-                    showInventory();
-                    break;
-                case 1:
-                    police.flee();
-                    showInventory();
-                    break;
-                case 2:
-                    police.fight();
-                    showInventory();
-                    break;
+            case 0:
+                police.forfeit();
+                showInventory();
+                break;
+            case 1:
+                police.flee();
+                showInventory();
+                break;
+            case 2:
+                police.fight();
+                showInventory();
+                break;
+            default:
+                break;
             }
-
         }
+
         if (npc instanceof Trader) {
             Trader trader = (Trader) npc;
             ImageIcon icon = new ImageIcon("src/assets.img/merchant.png");
@@ -92,6 +95,26 @@ public class EncounterDisplay {
                     trader.getIcon(),
                     traderOptions, traderOptions[0]);
             switch (selectedValue) {
+            case 0:
+                trader.buyItem((Item) trader.getCargo().get(0));
+                showInventory();
+                break;
+            case 1:
+                trader.commitRobbery();
+                showInventory();
+                break;
+            case 2:
+                trader.negotiate();
+                String[] newTraderOptions = {"Buy", "Rob"};
+                selectedValue = JOptionPane.showOptionDialog(null,
+                        "How about a trade?",
+                        "Encounter",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        trader.getIcon(),
+                        newTraderOptions, newTraderOptions[0]);
+                break;
+            default:
+                switch (selectedValue) {
                 case 0:
                     trader.buyItem((Item) trader.getCargo().get(0));
                     showInventory();
@@ -100,29 +123,14 @@ public class EncounterDisplay {
                     trader.commitRobbery();
                     showInventory();
                     break;
-                case 2:
-                    trader.negotiate();
-                    String[] newTraderOptions = {"Buy", "Rob"};
-                    selectedValue = JOptionPane.showOptionDialog(null,
-                            "How about a trade?",
-                            "Encounter",
-                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                            trader.getIcon(),
-                            newTraderOptions, newTraderOptions[0]);
-                    switch (selectedValue) {
-                        case 0:
-                            trader.buyItem((Item) trader.getCargo().get(0));
-                            showInventory();
-                            break;
-                        case 1:
-                            trader.commitRobbery();
-                            showInventory();
-                            break;
-                    }
+                default:
                     break;
+                }
             }
         }
     }
+
+
     public void showInventory() {
         String inventory = "";
         String credits = "Credits " + game.getPlayer().getCredits() + "\n";

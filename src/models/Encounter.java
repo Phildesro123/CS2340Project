@@ -1,7 +1,6 @@
 package models;
 import java.util.Random;
 import models.NPC.*;
-import screens.EncounterDisplay;
 
 public class Encounter {
     private double credits;
