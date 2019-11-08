@@ -16,12 +16,11 @@ public class Trader extends NPC {
         super("Anna", "assets/img/merchant.png", p);
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();
-        //Generates a new wares every time
-        //gets 4 normal items and then 1 regalia item
+        //Generates multiple regalia items
+        Item ware = new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]);
         for (int i = 0; i < 4; i++) {
-            wares.add(new Item(itemData[rand.nextInt(itemData.length - 4)]));
+            wares.add(ware);
         }
-        wares.add(new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]));
         angry = false;
         negotiated = false;
         modifier = 1;
@@ -113,7 +112,7 @@ public class Trader extends NPC {
      */
     public boolean negotiate() {
         if (!negotiated) {
-            int num = gen.nextInt(14) + 2; //traders aren't bad at negotiating
+            int num = rand.nextInt(16);
             //if player succeeds
             if (num <= player.getSkillSet()[2]) {
                 negotiated = true;
