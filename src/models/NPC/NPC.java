@@ -3,24 +3,32 @@ package models.NPC;
 
 import javax.swing.*;
 
-public interface NPC {
+public abstract class NPC {
+
+    private String name;
+    private ImageIcon icon;
+
+    public NPC(String name, ImageIcon icon) {
+        this.name = name;
+        this.icon = icon;
+    }
 
     /**
      * NPC's interaction method
      */
-    public void interact();
+    public abstract void interact();
 
     /**
      * Gets the name of NPC
      * @return Name of NPC
      */
-    public String getName();
+    public abstract String getName();
 
     /**
      * Gets the icon of NPC
      * @return Icon of NPC
      */
-    public ImageIcon getImage();
+    public abstract ImageIcon getImage();
 
     /**
      * Sets name of the NPC
