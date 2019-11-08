@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
@@ -45,7 +44,6 @@ public class Police extends NPC {
 
     @Override
     public void interact() {
-        //Do stuff
-
+        System.out.println("Wee woo wee woo");
     }
 }

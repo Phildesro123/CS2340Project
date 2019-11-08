@@ -47,6 +47,7 @@ public class Encounter {
         return new Bandit();
     }
 
+    //We have to add this player to encounter somehow
     private Trader createTrader() {
         return new Trader();
     }
