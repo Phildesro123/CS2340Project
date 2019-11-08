@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Random;
 public class Trader extends NPC {
     private ArrayList<Item> cargo;
-
     private boolean angry;
     private Player player;
 
@@ -15,6 +14,7 @@ public class Trader extends NPC {
         Random rand = new Random();
         ItemData[] itemData = ItemData.values();
         cargo = new ArrayList<>();
+        //Generates a new cargo every time
         for (int i = 0; i < 10; i++) {
             cargo.add(new Item(itemData[rand.nextInt(itemData.length)]));
         }
@@ -22,48 +22,83 @@ public class Trader extends NPC {
         angry = false;
     }
 
-    public int commitRobbery(int val) {
+    /**
+     * Player can rob merchants
+     * @return Amount of damage that happens to players ship
+     */
+    public int commitRobbery() {
+        Random rand = new Random();
+        int val = rand.nextInt(100) + player.getSkillSet()[1];
         if (val > 60) {
             //Random number between 1-3 items
-            Random rand = new Random();
             for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
                 player.getShip().addCargo(cargo.remove(rand.nextInt(cargo.size())));
             }
-
+            //This value is a dummy value, don't use it, all the logic occurs above this statement.
+            return -1;
+        } else {
+            //Return a random # of damage
+            return rand.nextInt(player.getShip().getHealth() / 4);
         }
     }
+
+    /**
+     * Sells item
+     * @param item Item to sell
+     * @return Sale prompt
+     */
+    public String sellItem(Item item) {
+        if (cargo.size() > 0) {
+            if (player.getShip().canAddCargo()) {
+                //Player has space to buy items
+                //Probably use these string returns as a JLabel or box output?
+                return "Thank you for your business!";
+            } else {
+                //Can't sell any items
+                return "Sorry, we can't put this item in your inventory. Get more space.";
+            }
+        } else {
+            return "We're sold out!";
+        }
+    }
+
+    public boolean buyItem(Item item) {
+        //Trader buys item
+        if (player.getShip().getCargo().size() > 0) {
+            player.setCredits(player.getCredits() + item.price(player.getSkillSet()[2] / 20));
+            return true;
+        } else {
+            //Trader cannot buy an item, throw an error message or something
+            return false;
+        }
+    }
+
+    /**
+     * Changes the state of trader's anger
+     * True if they are angry, False if they are not angry
+     * @param angry Whether NPC is angry or not. True if they are false if they aren't
+     */
     public void setAngry(boolean angry) {
         this.angry = angry;
     }
 
+    /**
+     * Set the cargo of trader
+     * @param cargo Cargo for trader
+     */
     public void setCargo(ArrayList<Item> cargo) {
         this.cargo = cargo;
     }
 
+    /**
+     * Get the player that the NPC will interact with
+     * @return Player that NPC is interacting with
+     */
     public Player getPlayer() {
         return player;
     }
 
-    public Item findItemToRemove(Item item) {
-        if (cargo.indexOf(item) > -1) {
-            return item;
-        } else {
-            boolean foundType = false;
-            boolean compare = false;
-            int i = 0;
-            Item foundItem = null;
-            while (!foundType && i < cargo.size()) {
-                compare = cargo.get(i).getWeaponClass()
-                        .equals(item.getWeaponClass());
-                if (compare) {
-                    foundType = true;
-                    foundItem = cargo.get(i);
-                }
-                i++;
-            }
-            return foundItem;
-        }
-    }
+
     @Override
     public void interact() {
         System.out.println("Is that the one? Thanks a bunch!");

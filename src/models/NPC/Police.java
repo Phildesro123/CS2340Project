@@ -1,29 +1,26 @@
 package models.NPC;
 import models.Item;
+import models.Player;
 
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Map;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9944f43e57d49caf3bc4ec2467f96e148bbcd8e3
 public class Police extends NPC {
     private ArrayList<Item> cargo;
     private double credits;
     private Random gen = new Random();
     private Map<Item, Integer> contraband = new HashMap<>();
+    private Player player;
 
-    public Police(ArrayList<Item> cargo, double credits) {
+
+    public Police(ArrayList<Item> cargo, double credits, Player player) {
         super("Police", "assets/img/cop.png");
         this.cargo = cargo;
         this.credits = credits;
-        name = "Seteth"; //make random somehow later
-        //image = cop.png; I don't think this is the right way to access the image
+        this.player = player;
     }
-
 
     /*
     Ok you need a random gen for the items so you will have to check how many i would say a max of 3
@@ -50,11 +47,6 @@ public class Police extends NPC {
 
     @Override
     public void interact() {
-<<<<<<< HEAD
-        //Do stuff
-
-=======
         System.out.println("Wee woo wee woo");
->>>>>>> 9944f43e57d49caf3bc4ec2467f96e148bbcd8e3
     }
 }
