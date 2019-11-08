@@ -2,20 +2,21 @@ package models.NPC;
 import models.Item;
 import models.Player;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Police extends NPC {
 
     private ArrayList<Item> cargo;
     private double credits;
-    private Map<Item, Integer> contraband = new HashMap<>(); //what's the point in making it a map?
+    private ArrayList<Item> contraband = new ArrayList<>();
     private Random gen = new Random();
+    private Player player;
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
+        this.player = player;
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
     }
@@ -24,20 +25,20 @@ public class Police extends NPC {
      * Ok you need a random gen for the items so you will have to check how many i would say a max of 3
      * @return contraband that the police is tryna steal
      */
-    public Map<Item, Integer> whichItems() {
+    public List<Item> whichItems() {
         if (cargo.size() == 1) {
-            contraband.put(cargo.get(0), 0);
+            contraband.add(cargo.get(0));
         } else if (cargo.size() == 2) {
             for (int i = 0; i < cargo.size(); i++) {
-                contraband.put(cargo.get(i), i);
+                contraband.add(cargo.get(i));
             }
         } else {
             for (int i = 0; i < 3; i++) {
                 int x = gen.nextInt(cargo.size());
-                if (contraband.containsValue(x)) {
+                if (contraband.contains(x)) {
                     i--;
                 } else {
-                    contraband.put(cargo.get(x), x);
+                    contraband.add(cargo.get(x));
                 }
             }
         }
@@ -47,7 +48,7 @@ public class Police extends NPC {
     @Override
     public void interact() {
         System.out.println("Wee woo wee woo");
-        //displays whichItems() that the police think you stole 
+        //displays whichItems() that the police think you stole
         //choose whether to forfeit items, flee from the police, or fight them off
     }
 
