@@ -20,6 +20,10 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
+<<<<<<< HEAD
+=======
+        Encounter encounter = new Encounter(game);
+>>>>>>> eba30ad972bae3aecb6b883350361d25d0411c75
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -89,8 +93,12 @@ public class Map {
 //                    if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
+<<<<<<< HEAD
                         EncounterDisplay encounterDisplay = new EncounterDisplay(newEncounter, game);
 //                    }
+=======
+                    }
+>>>>>>> eba30ad972bae3aecb6b883350361d25d0411c75
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);

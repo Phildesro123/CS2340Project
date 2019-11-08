@@ -8,6 +8,7 @@ public class Encounter {
     private double credits;
     private double diff;
     private Player player;
+<<<<<<< HEAD
     private Random gen = new Random();
     private NPC npc;
     public Encounter(Game game) {
@@ -15,6 +16,13 @@ public class Encounter {
         this.credits = player.getCredits();
         this.diff = game.getDifficulty().modifier();
         npc = generateNPC();
+=======
+    Random gen = new Random();
+    public Encounter(Game game) {
+        this.player = game.getPlayer();
+        this.credits = game.getPlayer().getCredits();
+        this.diff = game.getDifficulty().modifier();
+>>>>>>> eba30ad972bae3aecb6b883350361d25d0411c75
     }
 
     public NPC startEncounter() {
@@ -44,7 +52,7 @@ public class Encounter {
 
 
     private Police createPolice() {
-        return new Police(player.getShip().getCargo(), credits, player);
+        return new Police(player);
     }
 
     private Bandit createBandit() {
