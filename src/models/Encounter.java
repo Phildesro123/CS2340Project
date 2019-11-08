@@ -8,9 +8,9 @@ public class Encounter {
     private double diff;
     private Player player;
     Random gen = new Random();
-    public Encounter(ArrayList<Item> cargo, double credits, double diff, Player player) {
-        this.cargo = cargo;
-        this.credits = credits;
+    public Encounter(double diff, Player player) {
+        this.cargo = player.getShip().getCargo();
+        this.credits = player.getCredits();
         this.diff = diff;
         this.player = player;
     }

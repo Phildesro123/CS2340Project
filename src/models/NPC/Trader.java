@@ -7,10 +7,9 @@ import java.util.Random;
 public class Trader extends NPC {
     private ArrayList<Item> cargo;
     private boolean angry;
-    private Player player;
 
     public Trader(Player p) {
-        super("Trader", "assets/img/merchant.png");
+        super("Trader", "assets/img/merchant.png", p);
         Random rand = new Random();
         ItemData[] itemData = ItemData.values();
         cargo = new ArrayList<>();
@@ -18,7 +17,6 @@ public class Trader extends NPC {
         for (int i = 0; i < 10; i++) {
             cargo.add(new Item(itemData[rand.nextInt(itemData.length)]));
         }
-        player = p;
         angry = false;
     }
 

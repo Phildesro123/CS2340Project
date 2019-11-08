@@ -6,10 +6,12 @@ public abstract class NPC {
 
     private String name;
     private String icon;
+    private Player player;
 
-    public NPC(String name, String icon) {
+    public NPC(String name, String icon, Player player) {
         this.name = name;
         this.icon = icon;
+        this.player = player;
     }
 
     public abstract void interact();
