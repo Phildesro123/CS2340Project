@@ -24,19 +24,20 @@ public class Trader extends NPC {
      * Player can rob merchants
      * @return Amount of damage that happens to players ship
      */
-    public int commitRobbery() {
+    public void commitRobbery() {
         Random rand = new Random();
-        int val = rand.nextInt(100) + player.getSkillSet()[1];
-        if (val > 60) {
+        //fighter value skill check
+        int num = gen.nextInt(16);
+        //if player wins
+        if(num <= player.getSkillSet()[1]) {
             //Random number between 1-3 items
             for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
                 player.getShip().addCargo(cargo.remove(rand.nextInt(cargo.size())));
             }
-            //This value is a dummy value, don't use it, all the logic occurs above this statement.
-            return -1;
+            
         } else {
-            //Return a random # of damage
-            return rand.nextInt(player.getShip().getHealth() / 4);
+            //Do a random # of damage (between 100-300)
+            player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
         }
     }
 

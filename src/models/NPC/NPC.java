@@ -14,6 +14,9 @@ public abstract class NPC {
         this.player = player;
     }
 
+    /**
+     * Shows the options that the player has to interact with the NPC
+     */
     public abstract void interact();
 
     /**

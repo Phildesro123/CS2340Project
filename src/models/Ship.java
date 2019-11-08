@@ -55,6 +55,13 @@ public class Ship {
         }
     }
 
+    /**
+     * Clear all cargo
+     */
+    public void clearCargo() {
+        cargo.clear();
+    }
+
     public Item findItemToRemove(Item item) {
         if (cargo.indexOf(item) > -1) {
             return item;
