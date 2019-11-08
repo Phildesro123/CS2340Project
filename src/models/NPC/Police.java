@@ -22,7 +22,8 @@ public class Police extends NPC {
     }
 
     /**
-     * Ok you need a random gen for the items so you will have to check how many i would say a max of 3
+     * Ok you need a random gen for the
+     * items so you will have to check how many i would say a max of 3
      * @return contraband that the police is tryna steal
      */
     public List<Item> whichItems() {
@@ -78,6 +79,7 @@ public class Police extends NPC {
             player.getShip().clearCargo();
             //player.setCurrentRegion(jail); or just go back to previous, or die
         } else {
+            return;
             //win
             //continue to travel successfully
             //keep all items
@@ -89,7 +91,7 @@ public class Police extends NPC {
      */
     public void flee() {
         //pilot skill check
-        int num = gen.nextInt(14) + 2; //they've got some training so they can fly better on average than bandits can
+        int num = gen.nextInt(14) + 2;
         //if player loses
         if (num > player.getSkillSet()[0]) {
             //fail to flee
@@ -101,8 +103,10 @@ public class Police extends NPC {
             player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
             //return to previous region
         } else {
+            return;
             //dip out
-            //return to original region, while still using up the same amount of fuel as if they traveled to the destination
+            //return to original region,
+            // while still using up the same amount of fuel as if they traveled to the destination
             //keep all items
         }
     }

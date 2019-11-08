@@ -8,8 +8,9 @@ import java.util.Random;
 public class Bandit extends NPC {
     private double demand;
     private Player player;
-    Random gen = new Random();
+    private Random gen;
     public Bandit(Player player) {
+        gen = new Random();
         super("Flayn", "assets/img/bandit.png", player);
         demand = gen.nextInt(51) + 50;
     }
@@ -61,8 +62,10 @@ public class Bandit extends NPC {
             //continue to travel (or don't, it's optional)
         } else {
             //dip out
-            //return to original region, while still using up the same amount of fuel as if they traveled to the destination
+            //return to original region,
+            // while still using up the same amount of fuel as if they traveled to the destination
             //keep all credits
+            return;
         }
     }
 

@@ -1,13 +1,13 @@
 package models;
 import java.util.Random;
-import java.util.ArrayList;
 import models.NPC.*;
 public class Encounter {
     private double credits;
     private double diff;
     private Player player;
-    Random gen = new Random();
+    private Random gen;
     public Encounter(Game game) {
+        gen = new Random();
         this.player = game.getPlayer();
         this.credits = game.getPlayer().getCredits();
         this.diff = game.getDifficulty().modifier();
