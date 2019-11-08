@@ -14,15 +14,22 @@ public class Trader extends NPC {
         ItemData[] itemData = ItemData.values();
         cargo = new ArrayList<>();
         //Generates a new cargo every time
-        for (int i = 0; i < 10; i++) {
-            cargo.add(new Item(itemData[rand.nextInt(itemData.length)]));
+        //gets 9 normal items and then 1 regalia item
+        for (int i = 0; i < 9; i++) {
+            cargo.add(new Item(itemData[rand.nextInt(itemData.length - 4)]));
         }
+        cargo.add(new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]));
         angry = false;
+    }
+
+    @Override
+    public void interact() {
+        System.out.println("Is that the one? Thanks a bunch!");
+        //choose whether to buy, ignore, rob, or negotiate
     }
 
     /**
      * Player can rob merchants
-     * @return Amount of damage that happens to players ship
      */
     public void commitRobbery() {
         Random rand = new Random();
@@ -95,11 +102,5 @@ public class Trader extends NPC {
      */
     public Player getPlayer() {
         return player;
-    }
-
-
-    @Override
-    public void interact() {
-        System.out.println("Is that the one? Thanks a bunch!");
     }
 }
