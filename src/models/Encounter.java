@@ -40,7 +40,7 @@ public class Encounter {
 
 
     private Police createPolice() {
-        return new Police(player.getShip().getCargo(), credits, player);
+        return new Police(player);
     }
 
     private Bandit createBandit() {

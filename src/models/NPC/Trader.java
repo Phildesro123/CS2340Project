@@ -13,7 +13,7 @@ public class Trader extends NPC {
     Random rand = new Random();
 
     public Trader(Player p) {
-        super("Trader", "assets/img/merchant.png", p);
+        super("Anna", "assets/img/merchant.png", p);
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();
         //Generates a new wares every time
