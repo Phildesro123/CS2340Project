@@ -96,6 +96,8 @@ public class Police extends NPC {
             forfeit();
             //get evasion fined
             player.setCredits(player.getCredits() - 100);
+            //lose health
+            player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
             //return to previous region
         } else {
             //dip out
