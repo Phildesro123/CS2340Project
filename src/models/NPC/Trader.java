@@ -45,6 +45,8 @@ public class Trader extends NPC {
         }
     }
 
+
+
     /**
      * Sells item
      * @param item Item to sell
@@ -122,6 +124,8 @@ public class Trader extends NPC {
         this.cargo = cargo;
     }
 
+    public ArrayList getCargo() { return cargo; };
+
     /**
      * Get the player that the NPC will interact with
      * @return Player that NPC is interacting with
@@ -134,5 +138,9 @@ public class Trader extends NPC {
     @Override
     public void interact() {
         System.out.println("Is that the one? Thanks a bunch!");
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

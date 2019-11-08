@@ -8,7 +8,7 @@ import java.util.Random;
 public class Bandit extends NPC {
     private double demand;
     private Player player;
-    Random gen = new Random();
+    private Random gen = new Random();
     public Bandit(Player player) {
         super("Flayn", "assets/img/bandit.png", player);
         demand = gen.nextInt(51) + 50;
@@ -87,6 +87,10 @@ public class Bandit extends NPC {
             }
         }
         //continue travel no matter what happened
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
 
