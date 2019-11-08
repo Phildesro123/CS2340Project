@@ -10,8 +10,8 @@ public class Bandit extends NPC {
     private Player player;
     private Random gen;
     public Bandit(Player player) {
-        gen = new Random();
         super("Flayn", "assets/img/bandit.png", player);
+        gen = new Random();
         demand = gen.nextInt(51) + 50;
     }
 
