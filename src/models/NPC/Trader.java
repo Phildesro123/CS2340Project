@@ -16,12 +16,11 @@ public class Trader extends NPC {
         super("Anna", "assets/img/merchant.png", p);
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();
-        //Generates a new wares every time
-        //gets 4 normal items and then 1 regalia item
+        //Generates multiple regalia items
+        Item ware = new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]);
         for (int i = 0; i < 4; i++) {
-            wares.add(new Item(itemData[rand.nextInt(itemData.length - 4)]));
+            wares.add(ware);
         }
-        wares.add(new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]));
         angry = false;
         negotiated = false;
         modifier = 1;
