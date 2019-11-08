@@ -1,6 +1,5 @@
 package models;
 import java.util.Random;
-import java.util.ArrayList;
 import models.NPC.*;
 import screens.EncounterDisplay;
 
@@ -10,6 +9,7 @@ public class Encounter {
     private Player player;
     private Random gen;
     private NPC npc;
+
     public Encounter(Game game) {
         gen = new Random();
         this.player = game.getPlayer();

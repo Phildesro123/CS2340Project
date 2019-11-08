@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class EncounterDisplay {
-    Random gen = new Random();
+    private Random gen;
     private Encounter encounter;
     protected JFrame f = new JFrame("Display Page");
     protected JPanel disp = new JPanel();
@@ -21,6 +21,7 @@ public class EncounterDisplay {
     private int selectedValue;
     private Game game;
     public EncounterDisplay(Encounter encounter, Game game) {
+        gen = new Random();
         this.encounter = encounter;
         this.game = game;
         npc = encounter.getNpc();
