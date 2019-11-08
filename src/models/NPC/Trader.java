@@ -51,8 +51,6 @@ public class Trader extends NPC {
         if (cargo.size() > 0) {
             if (player.getShip().canAddCargo()) {
                 //Player has space to buy items
-
-
                 //Probably use these string returns as a JLabel or box output?
                 return "Thank you for your business!";
             } else {
