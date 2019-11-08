@@ -8,6 +8,7 @@ import java.util.Random;
 public class Bandit extends NPC {
     private double demand;
     private Player player;
+
     private Random gen;
     public Bandit(Player player) {
         super("Flayn", "assets/img/bandit.png", player);
@@ -91,6 +92,10 @@ public class Bandit extends NPC {
             }
         }
         //continue travel no matter what happened
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
 

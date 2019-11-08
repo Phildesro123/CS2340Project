@@ -1,16 +1,21 @@
 package models;
 import java.util.Random;
 import models.NPC.*;
+import screens.EncounterDisplay;
+
 public class Encounter {
     private double credits;
     private double diff;
     private Player player;
     private Random gen;
+    private NPC npc;
+
     public Encounter(Game game) {
         gen = new Random();
         this.player = game.getPlayer();
-        this.credits = game.getPlayer().getCredits();
+        this.credits = player.getCredits();
         this.diff = game.getDifficulty().modifier();
+        npc = generateNPC();
     }
 
     public NPC startEncounter() {
@@ -50,6 +55,10 @@ public class Encounter {
     //We have to add this player to encounter somehow
     private Trader createTrader() {
         return new Trader(player);
+    }
+
+    public NPC getNpc() {
+        return npc;
     }
 
 }

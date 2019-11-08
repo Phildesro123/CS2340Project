@@ -3,6 +3,8 @@ package models.NPC;
 
 import models.Player;
 
+import javax.swing.*;
+
 public abstract class NPC {
 
     private String name;
@@ -32,7 +34,9 @@ public abstract class NPC {
      * Gets the icon of NPC
      * @return Icon of NPC
      */
-    public String getIcon() {
+    public Icon getIcon() {
+        ImageIcon icon = new ImageIcon(this.icon);
+
         return icon;
     }
     /**
@@ -49,6 +53,17 @@ public abstract class NPC {
      */
     public void setImage(String icon) {
         this.icon = icon;
+    }
+
+    /**
+     * Gets the player
+     * @return player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
 }

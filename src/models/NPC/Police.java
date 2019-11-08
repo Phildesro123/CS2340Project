@@ -10,12 +10,13 @@ public class Police extends NPC {
 
     private ArrayList<Item> cargo;
     private double credits;
-    private ArrayList<Item> contraband = new ArrayList<>();
+    private List<Item> contraband;
     private Random gen = new Random();
     private Player player;
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
+        contraband = new ArrayList<>();
         this.player = player;
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
@@ -34,17 +35,13 @@ public class Police extends NPC {
                 contraband.add(cargo.get(i));
             }
         } else {
-            for (int i = 0; i < 3; i++) {
-                int x = gen.nextInt(cargo.size());
-                if (contraband.contains(x)) {
-                    i--;
-                } else {
-                    contraband.add(cargo.get(x));
+            for (int i = 0; i < gen.nextInt(3) + 1; i++) {
+                    int num = gen.nextInt();
+                    contraband.add(cargo.get((i + num) % cargo.size()));
                 }
             }
-        }
         return contraband;
-    }
+        }
 
     @Override
     public void interact() {
@@ -110,5 +107,4 @@ public class Police extends NPC {
             //keep all items
         }
     }
-
 }

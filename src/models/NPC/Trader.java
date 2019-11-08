@@ -64,6 +64,8 @@ public class Trader extends NPC {
         //continue to travel
     }
 
+
+
     /**
      * Buys item
      * @param item Item to buy from trader
@@ -71,7 +73,8 @@ public class Trader extends NPC {
      */
     public String buyItem(Item item) {
         if (wares.size() > 0) {
-            if (player.getShip().canAddCargo()) {
+            if (player.getShip().canAddCargo()
+                    && player.getCredits() - wares.get(0).price(modifier) >= 0) {
                 //Player has space to buy items
                 player.getShip().addCargo(item);
                 player.setCredits(player.getCredits() - (item.getBasePrice() * modifier));
@@ -147,11 +150,22 @@ public class Trader extends NPC {
         this.wares = wares;
     }
 
+    public ArrayList getCargo() { return wares; };
+
     /**
      * Get the player that the NPC will interact with
      * @return Player that NPC is interacting with
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * * Set player
+     * @param player
+     */
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
