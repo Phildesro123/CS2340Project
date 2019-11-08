@@ -5,6 +5,7 @@ import models.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 
 public class Map {
     private Player player;
@@ -19,8 +20,7 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
-        Encounter encounter = new Encounter(player.getShip().getCargo(),
-                player.getCredits(), game.getDifficulty().modifier());
+        Encounter encounter = new Encounter(player);
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -85,6 +85,12 @@ public class Map {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (travel.canTravel(player.getShip(), dist)) {
+                    Random rand = new Random();
+                    int encounterChance = rand.nextInt(100);
+                    if (20 * game.getDifficulty().modifier() < 50) {
+                        Encounter newEncounter =
+                                new Encounter(player);
+                    }
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);

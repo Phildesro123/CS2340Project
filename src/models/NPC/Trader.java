@@ -7,7 +7,9 @@ import java.util.Random;
 public class Trader extends NPC {
     private ArrayList<Item> cargo;
     private boolean angry;
-
+    private boolean negotiated;
+    private double modifier;
+    private Player player;
     public Trader(Player p) {
         super("Trader", "assets/img/merchant.png", p);
         Random rand = new Random();
@@ -20,6 +22,8 @@ public class Trader extends NPC {
         }
         cargo.add(new Item(itemData[rand.nextInt(4) + (itemData.length - 4)]));
         angry = false;
+        negotiated = false;
+        modifier = 1;
     }
 
     @Override
@@ -34,17 +38,17 @@ public class Trader extends NPC {
     public void commitRobbery() {
         Random rand = new Random();
         //fighter value skill check
-        int num = gen.nextInt(16);
+        int num = rand.nextInt(16);
         //if player wins
         if(num <= player.getSkillSet()[1]) {
             //Random number between 1-3 items
             for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
                 player.getShip().addCargo(cargo.remove(rand.nextInt(cargo.size())));
             }
-            
+
         } else {
             //Do a random # of damage (between 100-300)
-            player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
+            player.getShip().setHealth(player.getShip().getHealth() - (rand.nextInt(201) + 100));
         }
     }
 
@@ -57,8 +61,16 @@ public class Trader extends NPC {
         if (cargo.size() > 0) {
             if (player.getShip().canAddCargo()) {
                 //Player has space to buy items
-                //Probably use these string returns as a JLabel or box output?
-                return "Thank you for your business!";
+                if (!angry) {
+                    player.getShip().addCargo(item);
+                    player.setCredits(player.getCredits() - (item.getBasePrice() * modifier));
+                    //Probably use these string returns as a JLabel or box output? Idk.
+                    return "Thank you for your business!";
+                } else {
+                    player.getShip().addCargo(item);
+                    player.setCredits(player.getCredits() - (item.getBasePrice() * modifier));
+                    return "Thanks.";
+                }
             } else {
                 //Can't sell any items
                 return "Sorry, we can't put this item in your inventory. Get more space.";
@@ -71,10 +83,31 @@ public class Trader extends NPC {
     public boolean buyItem(Item item) {
         //Trader buys item
         if (player.getShip().getCargo().size() > 0) {
+            //Check the math on this, I don't know if this is a good modifier for the player's merchant price
             player.setCredits(player.getCredits() + item.price(player.getSkillSet()[2] / 20));
             return true;
         } else {
             //Trader cannot buy an item, throw an error message or something
+            return false;
+        }
+    }
+
+    public boolean negotiate() {
+        if (!negotiated) {
+            Random rand = new Random();
+            int val = rand.nextInt(100) + player.getSkillSet()[2];
+
+            if (val > 75) {
+                negotiated = true;
+                modifier = 0.8;
+                return true;
+            } else {
+                negotiated = true;
+                angry = true;
+                modifier = 1.2;
+                return false;
+            }
+        } else {
             return false;
         }
     }

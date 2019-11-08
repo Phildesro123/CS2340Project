@@ -18,7 +18,6 @@ public class Police extends NPC {
         super("Police", "assets/img/cop.png", player);
         this.cargo = cargo;
         this.credits = credits;
-        this.player = player;
     }
 
     /*

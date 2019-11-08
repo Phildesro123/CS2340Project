@@ -1,6 +1,7 @@
 package models.NPC;
 
 
+import models.Player;
 
 public abstract class NPC {
 

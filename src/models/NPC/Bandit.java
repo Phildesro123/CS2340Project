@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class Bandit extends NPC {
     private double demand;
+    private Player player;
     Random gen = new Random();
     public Bandit(Player player) {
         super("Flayn", "assets/img/bandit.png", player);
@@ -38,7 +39,7 @@ public class Bandit extends NPC {
         } else {
             //win
             //gain credits
-            player.setCredits(player.getCredits() + gen.nextInt(26) + 25); 
+            player.setCredits(player.getCredits() + gen.nextInt(26) + 25);
             //continue to travel successfully
         }
     }

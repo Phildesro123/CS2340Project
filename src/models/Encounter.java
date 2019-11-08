@@ -3,29 +3,22 @@ import java.util.Random;
 import java.util.ArrayList;
 import models.NPC.*;
 public class Encounter {
-    private ArrayList<Item> cargo;
     private double credits;
     private double diff;
     private Player player;
     Random gen = new Random();
-    public Encounter(double diff, Player player) {
-        this.cargo = player.getShip().getCargo();
+    public Encounter(Player player, double diff) {
+        this.player = player;
         this.credits = player.getCredits();
         this.diff = diff;
-        this.player = player;
     }
 
-    public boolean startEncounter() {
-        NPC npc = generateNPC();
-        if (npc == null) {
-            return false;
-        } else {
-            return true;
-        }
+    public NPC startEncounter() {
+        return generateNPC();
     }
     private NPC generateNPC() {
         int npc = gen.nextInt(1001);
-        if (cargo.size() > 0) {
+        if (player.getShip().getCargo().size() > 0) {
             if (npc <= (100 + 50 * diff)) {
                 return createPolice();
             } else if (npc >= (800 - 50 * diff)) {
@@ -47,7 +40,7 @@ public class Encounter {
 
 
     private Police createPolice() {
-        return new Police(cargo, credits, player);
+        return new Police(player.getShip().getCargo(), credits, player);
     }
 
     private Bandit createBandit() {
