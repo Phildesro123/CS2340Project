@@ -1,7 +1,7 @@
 package models.NPC;
 import models.Item;
+import models.Player;
 
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
@@ -13,13 +13,15 @@ public class Police extends NPC {
     private Random gen = new Random();
     private Map<Item, Integer> contraband = new HashMap<>();
     private Player player;
+
+
     public Police(ArrayList<Item> cargo, double credits, Player player) {
+        super("Police", "assets/img/cop.png");
         this.cargo = cargo;
         this.credits = credits;
         this.player = player;
-        name = "Seteth"; //make random somehow later
-        image = "cop.png";
     }
+
     /*
     Ok you need a random gen for the items so you will have to check how many i would say a max of 3
      */

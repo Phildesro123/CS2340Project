@@ -1,18 +1,18 @@
 package models.NPC;
 
 
-import javax.swing.*;
 
 public abstract class NPC {
-    private String name;
-    private String image;
 
-    /**
-     * NPC's interaction method
-     */
-    public void interact() {
-        System.out.println("Yikes");
+    private String name;
+    private String icon;
+
+    public NPC(String name, String icon) {
+        this.name = name;
+        this.icon = icon;
     }
+
+    public abstract void interact();
 
     /**
      * Gets the name of NPC
@@ -26,10 +26,9 @@ public abstract class NPC {
      * Gets the icon of NPC
      * @return Icon of NPC
      */
-    public String getImage() {
-        return image;
+    public String getIcon() {
+        return icon;
     }
-
     /**
      * Sets name of the NPC
      * @param name Name of NPC
@@ -42,8 +41,9 @@ public abstract class NPC {
      * Sets the icon of NPC
      * @param icon Icon of NPC
      */
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String icon) {
+        this.icon = icon;
     }
 
 }
+

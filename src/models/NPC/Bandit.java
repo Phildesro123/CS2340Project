@@ -1,6 +1,8 @@
 package models.NPC;
 
-import javax.swing.*;
+
+import models.Player;
+
 import java.util.Random;
 
 public class Bandit extends NPC {
@@ -9,13 +11,12 @@ public class Bandit extends NPC {
     private Player player;
     private int demand;
     Random gen = new Random();
-
     public Bandit(Player player) {
-        name = "Flayn"; //make random somehow later
+        super("Bandit", "assets/img/bandit.png");
         this.player = player;
         demand = gen.nextInt(51) + 50;
-        image = "bandit.png"; 
     }
+
 
     @Override
     public void interact() {
@@ -23,9 +24,8 @@ public class Bandit extends NPC {
         //choose between paying credits, fleeing, or fighting
     }
 
-    @Override
     public void fight() {
-        //skill check 
+        //skill check
         //bandit's fighter skill should be random?
         int num = gen.nextInt(21);
         //if player loses
@@ -39,3 +39,4 @@ public class Bandit extends NPC {
         }
     }
 }
+

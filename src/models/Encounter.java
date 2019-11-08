@@ -14,7 +14,16 @@ public class Encounter {
         this.diff = diff;
         this.player = player;
     }
-    public Object generateNPC() {
+
+    public boolean startEncounter() {
+        NPC npc = generateNPC();
+        if (npc == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    private NPC generateNPC() {
         int npc = gen.nextInt(1001);
         if (cargo.size() > 0) {
             if (npc <= (100 + 50 * diff)) {
@@ -45,6 +54,7 @@ public class Encounter {
         return new Bandit(player);
     }
 
+    //We have to add this player to encounter somehow
     private Trader createTrader() {
         return new Trader(player);
     }
