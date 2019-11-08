@@ -1,12 +1,13 @@
 package models.NPC;
 public class Bandit extends NPC {
-
-    public Bandit(String name, String icon) {
-        super(name, icon);
+    public Bandit() {
+        super("Bandit", "assets/img/bandit.png");
     }
 
     @Override
     public void interact() {
 
     }
+
+
 }
