@@ -44,5 +44,6 @@ public abstract class NPC {
     public void setImage(String icon) {
         this.icon = icon;
     }
+
 }
 
