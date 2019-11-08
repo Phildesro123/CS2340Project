@@ -150,8 +150,13 @@ public class Trader extends NPC {
         this.wares = wares;
     }
 
-    public ArrayList getCargo() { return wares; };
-
+    /**
+     * Get's merchant's cargo
+     * @return Merchant's cargo
+     */
+    public ArrayList getCargo() {
+        return wares;
+    };
     /**
      * Get the player that the NPC will interact with
      * @return Player that NPC is interacting with
@@ -161,8 +166,8 @@ public class Trader extends NPC {
     }
 
     /**
-     * * Set player
-     * @param player
+     * Changes player
+     * @param player Player to chnage to
      */
     @Override
     public void setPlayer(Player player) {

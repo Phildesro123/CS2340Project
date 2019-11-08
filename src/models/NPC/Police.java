@@ -36,12 +36,12 @@ public class Police extends NPC {
             }
         } else {
             for (int i = 0; i < gen.nextInt(3) + 1; i++) {
-                    int num = gen.nextInt();
-                    contraband.add(cargo.get((i + num) % cargo.size()));
-                }
+                int num = gen.nextInt();
+                contraband.add(cargo.get((i + num) % cargo.size()));
             }
-        return contraband;
         }
+        return contraband;
+    }
 
     @Override
     public void interact() {
