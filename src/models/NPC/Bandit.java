@@ -3,6 +3,9 @@ package models.NPC;
 import javax.swing.*;
 
 public class Bandit implements NPC {
+
+
+
     @Override
     public void interact() {
 
@@ -27,4 +30,6 @@ public class Bandit implements NPC {
     public void setImage(ImageIcon icon) {
 
     }
+
+
 }
