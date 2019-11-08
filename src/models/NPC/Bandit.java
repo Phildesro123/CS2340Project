@@ -34,6 +34,8 @@ public class Bandit extends NPC {
         } else {
             //win
             //continue to travel successfully
+            //gain credits
+            player.setCredits(player.getCredits() + gen.nextInt(26) + 25); 
         }
     }
 }
