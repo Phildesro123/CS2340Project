@@ -77,7 +77,7 @@ public class Trader extends NPC {
                     && player.getCredits() - wares.get(0).price(modifier) >= 0) {
                 //Player has space to buy items
                 player.getShip().addCargo(item);
-                player.setCredits(player.getCredits() - (item.getBasePrice() * modifier));
+                player.setCredits(player.getCredits() - (item.price(modifier)));
                 if (!angry) {
                     //Probably use these string returns as a JLabel or box output? Idk.
                     return "Thank you for your business!";
