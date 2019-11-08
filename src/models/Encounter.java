@@ -7,10 +7,10 @@ public class Encounter {
     private double diff;
     private Player player;
     Random gen = new Random();
-    public Encounter(double credits, double diff, Player player) {
-        this.credits = credits;
-        this.diff = diff;
+    public Encounter(Player player, double diff) {
         this.player = player;
+        this.credits = player.getCredits();
+        this.diff = diff;
     }
 
     public NPC startEncounter() {
