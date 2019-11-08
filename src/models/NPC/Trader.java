@@ -157,17 +157,4 @@ public class Trader extends NPC {
     public Player getPlayer() {
         return player;
     }
-<<<<<<< HEAD
-
-
-    @Override
-    public void interact() {
-        System.out.println("Is that the one? Thanks a bunch!");
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-=======
->>>>>>> eba30ad972bae3aecb6b883350361d25d0411c75
 }
