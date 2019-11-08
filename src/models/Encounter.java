@@ -8,7 +8,7 @@ public class Encounter {
     private double diff;
     private Player player;
     Random gen = new Random();
-    public Encounter(ArrayList<Item> cargo, double credits, double diff, Player player) {
+    public Encounter(Player player) {
         this.cargo = cargo;
         this.credits = credits;
         this.diff = diff;
