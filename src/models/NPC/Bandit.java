@@ -6,11 +6,15 @@ import models.Player;
 import java.util.Random;
 
 public class Bandit extends NPC {
+    private String name;
+    private String image;
     private Player player;
+    private int demand;
     Random gen = new Random();
     public Bandit(Player player) {
         super("Bandit", "assets/img/bandit.png");
         this.player = player;
+        demand = gen.nextInt(51) + 50;
     }
 
 
@@ -29,6 +33,9 @@ public class Bandit extends NPC {
             //lose
         } else {
             //win
+            //continue to travel successfully
+            //gain credits
+            player.setCredits(player.getCredits() + gen.nextInt(26) + 25); 
         }
     }
 }
