@@ -20,7 +20,7 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
-        Encounter encounter = new Encounter(player);
+        Encounter encounter = new Encounter(game);
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -89,7 +89,7 @@ public class Map {
                     int encounterChance = rand.nextInt(100);
                     if (20 * game.getDifficulty().modifier() < 50) {
                         Encounter newEncounter =
-                                new Encounter(player);
+                                new Encounter(game);
                     }
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
