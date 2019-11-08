@@ -5,15 +5,16 @@ import java.util.Random;
 
 public class Bandit extends NPC {
     private String name;
-    private ImageIcon image;
+    private String image;
     private Player player;
+    private int demand;
     Random gen = new Random();
 
     public Bandit(Player player) {
         name = "Flayn"; //make random somehow later
         this.player = player;
-        //image = bandit.png; I don't think this is the right way to access the image
-
+        demand = gen.nextInt(51) + 50;
+        image = "bandit.png"; 
     }
 
     @Override
@@ -32,6 +33,7 @@ public class Bandit extends NPC {
             //lose
         } else {
             //win
+            //continue to travel successfully
         }
     }
 }

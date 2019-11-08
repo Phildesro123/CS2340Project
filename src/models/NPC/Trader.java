@@ -7,7 +7,7 @@ public class Trader extends NPC {
     public Trader(Player player) {
         name = "Anna"; //make random somehow later
         this.player = player;
-        //image = merchant.png; I don't think this is the right way to access the image
+        image = "merchant.png";
 
     }
 

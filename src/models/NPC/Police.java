@@ -18,7 +18,7 @@ public class Police extends NPC {
         this.credits = credits;
         this.player = player;
         name = "Seteth"; //make random somehow later
-        //image = cop.png; I don't think this is the right way to access the image
+        image = "cop.png";
     }
     /*
     Ok you need a random gen for the items so you will have to check how many i would say a max of 3

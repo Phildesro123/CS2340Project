@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public abstract class NPC {
     private String name;
-    private ImageIcon image;
+    private String image;
 
     /**
      * NPC's interaction method
@@ -26,7 +26,7 @@ public abstract class NPC {
      * Gets the icon of NPC
      * @return Icon of NPC
      */
-    public ImageIcon getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -42,7 +42,7 @@ public abstract class NPC {
      * Sets the icon of NPC
      * @param icon Icon of NPC
      */
-    public void setImage(ImageIcon image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
