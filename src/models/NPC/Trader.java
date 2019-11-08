@@ -173,4 +173,8 @@ public class Trader extends NPC {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public double getModifier() {
+        return modifier;
+    }
 }

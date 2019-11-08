@@ -106,14 +106,14 @@ public class EncounterDisplay {
             case 2:
                 trader.negotiate();
                 String[] newTraderOptions = {"Buy", "Rob"};
+                itemAndPrice = ((Item) trader.getCargo().get(0)).getName()
+                        + ((Item) trader.getCargo().get(0)).price(trader.getModifier());
                 selectedValue = JOptionPane.showOptionDialog(null,
-                        "How about a trade?",
+                        "How about a trade?\n" + itemAndPrice,
                         "Encounter",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                         trader.getIcon(),
                         newTraderOptions, newTraderOptions[0]);
-                break;
-            default:
                 switch (selectedValue) {
                 case 0:
                     trader.buyItem((Item) trader.getCargo().get(0));
@@ -126,6 +126,9 @@ public class EncounterDisplay {
                 default:
                     break;
                 }
+                break;
+            default:
+                break;
             }
         }
     }
