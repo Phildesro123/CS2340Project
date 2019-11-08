@@ -6,6 +6,7 @@ public class Market {
     The tech level class will have a list of items for each tech level
      */
     //[Sword, Axe, Lance, Bow, Gauntlet, Staff, Club, Crossbow, Scythe, Dagger]
+    private Game game;
     private Item[] items;
     public Market(Item[] i) {
         this.items = i;

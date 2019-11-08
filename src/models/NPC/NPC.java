@@ -1,17 +1,23 @@
 package models.NPC;
 
 
+import models.Player;
 
 public abstract class NPC {
 
     private String name;
     private String icon;
+    private Player player;
 
-    public NPC(String name, String icon) {
+    public NPC(String name, String icon, Player player) {
         this.name = name;
         this.icon = icon;
+        this.player = player;
     }
 
+    /**
+     * Shows the options that the player has to interact with the NPC
+     */
     public abstract void interact();
 
     /**
