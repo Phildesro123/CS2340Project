@@ -19,8 +19,10 @@ public class EncounterDisplay {
     protected JPanel disp = new JPanel();
     private NPC npc;
     private int selectedValue;
+    private Game game;
     public EncounterDisplay(Encounter encounter, Game game) {
         this.encounter = encounter;
+        this.game = game;
         npc = encounter.getNpc();
         String[] banditOptions = {"Pay", "Flee", "Fight"};
         String[] traderOptions = {"Buy", "Rob", "Negotiate"};
@@ -38,12 +40,15 @@ public class EncounterDisplay {
                     switch (selectedValue) {
                         case 0:
                             bandit.pay();
+                            showInventory();
                             break;
                         case 1:
                             bandit.flee();
+                            showInventory();
                             break;
                         case 2:
                             bandit.fight();
+                            showInventory();
                             break;
                     }
 
@@ -57,24 +62,42 @@ public class EncounterDisplay {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     police.getIcon(),
                     policeOptions, policeOptions[0]);
+            switch (selectedValue) {
+                case 0:
+                    police.forfeit();
+                    showInventory();
+                    break;
+                case 1:
+                    police.flee();
+                    showInventory();
+                    break;
+                case 2:
+                    police.fight();
+                    showInventory();
+                    break;
+            }
 
         }
         if (npc instanceof Trader) {
             Trader trader = (Trader) npc;
             ImageIcon icon = new ImageIcon("src/assets.img/merchant.png");
             trader.setPlayer(game.getPlayer());
+            String itemAndPrice = ((Item) trader.getCargo().get(0)).getName()
+                    + ((Item) trader.getCargo().get(0)).getBasePrice();
             selectedValue = JOptionPane.showOptionDialog(null,
-                    "How about a trade?",
+                    "How about a trade?\n" + itemAndPrice,
                     "Encounter",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     trader.getIcon(),
                     traderOptions, traderOptions[0]);
             switch (selectedValue) {
                 case 0:
-                    trader.sellItem((Item) trader.getCargo().get(0));
+                    trader.buyItem((Item) trader.getCargo().get(0));
+                    showInventory();
                     break;
                 case 1:
                     trader.commitRobbery();
+                    showInventory();
                     break;
                 case 2:
                     trader.negotiate();
@@ -87,14 +110,25 @@ public class EncounterDisplay {
                             newTraderOptions, newTraderOptions[0]);
                     switch (selectedValue) {
                         case 0:
-                            trader.sellItem((Item) trader.getCargo().get(0));
+                            trader.buyItem((Item) trader.getCargo().get(0));
+                            showInventory();
                             break;
                         case 1:
                             trader.commitRobbery();
+                            showInventory();
                             break;
                     }
                     break;
             }
         }
+    }
+    public void showInventory() {
+        String inventory = "";
+        String credits = "Credits " + game.getPlayer().getCredits() + "\n";
+        for (int i = 0; i < game.getPlayer().getShip().getCargo().size(); i++) {
+            inventory += game.getPlayer().getShip().getCargo().get(i).getName() + "\n";
+        }
+        JOptionPane.showMessageDialog(null,
+                inventory + credits, "Player Inventory", JOptionPane.INFORMATION_MESSAGE);
     }
 }
