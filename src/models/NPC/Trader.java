@@ -111,7 +111,7 @@ public class Trader extends NPC {
      */
     public boolean negotiate() {
         if (!negotiated) {
-            int num = gen.nextInt(16);
+            int num = rand.nextInt(16);
             //if player succeeds
             if (num <= player.getSkillSet()[2]) {
                 negotiated = true;
