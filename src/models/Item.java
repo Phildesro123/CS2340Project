@@ -78,6 +78,6 @@ public class Item {
     @Override
     public boolean equals(Object obj) {
         Item i = (Item) obj;
-        return name == i.getName() && type == i.getItemType();
+        return name.equals(i.getName()) && type == i.getItemType();
     }
 }

@@ -3,7 +3,6 @@ import java.util.Random;
 import models.NPC.*;
 
 public class Encounter {
-    private double credits;
     private double diff;
     private Player player;
     private Random gen;
@@ -12,14 +11,10 @@ public class Encounter {
     public Encounter(Game game) {
         gen = new Random();
         this.player = game.getPlayer();
-        this.credits = player.getCredits();
         this.diff = game.getDifficulty().modifier();
         npc = generateNPC();
     }
 
-    public NPC startEncounter() {
-        return generateNPC();
-    }
     private NPC generateNPC() {
         int npc = gen.nextInt(1001);
         if (player.getShip().getCargo().size() > 0) {
