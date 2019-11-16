@@ -45,9 +45,9 @@ public class Police extends NPC {
     }
 
     @Override
-    public void interact() {
-        System.out.println("Wee woo wee woo");
-        //displays whichItems() that the police think you stole 
+    public String interact() {
+        return {"Wee woo wee woo", "Forfeit", "Flee", "Fight"};
+        //displays whichItems() that the police think you stole
         //choose whether to forfeit items, flee from the police, or fight them off
     }
 

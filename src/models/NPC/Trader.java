@@ -29,7 +29,8 @@ public class Trader extends NPC {
 
     @Override
     public void interact() {
-        System.out.println("Is that the one? Thanks a bunch!");
+        String interact = "Is that the one? Thanks a bunch!";
+        String[] options = {"Buy", "Rob", "Negotiate"};
         //shows the wares of the trader
         //choose whether to buy, ignore, rob, or negotiate
             //only display negotiate button if negotiated is false

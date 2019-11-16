@@ -8,7 +8,8 @@ import java.util.Random;
 public class Bandit extends NPC {
     private double demand;
     private Player player;
-    Random gen = new Random();
+    private ImageIcon icon;
+    private Random gen = new Random();
     public Bandit(Player player) {
         super("Flayn", "assets/img/bandit.png", player);
         demand = gen.nextInt(51) + 50;
@@ -16,8 +17,15 @@ public class Bandit extends NPC {
 
 
     @Override
-    public void interact() {
-        System.out.println("Vibe check");
+    public String interact() {
+        String interact = "Vibe check";
+        String[] options = {"Pay", "Flee", "Fight"};
+        selectedValue = JOptionPane.showOptionDialog(null, 
+                        interact,
+                        "Encounter",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                        icon,
+                        options, options[0]);
         //display the bandit's credit demands
         //choose between paying credits, fleeing, or fighting
     }

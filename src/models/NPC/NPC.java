@@ -6,12 +6,12 @@ import models.Player;
 public abstract class NPC {
 
     private String name;
-    private String icon;
+    private ImageIcon icon;
     private Player player;
 
     public NPC(String name, String icon, Player player) {
         this.name = name;
-        this.icon = icon;
+        this.icon = (ImageIcon) icon; //this is where file IO nonsense would go
         this.player = player;
     }
 
@@ -32,7 +32,7 @@ public abstract class NPC {
      * Gets the icon of NPC
      * @return Icon of NPC
      */
-    public String getIcon() {
+    public Icon getIcon() {
         return icon;
     }
     /**
