@@ -35,7 +35,7 @@ public class Welcome {
         f.setVisible(true);
     }
 
-    public JComponent getMainComponent() {
+    private JComponent getMainComponent() {
         return wel;
     }
 }

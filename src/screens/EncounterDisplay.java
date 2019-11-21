@@ -134,7 +134,7 @@ public class EncounterDisplay {
     }
 
 
-    public void showInventory() {
+    private void showInventory() {
         String inventory = "";
         String credits = "Credits " + game.getPlayer().getCredits() + "\n";
         for (int i = 0; i < game.getPlayer().getShip().getCargo().size(); i++) {

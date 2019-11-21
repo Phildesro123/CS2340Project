@@ -17,12 +17,12 @@ public class Map {
     public Map(Game game) {
         JPanel panel = new JPanel();
         frame = new JFrame("Map *scaled by 3x*");
-        Universe universe = game.getUniverse();
+
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
-        Region[] regions = new Region[universe.getRegions().length - 1];
+        Region[] regions = new Region[game.getRegions().length - 1];
         int cnt = 0;
-        for (Region region: universe.getRegions()) {
+        for (Region region: game.getRegions()) {
             if (!region.equals(player.getCurrentRegion())) {
                 regions[cnt] = region;
                 cnt++;
@@ -69,11 +69,10 @@ public class Map {
         frameStuff();
     }
     private JButton buttons(int n, Game game) {
-        Universe universe = game.getUniverse();
         player = game.getPlayer();
-        Region[] regions = new Region[universe.getRegions().length - 1];
+        Region[] regions = new Region[game.getRegions().length - 1];
         int cnt = 0;
-        for (Region region: universe.getRegions()) {
+        for (Region region: game.getRegions()) {
             if (!region.equals(player.getCurrentRegion())) {
                 regions[cnt] = region;
                 cnt++;

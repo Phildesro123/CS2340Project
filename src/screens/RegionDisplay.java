@@ -1,5 +1,6 @@
 package screens;
 
+import models.CalculatorController;
 import models.Game;
 import models.Item;
 import models.Player;
@@ -13,22 +14,23 @@ import javax.swing.*;
 public class RegionDisplay {
     //This will display the region's market and stuff
     //Should display player's fuel
-    //Will handle price calculation(?)
 
 
     //Getting rid of player instance variable soon
     //Should not have an instance of player, just get it from the game
+    private CalculatorController calc;
     private Player player;
     private Region region;
-    private JPanel container = new JPanel();
     private JPanel holder = new JPanel();
-    private JPanel info = new JPanel();
-    private JPanel buttons = new JPanel();
     private JFrame frame = new JFrame("Current Region");
 
     public RegionDisplay(Game game) {
+        calc = new CalculatorController();
+        JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+        JPanel info = new JPanel();
         info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+        JPanel buttons = new JPanel();
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
         holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         //Make a method that returns a panel and add it to buttons
@@ -57,7 +59,7 @@ public class RegionDisplay {
             JPanel tempPanel = new JPanel();
             tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.X_AXIS));
             tempPanel.add(new JLabel("Buying Price: "
-                    + priceBuyCalculator(i)));
+                    + calc.priceBuyCalculator(player, region, i)));
             tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             tempPanel.add(createMarketBttn(i, true, playerCreds, inventory));
             tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
@@ -66,7 +68,7 @@ public class RegionDisplay {
             tempPanel.add(createMarketBttn(i, false, playerCreds, inventory));
             tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             tempPanel.add(new JLabel("Selling Price: "
-                    + priceSellCalculator(i)));
+                    + calc.priceSellCalculator(player, region, i)));
             tempPanel.add(Box.createRigidArea(new Dimension(5, 20)));
             buttons.add(tempPanel);
         }
@@ -90,37 +92,13 @@ public class RegionDisplay {
         frame.setVisible(true);
 
     }
-    public JComponent getMainComponent() {
+    private JComponent getMainComponent() {
         return holder;
     }
 
-    public void hide() {
+    private void hide() {
         frame.setVisible(false);
         frame.dispose();
-    }
-
-    //This is going into another class.
-    //UIs should NOT have any logic
-    private double priceSellCalculator(Item item) {
-        if (player.getSkillSet()[2] > 0) {
-            System.out.println(player.getSkillSet()[2] * 1.08);
-            return item.price(item.price(region.getInflationS()),
-                    player.getSkillSet()[2] * 0.8);
-        } else {
-            return item.price(region.getInflationS());
-        }
-    }
-
-    //This is going into another class
-    //UIs should NOt have any logic like this
-    private double priceBuyCalculator(Item item) {
-        System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
-        if (player.getSkillSet()[2] > 0) {
-            return item.price(item.price(region.getInflationB()),
-                    1.0 / 1 + (player.getSkillSet()[2] / 100.0));
-        } else {
-            return item.price(region.getInflationB());
-        }
     }
 
     /**
@@ -139,13 +117,13 @@ public class RegionDisplay {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (player.getShip().canAddCargo()) {
-                        if (player.getCredits() - priceBuyCalculator(item) > 0) {
-                            player.setCredits(player.getCredits()
-                                    - priceBuyCalculator(item));
+                        double price = calc.priceBuyCalculator(player, region, item);
+                        if (player.getCredits() - price > 0) {
+                            player.setCredits(player.getCredits() - price);
                             player.getShip().addCargo(item);
                             cargoDisp.setText("Current Cargo: ");
                             creds.setText("Current Credits: " + player.getCredits()
-                                + " (-" + priceBuyCalculator(item) + ")");
+                                + " (-" + price + ")");
                             for (Item i : player.getShip().getCargo()) {
                                 String txt = cargoDisp.getText();
                                 System.out.println(txt);
@@ -170,12 +148,13 @@ public class RegionDisplay {
                     //If the arraylist has the item, then sell, otherwise error
                     if (player.getShip().findItemToRemove(item) != null) {
                         Item sItem = player.getShip().findItemToRemove(item);
+                        double price = calc.priceSellCalculator(player, region, sItem);
                         player.setCredits(player.getCredits()
-                                + priceSellCalculator(sItem));
+                                + price);
                         player.getShip().removeCargo(sItem);
                         cargoDisp.setText("Current Cargo: ");
                         creds.setText("Current Credits: " + player.getCredits()
-                                + " (+" + priceSellCalculator(sItem) + ")");
+                                + " (+" + price + ")");
                         for (Item i : player.getShip().getCargo()) {
                             cargoDisp.setText(cargoDisp.getText()
                                     + i.getName() + ", ");
