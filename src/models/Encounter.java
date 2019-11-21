@@ -1,28 +1,20 @@
 package models;
 import java.util.Random;
-import java.util.ArrayList;
 import models.NPC.*;
-import screens.EncounterDisplay;
 
 public class Encounter {
     private double credits;
     private double diff;
     private Player player;
-<<<<<<< HEAD
-    private Random gen = new Random();
+    private Random gen;
     private NPC npc;
+
     public Encounter(Game game) {
+        gen = new Random();
         this.player = game.getPlayer();
         this.credits = player.getCredits();
         this.diff = game.getDifficulty().modifier();
         npc = generateNPC();
-=======
-    Random gen = new Random();
-    public Encounter(Game game) {
-        this.player = game.getPlayer();
-        this.credits = game.getPlayer().getCredits();
-        this.diff = game.getDifficulty().modifier();
->>>>>>> eba30ad972bae3aecb6b883350361d25d0411c75
     }
 
     public NPC startEncounter() {

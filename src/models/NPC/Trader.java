@@ -10,10 +10,11 @@ public class Trader extends NPC {
     private boolean negotiated;
     private double modifier;
     private Player player;
-    Random rand = new Random();
+    private Random rand;
 
     public Trader(Player p) {
         super("Anna", "assets/img/merchant.png", p);
+        rand = new Random();
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();
         //Generates multiple regalia items
@@ -31,8 +32,8 @@ public class Trader extends NPC {
         System.out.println("Is that the one? Thanks a bunch!");
         //shows the wares of the trader
         //choose whether to buy, ignore, rob, or negotiate
-            //only display negotiate button if negotiated is false
-            //if choosing to buy, needs a string input somehow to choose which item to buy
+        //only display negotiate button if negotiated is false
+        //if choosing to buy, needs a string input somehow to choose which item to buy
     }
 
     /**
@@ -40,7 +41,8 @@ public class Trader extends NPC {
      */
     public void ignore() {
         //just leave and go to the destination
-        //it'd be cool if we could make it so that the next time you run into the same trader they were angry that you ignored them
+        //it'd be cool if we could make it so that the next
+        //time you run into the same trader they were angry that you ignored them
     }
 
     /**
@@ -50,12 +52,11 @@ public class Trader extends NPC {
         //fighter value skill check
         int num = rand.nextInt(11); //traders aren't great fighters
         //if player wins
-        if(num <= player.getSkillSet()[1]) {
+        if (num <= player.getSkillSet()[1]) {
             //Random number between 1-3 items
             for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
                 player.getShip().addCargo(wares.remove(rand.nextInt(wares.size())));
             }
-
         } else {
             //Do a random # of damage (between 100-300)
             player.getShip().setHealth(player.getShip().getHealth() - (rand.nextInt(201) + 100));
@@ -72,10 +73,11 @@ public class Trader extends NPC {
      */
     public String buyItem(Item item) {
         if (wares.size() > 0) {
-            if (player.getShip().canAddCargo()) {
+            if (player.getShip().canAddCargo()
+                    && player.getCredits() - wares.get(0).price(modifier) >= 0) {
                 //Player has space to buy items
                 player.getShip().addCargo(item);
-                player.setCredits(player.getCredits() - (item.getBasePrice() * modifier));
+                player.setCredits(player.getCredits() - (item.price(modifier)));
                 if (!angry) {
                     //Probably use these string returns as a JLabel or box output? Idk.
                     return "Thank you for your business!";
@@ -96,7 +98,8 @@ public class Trader extends NPC {
     public boolean sellItem(Item item) {
         //Player sells item
         if (player.getShip().getCargo().size() > 0) {
-            //Check the math on this, I don't know if this is a good modifier for the player's merchant price
+            //Check the math on this, I don't know if this is a
+            good modifier for the player's merchant price
             player.setCredits(player.getCredits() + item.price(player.getSkillSet()[2] / 20));
             return true;
         } else {
@@ -147,13 +150,31 @@ public class Trader extends NPC {
         this.wares = wares;
     }
 
-    public ArrayList getCargo() { return cargo; };
-
+    /**
+     * Get's merchant's cargo
+     * @return Merchant's cargo
+     */
+    public ArrayList getCargo() {
+        return wares;
+    };
     /**
      * Get the player that the NPC will interact with
      * @return Player that NPC is interacting with
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * Changes player
+     * @param player Player to chnage to
+     */
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public double getModifier() {
+        return modifier;
     }
 }

@@ -55,5 +55,16 @@ public abstract class NPC {
         this.icon = icon;
     }
 
+    /**
+     * Gets the player
+     * @return player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
 }
 

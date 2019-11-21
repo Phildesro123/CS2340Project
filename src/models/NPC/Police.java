@@ -10,19 +10,21 @@ public class Police extends NPC {
 
     private ArrayList<Item> cargo;
     private double credits;
-    private ArrayList<Item> contraband = new ArrayList<>();
+    private List<Item> contraband;
     private Random gen = new Random();
     private Player player;
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
+        contraband = new ArrayList<>();
         this.player = player;
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
     }
 
     /**
-     * Ok you need a random gen for the items so you will have to check how many i would say a max of 3
+     * Ok you need a random gen for the
+     * items so you will have to check how many i would say a max of 3
      * @return contraband that the police is tryna steal
      */
     public List<Item> whichItems() {
@@ -33,13 +35,9 @@ public class Police extends NPC {
                 contraband.add(cargo.get(i));
             }
         } else {
-            for (int i = 0; i < 3; i++) {
-                int x = gen.nextInt(cargo.size());
-                if (contraband.contains(x)) {
-                    i--;
-                } else {
-                    contraband.add(cargo.get(x));
-                }
+            for (int i = 0; i < gen.nextInt(3) + 1; i++) {
+                int num = gen.nextInt();
+                contraband.add(cargo.get((i + num) % cargo.size()));
             }
         }
         return contraband;
@@ -78,6 +76,7 @@ public class Police extends NPC {
             player.getShip().clearCargo();
             //player.setCurrentRegion(jail); or just go back to previous, or die
         } else {
+            return;
             //win
             //continue to travel successfully
             //keep all items
@@ -89,7 +88,7 @@ public class Police extends NPC {
      */
     public void flee() {
         //pilot skill check
-        int num = gen.nextInt(14) + 2; //they've got some training so they can fly better on average than bandits can
+        int num = gen.nextInt(14) + 2;
         //if player loses
         if (num > player.getSkillSet()[0]) {
             //fail to flee
@@ -101,10 +100,11 @@ public class Police extends NPC {
             player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
             //return to previous region
         } else {
+            return;
             //dip out
-            //return to original region, while still using up the same amount of fuel as if they traveled to the destination
+            //return to original region,
+            // while still using up the same amount of fuel as if they traveled to the destination
             //keep all items
         }
     }
-
 }
