@@ -20,7 +20,6 @@ public class Map {
         Universe universe = game.getUniverse();
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
-        Encounter encounter = new Encounter(game);
         Region[] regions = new Region[universe.getRegions().length - 1];
         int cnt = 0;
         for (Region region: universe.getRegions()) {
@@ -32,7 +31,11 @@ public class Map {
         Ship ship = player.getShip();
         JPanel fuelDisp = new JPanel();
         JLabel fuel = new JLabel("Current fuel: " + ship.getFuel() + "/" + ship.getMaxFuel());
+        JLabel health = new JLabel("Current health " + ship.getHealth());
+        JLabel currentCredit = new JLabel("Current credits " + player.getCredits());
         fuelDisp.add(fuel);
+        fuelDisp.add(health);
+        fuelDisp.add(currentCredit);
         JButton currentRegion = new JButton("You are here");
         JButton firstRegion = buttons(0, game);
         JButton secondRegion = buttons(1, game);
@@ -87,10 +90,14 @@ public class Map {
                 if (travel.canTravel(player.getShip(), dist)) {
                     Random rand = new Random();
                     int encounterChance = rand.nextInt(100);
-                    if (20 * game.getDifficulty().modifier() < 50) {
+                    if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
+
+                        EncounterDisplay encounterDisplay
+                                = new EncounterDisplay(newEncounter, game);
                     }
+
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);

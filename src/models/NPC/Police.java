@@ -2,45 +2,42 @@ package models.NPC;
 import models.Item;
 import models.Player;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Police extends NPC {
 
     private ArrayList<Item> cargo;
     private double credits;
-    private Map<Item, Integer> contraband = new HashMap<>(); //what's the point in making it a map?
-    private Player player;
+    private List<Item> contraband;
     private Random gen = new Random();
+    private Player player;
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
+        contraband = new ArrayList<>();
+        this.player = player;
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
-        this.player = player;
     }
 
     /**
-     * Ok you need a random gen for the items so you will have to check how many i would say a max of 3
+     * Ok you need a random gen for the
+     * items so you will have to check how many i would say a max of 3
      * @return contraband that the police is tryna steal
      */
-    public Map<Item, Integer> whichItems() {
+    public List<Item> whichItems() {
         if (cargo.size() == 1) {
-            contraband.put(cargo.get(0), 0);
+            contraband.add(cargo.get(0));
         } else if (cargo.size() == 2) {
             for (int i = 0; i < cargo.size(); i++) {
-                contraband.put(cargo.get(i), i);
+                contraband.add(cargo.get(i));
             }
         } else {
-            for (int i = 0; i < 3; i++) {
-                int x = gen.nextInt(cargo.size());
-                if (contraband.containsValue(x)) {
-                    i--;
-                } else {
-                    contraband.put(cargo.get(x), x);
-                }
+            for (int i = 0; i < gen.nextInt(3) + 1; i++) {
+                int num = gen.nextInt();
+                contraband.add(cargo.get((i + num) % cargo.size()));
             }
         }
         return contraband;
@@ -49,7 +46,7 @@ public class Police extends NPC {
     @Override
     public void interact() {
         System.out.println("Wee woo wee woo");
-        //displays whichItems() that the police think you stole 
+        //displays whichItems() that the police think you stole
         //choose whether to forfeit items, flee from the police, or fight them off
     }
 
@@ -57,17 +54,8 @@ public class Police extends NPC {
      * Forfeit your items to the police
      */
     public void forfeit() {
-        //I have no idea if this works for a map tbh
-        for (Map.Entry<Item, Integer> i : contraband.entrySet()) {
-            //this should work but it's kinda weird, dont really know what to do with the integer
-            if (i.getValue() > 1) {
-                //Since this is counting how many items you have then you just loop that many times to remove it?
-                for (int j = 1; j < i.getValue(); j++) {
-                    player.getShip().removeCargo(i.getKey());
-                }
-            } else {
-                player.getShip().removeCargo(i.getKey());
-            }
+        for (Item i : contraband) { //I have no idea if this works for a map tbh
+            player.getShip().removeCargo(i);
         }
         //continue traveling
     }
@@ -88,6 +76,7 @@ public class Police extends NPC {
             player.getShip().clearCargo();
             //player.setCurrentRegion(jail); or just go back to previous, or die
         } else {
+            return;
             //win
             //continue to travel successfully
             //keep all items
@@ -99,7 +88,7 @@ public class Police extends NPC {
      */
     public void flee() {
         //pilot skill check
-        int num = gen.nextInt(14) + 2; //they've got some training so they can fly better on average than bandits can
+        int num = gen.nextInt(14) + 2;
         //if player loses
         if (num > player.getSkillSet()[0]) {
             //fail to flee
@@ -111,10 +100,11 @@ public class Police extends NPC {
             player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
             //return to previous region
         } else {
+            return;
             //dip out
-            //return to original region, while still using up the same amount of fuel as if they traveled to the destination
+            //return to original region,
+            // while still using up the same amount of fuel as if they traveled to the destination
             //keep all items
         }
     }
-
 }
