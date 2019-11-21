@@ -1,5 +1,6 @@
 package models.NPC;
 import models.Item;
+import models.Karma;
 import models.Player;
 import models.enums.ItemData;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class Trader extends NPC {
     private double modifier;
     private Player player;
     private Random rand;
+    private Karma karma;
 
     public Trader(Player p) {
         super("Anna", "assets/img/merchant.png", p);
@@ -80,6 +82,9 @@ public class Trader extends NPC {
                 player.setCredits(player.getCredits() - (item.price(modifier)));
                 if (!angry) {
                     //Probably use these string returns as a JLabel or box output? Idk.
+                    if (!negotiated) {
+                        karma.addKarma();
+                    }
                     return "Thank you for your business!";
                 } else {
                     return "Thanks.";
@@ -117,7 +122,7 @@ public class Trader extends NPC {
         if (!negotiated) {
             int num = rand.nextInt(16);
             //if player succeeds
-            if (num <= player.getSkillSet()[2]) {
+            if (num <= player.getSkillSet()[2] + (karma.getKarma() / 2)) {
                 negotiated = true;
                 modifier = 0.625;
                 return true;
