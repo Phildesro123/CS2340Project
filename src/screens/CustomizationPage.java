@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import models.*;
+import models.enums.ShipType;
 
 public class CustomizationPage {
     private Game game;
@@ -44,6 +45,13 @@ public class CustomizationPage {
             public void actionPerformed(ActionEvent e) {
                 game.startGame();
                 player.setName(characterName.getText());
+                if (player.getName().equals("Dimitri")) {
+                    player.setShip(new Ship(ShipType.KINGDOMCCO));
+                } else if (player.getName().equals("Edelgard")) {
+                    player.setShip(new Ship(ShipType.EMPIREWCORP));
+                } else if (player.getName().equals("Claude")) {
+                    player.setShip(new Ship(ShipType.ALLIANCEDCO));
+                }
                 charNameLabel.setText("Character Name: " + player.getName());
                 game.setPlayer(player);
                 DisplayScreen disp = new DisplayScreen(game);
