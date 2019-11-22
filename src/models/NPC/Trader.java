@@ -14,6 +14,7 @@ public class Trader extends NPC {
     private Random rand;
     private Karma karma;
 
+
     public Trader(Player p) {
         super("Anna", "assets/img/merchant.png", p);
         this.karma = new Karma();

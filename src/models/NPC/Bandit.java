@@ -2,6 +2,7 @@ package models.NPC;
 
 
 import models.Player;
+import screens.GameOver;
 
 import java.util.Random;
 
@@ -38,6 +39,9 @@ public class Bandit extends NPC {
             player.setCredits(0);
             //lose health
             player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
+            if (player.getShip().getHealth() <= 0) {
+                GameOver end = new GameOver(false);
+            }
             //continue to travel (or don't, it's optional)
         } else {
             //win
