@@ -92,10 +92,15 @@ public class Map {
                 travel.fuelCost(dist))) {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (travel.canTravel(player.getShip(), dist)) {
+                if (player.getShip().getHealth() <= 0) {
+                    hide();
+                    GameOver end = new GameOver(false);
+                }
+                else if (travel.canTravel(player.getShip(), dist)) {
                     Random rand = new Random();
                     int encounterChance = rand.nextInt(100);
                     if (20 * game.getDifficulty().modifier() > 1) {
+                        hide();
                         Encounter newEncounter =
                                 new Encounter(game);
                         EncounterDisplay encounterDisplay

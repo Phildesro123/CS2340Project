@@ -15,6 +15,7 @@ public class Region {
     private double inflationB;
     private Market market;
 
+
     /**
      * Creates a new region
      *
