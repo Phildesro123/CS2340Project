@@ -68,7 +68,7 @@ public class Police extends NPC {
         //police's fighter skill is random between 0-15
         int num = gen.nextInt(16);
         //if player loses
-        if (num > player.getSkillSet()[1]) {
+        if (num > player.getSkillSet()[1] + player.getShip().getDamageMod()) {
             //lose the fight
             //the rubric doesn't say what to do if this happens so
             //you're gonna die

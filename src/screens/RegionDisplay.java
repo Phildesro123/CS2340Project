@@ -51,8 +51,13 @@ public class RegionDisplay {
                 hide();
             }
         });
+        JButton refuel = createRefuel(playerCreds);
+        JButton repair = createRepair(playerCreds);
         holder.add(inventory);
         buttons.add(playerCreds);
+        buttons.add(refuel);
+        buttons.add(repair);
+
         for (Item i : region.getMarket().getItems()) {
             JPanel tempPanel = new JPanel();
             tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.X_AXIS));
@@ -103,7 +108,7 @@ public class RegionDisplay {
     //UIs should NOT have any logic
     private double priceSellCalculator(Item item) {
         if (player.getSkillSet()[2] > 0) {
-            System.out.println(player.getSkillSet()[2] * 1.08);
+            //System.out.println(player.getSkillSet()[2] * 1.08);
             return item.price(item.price(region.getInflationS()),
                     player.getSkillSet()[2] * 0.8);
         } else {
@@ -114,13 +119,68 @@ public class RegionDisplay {
     //This is going into another class
     //UIs should NOt have any logic like this
     private double priceBuyCalculator(Item item) {
-        System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
+        //System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
         if (player.getSkillSet()[2] > 0) {
             return item.price(item.price(region.getInflationB()),
                     1.0 / 1 + (player.getSkillSet()[2] / 100.0));
         } else {
             return item.price(region.getInflationB());
         }
+    }
+
+    private JButton createRefuel(JLabel creds) {
+        double maxFuel = player.getShip().getMaxFuel();
+        double basereFuel = (maxFuel > 1000) ? maxFuel / 100 : maxFuel / 10;
+        System.out.println(basereFuel);
+        double modifiedreFuel = basereFuel * region.getInflationB();
+        double price = modifiedreFuel * (1 + region.getInflationS());
+        return new JButton(new AbstractAction(String.format("Refuel %.2f for %.2f credits.", modifiedreFuel, price)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.getShip().getFuel() == player.getShip().getMaxFuel()) {
+                    JOptionPane.showMessageDialog(frame, "Any more fuel, and you'll combust.");
+                } else if (player.getCredits() < price) {
+                    JOptionPane.showMessageDialog(frame, "You don't have enough cash.");
+                } else {
+                    player.setCredits(player.getCredits() - price);
+                    creds.setText(String.format("Current Credits: %.2f (- %.2f)",player.getCredits(), price));
+                    if (player.getShip().getFuel() + modifiedreFuel
+                            > player.getShip().getMaxFuel()) {
+                        player.getShip().setFuel(player.getShip().getMaxFuel());
+                    } else {
+                        player.getShip().setFuel(player.getShip().getFuel() + modifiedreFuel);
+                    }
+                }
+            }
+        });
+    }
+
+    private JButton createRepair(JLabel creds) {
+        int baseRepair = player.getShip().getMaxHealth() / 20;
+        //This is just because it's much higher in high tech level regions.
+        int modifiedRepair = (int) (baseRepair * region.getInflationB());
+        double price = modifiedRepair / 5 + (player.getSkillSet()[3] > 0
+                ? player.getSkillSet()[3] : 0);
+
+        return new JButton(new AbstractAction(String.format("Repair %d health points for %.2f credits.", modifiedRepair, price)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.getShip().getHealth() == player.getShip().getMaxHealth()) {
+                    JOptionPane.showMessageDialog(frame, "You're capped out!");
+                } else if (player.getCredits() < price) {
+                    JOptionPane.showMessageDialog(frame, "Get some more cash.");
+                } else {
+                    player.setCredits(player.getCredits() - price);
+                    creds.setText(String.format("Current Credits: %.2f (-%.2f)", player.getCredits(), price));
+                    if (player.getShip().getHealth() + modifiedRepair > player.getShip().getMaxHealth()) {
+                        player.getShip().setHealth(player.getShip().getMaxHealth());
+                    } else {
+                        player.getShip().setHealth(player.getShip().getHealth() + modifiedRepair);
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -148,7 +208,7 @@ public class RegionDisplay {
                                 + " (-" + priceBuyCalculator(item) + ")");
                             for (Item i : player.getShip().getCargo()) {
                                 String txt = cargoDisp.getText();
-                                System.out.println(txt);
+                                //System.out.println(txt);
                                 cargoDisp.setText(cargoDisp.getText()
                                         + i.getName() + ", ");
                             }
