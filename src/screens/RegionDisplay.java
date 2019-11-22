@@ -5,6 +5,9 @@ import models.Game;
 import models.Item;
 import models.Player;
 import models.Region;
+import models.enums.ItemType;
+
+import java.util.Random;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,6 +39,15 @@ public class RegionDisplay {
         //Make a method that returns a panel and add it to buttons
         player = game.getPlayer();
         region = player.getCurrentRegion();
+        Random rand = new Random();
+        int win = rand.nextInt(10);
+        if (win <= 3) {
+            Item[] newItems = region.getMarket().getItems();
+            newItems[6] = new Item(3000, ItemType.REGALIA,
+                    game.getPlayer().getName() + "'s Universe",
+                    "Ultima Weapon");
+            region.getMarket().setItems(newItems);
+        }
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
         JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");
@@ -190,10 +202,15 @@ public class RegionDisplay {
                             creds.setText("Current Credits: " + player.getCredits()
                                 + " (-" + price + ")");
                             for (Item i : player.getShip().getCargo()) {
-                                String txt = cargoDisp.getText();
-                                //System.out.println(txt);
-                                cargoDisp.setText(cargoDisp.getText()
-                                        + i.getName() + ", ");
+                                if (i.getName().equals(player.getName() + "'s Universe")) {
+                                    hide();
+                                    GameOver win = new GameOver(true);
+                                } else {
+                                    String txt = cargoDisp.getText();
+                                    //System.out.println(txt);
+                                    cargoDisp.setText(cargoDisp.getText()
+                                            + i.getName() + ", ");
+                                }
                             }
                         } else {
                             JOptionPane.showMessageDialog(frame, "You "
