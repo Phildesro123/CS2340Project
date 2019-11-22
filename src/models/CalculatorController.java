@@ -27,7 +27,7 @@ public class CalculatorController {
     public double priceBuyCalculator(Player player, Region region, Item item) {
         System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
         if (player.getSkillSet()[2] > 0) {
-            return item.price(1.0 /(player.getSkillSet()[2]), item.price(region.getInflationB()));
+            return item.price(1.0 / (player.getSkillSet()[2]), item.price(region.getInflationB()));
         } else {
             return item.price(region.getInflationB());
         }
