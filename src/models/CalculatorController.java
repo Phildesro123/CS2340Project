@@ -11,8 +11,7 @@ public class CalculatorController {
     public double priceSellCalculator(Player player, Region region, Item item) {
         if (player.getSkillSet()[2] > 0) {
             System.out.println(player.getSkillSet()[2] * 1.08);
-            return item.price(item.price(region.getInflationS()),
-                    player.getSkillSet()[2] * 0.8);
+            return item.price(player.getSkillSet()[2] * 0.8, item.price(region.getInflationS()));
         } else {
             return item.price(region.getInflationS());
         }
@@ -28,8 +27,7 @@ public class CalculatorController {
     public double priceBuyCalculator(Player player, Region region, Item item) {
         System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");
         if (player.getSkillSet()[2] > 0) {
-            return item.price(item.price(region.getInflationB()),
-                    1.0 / 1 + (player.getSkillSet()[2] / 100.0));
+            return item.price(1.0 / (player.getSkillSet()[2]), item.price(region.getInflationB()));
         } else {
             return item.price(region.getInflationB());
         }
