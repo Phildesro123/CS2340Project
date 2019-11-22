@@ -63,8 +63,8 @@ public class Map {
         showButtons(eighthRegion, regions[7]);
         showButtons(ninthRegion, regions[8]);
         JButton[] buttons = {firstRegion, secondRegion, thirdRegion,
-            fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
-            ninthRegion, currentRegion};
+                fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
+                ninthRegion, currentRegion};
         for (JButton button : buttons) {
             panel.add(button);
         }
@@ -98,16 +98,17 @@ public class Map {
                     if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
-                    travel.traveling(player.getShip(), dist);
-                    player.setCurrentRegion(regions[n]);
-                    game.setPlayer(player);
-                    disp = new RegionDisplay(game);
-                    hide();
-                } else {
-                    player.setCurrentRegion(player.getCurrentRegion());
-                    game.setPlayer(player);
-                    trav = new TravelDisplay(game, dist);
-                    hide();
+                        travel.traveling(player.getShip(), dist);
+                        player.setCurrentRegion(regions[n]);
+                        game.setPlayer(player);
+                        disp = new RegionDisplay(game);
+                        hide();
+                    } else {
+                        player.setCurrentRegion(player.getCurrentRegion());
+                        game.setPlayer(player);
+                        trav = new TravelDisplay(game, dist);
+                        hide();
+                    }
                 }
             }
         });
