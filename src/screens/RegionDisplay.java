@@ -39,15 +39,6 @@ public class RegionDisplay {
         //Make a method that returns a panel and add it to buttons
         player = game.getPlayer();
         region = player.getCurrentRegion();
-        Random rand = new Random();
-        int win = rand.nextInt(10);
-        if (win <= 3) {
-            Item[] newItems = region.getMarket().getItems();
-            newItems[6] = new Item(3000, ItemType.REGALIA,
-                    game.getPlayer().getName() + "'s Universe",
-                    "Ultima Weapon");
-            region.getMarket().setItems(newItems);
-        }
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
         JLabel yCoor = new JLabel("Y Coordinate: " + region.getY() + "\n");
