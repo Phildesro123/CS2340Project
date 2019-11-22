@@ -35,9 +35,7 @@ public abstract class NPC {
      * @return Icon of NPC
      */
     public Icon getIcon() {
-        ImageIcon icon = new ImageIcon(this.icon);
-
-        return icon;
+        return new ImageIcon(this.icon);
     }
     /**
      * Sets name of the NPC

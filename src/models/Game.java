@@ -46,19 +46,11 @@ public class Game {
     }
 
     /**
-     * Gets the region names in the game
-     * @return Region names in the game
+     * Gets the list of regions in the game
+     * @return Region in the game
      */
-    public String[] getRegionNames() {
-        return regionNames;
-    }
-
-    /**
-     * Gets the universe of game
-     * @return Universe of the game
-     */
-    public Universe getUniverse() {
-        return universe;
+    public Region[] getRegions() {
+        return universe.getRegions();
     }
 
     /**
@@ -66,7 +58,7 @@ public class Game {
      * Also sets the current region to a random region
      */
     public void startGame() {
-        universe = universe.getInstance(regionNames);
+        universe = Universe.getInstance(regionNames);
         player.setCurrentRegion(universe.getRegion(0));
     }
 
