@@ -30,7 +30,6 @@ public class CustomizationPage {
         game = new Game("EASY", "");
         player = game.getPlayer();
         JTextField characterName = new JTextField(30);
-        //Labels
         JLabel currCredits = new JLabel("" + player.getCredits());
         JLabel currPoints = new JLabel("Current skill points: " + player.getSkillPoints());
         JLabel charNameLabel = new JLabel("Character Name: ");
@@ -82,8 +81,7 @@ public class CustomizationPage {
                 player.addToSkillSet(3);
                 incEngineer.setText("Engineer: " + player.getSkillSet()[3]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JButton remEngineer = new JButton(new AbstractAction("-") {
             //Increase value, decrease points
             @Override
@@ -91,8 +89,7 @@ public class CustomizationPage {
                 player.removeFromSkillSet(3);
                 incEngineer.setText("Engineer: " + player.getSkillSet()[3]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JButton addFighter = new JButton(new AbstractAction("+") {
             //Increase value, decrease points
             @Override
@@ -100,32 +97,28 @@ public class CustomizationPage {
                 player.addToSkillSet(1);
                 incFighter.setText("Fighter: " + player.getSkillSet()[1]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JButton remFighter = new JButton(new AbstractAction("-") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.removeFromSkillSet(1);
                 incFighter.setText("Fighter: " + player.getSkillSet()[1]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JButton addMerchant = new JButton(new AbstractAction("+") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.addToSkillSet(2);
                 incMerchant.setText("Merchant: " + player.getSkillSet()[2]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JButton remMerchant = new JButton(new AbstractAction("-") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 player.removeFromSkillSet(2);
                 incMerchant.setText("Merchant: " + player.getSkillSet()[2]);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
-            }
-        });
+            } });
         JRadioButton easy = new JRadioButton(new AbstractAction("Easy") {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,8 +127,7 @@ public class CustomizationPage {
                 resetDifficulty(infoArray);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
                 currCredits.setText("Current credits: " + player.getCredits());
-            }
-        });
+            } });
         easy.setSelected(true);
         JRadioButton normal = new JRadioButton(new AbstractAction("Normal") {
             @Override
@@ -145,8 +137,7 @@ public class CustomizationPage {
                 resetDifficulty(infoArray);
                 currPoints.setText("Current skill points: " + player.getSkillPoints());
                 currCredits.setText("Current credits: " + player.getCredits());
-            }
-        });
+            } });
         JRadioButton hard = new JRadioButton(new AbstractAction("Hard") {
             @Override
             public void actionPerformed(ActionEvent e) {

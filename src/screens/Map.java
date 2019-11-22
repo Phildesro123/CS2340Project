@@ -63,8 +63,8 @@ public class Map {
         showButtons(eighthRegion, regions[7]);
         showButtons(ninthRegion, regions[8]);
         JButton[] buttons = {firstRegion, secondRegion, thirdRegion,
-                fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
-                ninthRegion, currentRegion};
+            fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
+            ninthRegion, currentRegion};
         for (JButton button : buttons) {
             panel.add(button);
         }

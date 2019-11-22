@@ -23,7 +23,7 @@ public class CalculatorController {
      * @param player Player
      * @param region Current region
      * @param item Current item
-     * @return
+     * @return Price of item based on player's trading skill and region's stats.
      */
     public double priceBuyCalculator(Player player, Region region, Item item) {
         System.out.println((player.getSkillSet()[2] / 100.0) + "Buy");

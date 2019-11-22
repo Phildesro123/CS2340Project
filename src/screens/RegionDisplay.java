@@ -112,7 +112,8 @@ public class RegionDisplay {
         System.out.println(basereFuel);
         double modifiedreFuel = basereFuel * region.getInflationB();
         double price = modifiedreFuel * (1 + region.getInflationS());
-        return new JButton(new AbstractAction(String.format("Refuel %.2f for %.2f credits.", modifiedreFuel, price)) {
+        return new JButton(new AbstractAction(String.format("Refuel %.2f for %.2f credits.",
+                modifiedreFuel, price)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (player.getShip().getFuel() == player.getShip().getMaxFuel()) {
@@ -121,7 +122,8 @@ public class RegionDisplay {
                     JOptionPane.showMessageDialog(frame, "You don't have enough cash.");
                 } else {
                     player.setCredits(player.getCredits() - price);
-                    creds.setText(String.format("Current Credits: %.2f (- %.2f)",player.getCredits(), price));
+                    creds.setText(String.format("Current Credits: %.2f (- %.2f)",
+                            player.getCredits(), price));
                     if (player.getShip().getFuel() + modifiedreFuel
                             > player.getShip().getMaxFuel()) {
                         player.getShip().setFuel(player.getShip().getMaxFuel());
@@ -140,7 +142,9 @@ public class RegionDisplay {
         double price = modifiedRepair / 5 + (player.getSkillSet()[3] > 0
                 ? player.getSkillSet()[3] : 0);
 
-        return new JButton(new AbstractAction(String.format("Repair %d health points for %.2f credits.", modifiedRepair, price)) {
+        return new JButton(new AbstractAction(String.format("Repair %d health "
+                        + "points for %.2f credits.",
+                modifiedRepair, price)) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (player.getShip().getHealth() == player.getShip().getMaxHealth()) {
@@ -149,8 +153,10 @@ public class RegionDisplay {
                     JOptionPane.showMessageDialog(frame, "Get some more cash.");
                 } else {
                     player.setCredits(player.getCredits() - price);
-                    creds.setText(String.format("Current Credits: %.2f (-%.2f)", player.getCredits(), price));
-                    if (player.getShip().getHealth() + modifiedRepair > player.getShip().getMaxHealth()) {
+                    creds.setText(String.format("Current Credits: %.2f (-%.2f)",
+                            player.getCredits(), price));
+                    if (player.getShip().getHealth() + modifiedRepair
+                            > player.getShip().getMaxHealth()) {
                         player.getShip().setHealth(player.getShip().getMaxHealth());
                     } else {
                         player.getShip().setHealth(player.getShip().getHealth() + modifiedRepair);
