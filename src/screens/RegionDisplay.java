@@ -5,9 +5,7 @@ import models.Game;
 import models.Item;
 import models.Player;
 import models.Region;
-import models.enums.ItemType;
 
-import java.util.Random;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
