@@ -1,52 +1,58 @@
 package models;
 import java.util.Random;
-import java.util.ArrayList;
-
+import models.NPC.*;
 
 public class Encounter {
-    private ArrayList<Item> cargo;
-    private double credits;
     private double diff;
-    private Police police;
-    private Bandit bandit;
-    private Trader trader;
-    Random gen = new Random();
-    public Encounter(ArrayList<Item> cargo, double credits, double diff) {
-        this.cargo = cargo;
-        this.credits = credits;
-        this.diff = diff;
+    private Player player;
+    private Random gen;
+    private NPC npc;
+
+    public Encounter(Game game) {
+        gen = new Random();
+        this.player = game.getPlayer();
+        this.diff = game.getDifficulty().modifier();
+        npc = generateNPC();
     }
-    public Object generateNPC() {
+
+    private NPC generateNPC() {
         int npc = gen.nextInt(1001);
-        if (cargo.size() > 0) {
+        if (player.getShip().getCargo().size() > 0) {
             if (npc <= (100 + 50 * diff)) {
                 return createPolice();
             } else if (npc >= (800 - 50 * diff)) {
                 return createBandit();
             } else if (npc <= (300 + 50 * diff)
                     || npc >= (700 - 50 * diff)) {
-                createTrader();
+                return createTrader();
             }
         } else {
             if (npc >= (800 - 50 * diff)) {
-                createBandit();
+                return createBandit();
             } else if (npc <= (300 + 50 * diff)
                     || npc >= (700 - 50 * diff)) {
-                createTrader();
+                return createTrader();
             }
         }
+        return null;
     }
+
+
     private Police createPolice() {
-        police = new Police(cargo, credits);
-        return police;
+        return new Police(player);
     }
+
     private Bandit createBandit() {
-        bandit = new Bandit();
-        return bandit;
+        return new Bandit(player);
     }
+
+    //We have to add this player to encounter somehow
     private Trader createTrader() {
-        trader = new Trader();
-        return trader;
+        return new Trader(player);
+    }
+
+    public NPC getNpc() {
+        return npc;
     }
 
 }

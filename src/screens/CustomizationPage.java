@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import models.*;
 
 public class CustomizationPage {
-    protected Game game;
-    protected JFrame frame = new JFrame("Character Customization");
+    private Game game;
+    private JFrame frame = new JFrame("Character Customization");
     private Player player;
     private String[] infoTxt = {"Pilot: ", "Fighter: ", "Merchant: ", "Engineer: "};
 

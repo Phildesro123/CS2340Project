@@ -8,14 +8,17 @@ public class Game {
     private Player player;
     private String[] regionNames;
     private static Universe universe;
+<<<<<<< HEAD
     private Travel travel;
     private Ship ship = new Ship(ShipType.SEIROSCO);
     private Encounter encounter;
+=======
+>>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
     /**
      * Creates a game object
      *
      * @param difficulty Difficulty of game
-     * @param name       Name of player
+     * @param name Name of player
      */
     public Game(String difficulty, String name) {
         this.difficulty = Difficulty.valueOf(difficulty);
@@ -31,7 +34,6 @@ public class Game {
     }
     /**
      * Returns the current player
-     *
      * @return player
      */
     public Player getPlayer() {
@@ -40,7 +42,6 @@ public class Game {
 
     /**
      * Changes the value of player
-     *
      * @param player Player to replace player
      */
     public void setPlayer(Player player) {
@@ -49,7 +50,6 @@ public class Game {
 
     /**
      * Gets the difficulty of the game
-     *
      * @return Difficulty of the game
      */
     public Difficulty getDifficulty() {
@@ -57,16 +57,11 @@ public class Game {
     }
 
     /**
-     * Gets the region names in the game
-     *
-     * @return Region names in the game
+     * Gets the list of regions in the game
+     * @return Region in the game
      */
-    public String[] getRegionNames() {
-        return regionNames;
-    }
-
-    public Universe getUniverse() {
-        return universe;
+    public Region[] getRegions() {
+        return universe.getRegions();
     }
 
     public Travel getTravel() {
@@ -84,7 +79,7 @@ public class Game {
      * Also sets the current region to a random region
      */
     public void startGame() {
-        universe = universe.getInstance(regionNames);
+        universe = Universe.getInstance(regionNames);
         player.setCurrentRegion(universe.getRegion(0));
     }
 
