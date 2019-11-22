@@ -10,32 +10,19 @@ import java.util.Random;
 public class Map {
     private Player player;
     private Travel travel;
-<<<<<<< HEAD
-    private Encounter encounter;
-    protected JFrame frame = new JFrame("Map *scaled by 3x*");
-    protected JPanel panel = new JPanel();
-    protected RegionDisplay disp;
-    protected TravelDisplay trav;
 
-=======
     private JFrame frame;
     private RegionDisplay disp;
     private TravelDisplay trav;
     private JPanel cont = new JPanel();
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
     public Map(Game game) {
         JPanel panel = new JPanel();
         frame = new JFrame("Map *scaled by 3x*");
 
         player = game.getPlayer();
-<<<<<<< HEAD
-        travel = game.getTravel();
-        encounter = game.getEncounter();
-        Region[] regions = new Region[universe.getRegions().length - 1];
-=======
+
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
         Region[] regions = new Region[game.getRegions().length - 1];
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
         int cnt = 0;
         for (Region region: game.getRegions()) {
             if (!region.equals(player.getCurrentRegion())) {
@@ -90,37 +77,16 @@ public class Map {
         frameStuff();
     }
     private JButton buttons(int n, Game game) {
-<<<<<<< HEAD
-        Universe universe = game.getUniverse();
-        player = game.getPlayer();
-        travel = game.getTravel();
-        Region[] regions = new Region[universe.getRegions().length - 1];
-        int cnt = 0;
-        for (Region region: universe.getRegions()) {
-=======
         player = game.getPlayer();
         Region[] regions = new Region[game.getRegions().length - 1];
         int cnt = 0;
         for (Region region: game.getRegions()) {
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
             if (!region.equals(player.getCurrentRegion())) {
                 regions[cnt] = region;
                 cnt++;
             }
         }
         double dist = player.distance(regions[n]);
-<<<<<<< HEAD
-        JButton region = new JButton(new AbstractAction(String.format("<html> %s <br> "
-                        + "Distance from you: %.2f<br>"
-                        + "Fuel cost: %d</html>",
-                regions[n].getName(),
-                dist,
-                travel.fuelCost(dist))) {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (travel.canTravel(dist)) {
-                    travel.traveling(dist);
-=======
         return new JButton(new AbstractAction(String.format("<html> %s <br> "
                         + "Distance from you: %.2f<br>"
                         + "Fuel cost: %d</html>",
@@ -140,7 +106,6 @@ public class Map {
                     }
 
                     travel.traveling(player.getShip(), dist);
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);
                     disp = new RegionDisplay(game);
@@ -153,10 +118,6 @@ public class Map {
                 }
             }
         });
-<<<<<<< HEAD
-        return region;
-=======
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
     }
     private void hide() {
         frame.setVisible(false);

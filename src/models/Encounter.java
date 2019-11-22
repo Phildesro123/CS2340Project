@@ -1,6 +1,7 @@
 package models;
 import models.NPC.Bandit;
 import models.NPC.NPC;
+import models.NPC.Police;
 import models.NPC.Trader;
 
 import java.util.Random;

@@ -3,6 +3,10 @@ package screens;
 import models.Encounter;
 import models.Game;
 import models.Item;
+import models.NPC.Bandit;
+import models.NPC.NPC;
+import models.NPC.Police;
+import models.NPC.Trader;
 
 import javax.swing.*;
 import java.util.Random;

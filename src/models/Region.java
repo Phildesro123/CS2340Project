@@ -17,16 +17,9 @@ public class Region {
 
     /**
      * Creates a new region
-<<<<<<< HEAD
-     * @param x X coordinate
-     * @param y Y Coordinate
-     * @param name Name of region
-=======
-     *
      * @param x         X coordinate
      * @param y         Y Coordinate
      * @param name      Name of region
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @param techLevel Techlevel of region
      */
     public Region(int x, int y, String name, TechLevel techLevel) {
@@ -45,10 +38,6 @@ public class Region {
 
     /**
      * Gets the name of a region
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @return Name of region
      */
     public String getName() {
@@ -57,10 +46,7 @@ public class Region {
 
     /**
      * Get x coordinate of region
-<<<<<<< HEAD
-=======
      *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @return X coord. of region
      */
     public int getX() {
@@ -69,10 +55,6 @@ public class Region {
 
     /**
      * Get y coordinate of region
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @return Y coord. of region
      */
     public int getY() {
@@ -81,10 +63,6 @@ public class Region {
 
     /**
      * Get the market of the region
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @return Market of region
      */
     public Market getMarket() {
@@ -97,10 +75,6 @@ public class Region {
 
     /**
      * Get the techlevel of region
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @return Techlevel of region
      */
     public TechLevel getTechLevel() {
@@ -109,10 +83,6 @@ public class Region {
 
     /**
      * Calculates the modifier of prices for selling based on techlevel
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @param l Techlevel of region
      * @return Price modifier for selling prices of that region
      */
@@ -132,21 +102,13 @@ public class Region {
             return 1.8;
         case RENAISSANCE:
             return 1;
-<<<<<<< HEAD
-        default :
-=======
         default:
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
             throw new IllegalStateException("Unexpected input: " + l);
         }
     }
 
     /**
      * Calculates buying price modifier for region based on techlevel
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
      * @param l Region's techlevel
      * @return Price modifier for buying prices of that region
      */
@@ -170,27 +132,6 @@ public class Region {
             throw new IllegalStateException("Unexpected input: " + l);
         }
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Get price modifier of region
-     *
-     * @return Selling price modifier of region
-     */
-    public double getInflationS() {
-        return inflationS;
-    }
-
-    /**
-     * Get buying price modifier of region
-     *
-     * @return Buying price modifier of region
-     */
-    public double getInflationB() {
-        return inflationB;
-    }
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
 
     /**
      * Get price modifier of region

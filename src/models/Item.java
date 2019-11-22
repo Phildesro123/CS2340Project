@@ -6,23 +6,13 @@ public class Item {
     private double basePrice;
     private ItemType type;
     private String name;
-<<<<<<< HEAD
-=======
     private String weaponClass;
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
 
     /**
      * Crates Item object
      * @param p Price of item
      * @param t Type of item
      * @param name Name of item
-<<<<<<< HEAD
-     */
-    public Item(double p, ItemType t, String name) {
-        this.basePrice = p;
-        this.type = t;
-        this.name = name;
-=======
      * @param wc Class of the weapon
      */
     public Item(double p, ItemType t, String name, String wc) {
@@ -30,7 +20,6 @@ public class Item {
         this.type = t;
         this.name = name;
         this.weaponClass = wc;
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
     }
 
     /**
@@ -38,12 +27,6 @@ public class Item {
      * @param item ItemData object that holds information about the item
      */
     public Item(ItemData item) {
-<<<<<<< HEAD
-        this(item.getPrice(), item.getType(), item.toString());
-    }
-
-
-=======
         this(item.getPrice(), item.getType(), item.getName(),
                 item.getWeaponClass());
     }
@@ -55,7 +38,7 @@ public class Item {
     public String getWeaponClass() {
         return weaponClass;
     }
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
+
 
     /**
      * Get the item type
@@ -80,8 +63,6 @@ public class Item {
     public double getBasePrice() {
         return basePrice;
     }
-<<<<<<< HEAD
-=======
 
     public double price(double modifier) {
         return Math.round(basePrice * modifier);
@@ -100,5 +81,4 @@ public class Item {
         Item i = (Item) obj;
         return name.equals(i.getName()) && type == i.getItemType();
     }
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
 }
