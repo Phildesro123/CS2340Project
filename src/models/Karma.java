@@ -1,7 +1,7 @@
 package models;
 
 public class Karma {
-    private int karma = 0;
+    private static int karma = 0;
     public void addKarma() {
         karma++;
     }

@@ -16,6 +16,7 @@ public class Trader extends NPC {
 
     public Trader(Player p) {
         super("Anna", "assets/img/merchant.png", p);
+        this.karma = new Karma();
         rand = new Random();
         ItemData[] itemData = ItemData.values();
         wares = new ArrayList<>();

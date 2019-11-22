@@ -22,6 +22,7 @@ public class Police extends NPC {
         this.player = player;
         this.cargo = player.getShip().getCargo();
         this.credits = player.getCredits();
+        this.karma = new Karma();
     }
 
     /**
