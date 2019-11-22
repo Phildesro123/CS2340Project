@@ -10,7 +10,6 @@ import java.util.Random;
 public class Map {
     private Player player;
     private Travel travel;
-
     private JFrame frame;
     private RegionDisplay disp;
     private TravelDisplay trav;
@@ -20,7 +19,6 @@ public class Map {
         frame = new JFrame("Map *scaled by 3x*");
 
         player = game.getPlayer();
-
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
         Region[] regions = new Region[game.getRegions().length - 1];
         int cnt = 0;
@@ -65,8 +63,8 @@ public class Map {
         showButtons(eighthRegion, regions[7]);
         showButtons(ninthRegion, regions[8]);
         JButton[] buttons = {firstRegion, secondRegion, thirdRegion,
-            fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
-            ninthRegion, currentRegion};
+                fourthRegion, fifthRegion, sixthRegion, seventhRegion, eighthRegion,
+                ninthRegion, currentRegion};
         for (JButton button : buttons) {
             panel.add(button);
         }
@@ -100,41 +98,42 @@ public class Map {
                     if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
-                    travel.traveling(player.getShip(), dist);
-                    player.setCurrentRegion(regions[n]);
-                    game.setPlayer(player);
-                    disp = new RegionDisplay(game);
-                    hide();
-                } else {
-                    player.setCurrentRegion(player.getCurrentRegion());
-                    game.setPlayer(player);
-                    trav = new TravelDisplay(game, dist);
-                    hide();
+                        travel.traveling(player.getShip(), dist);
+                        player.setCurrentRegion(regions[n]);
+                        game.setPlayer(player);
+                        disp = new RegionDisplay(game);
+                        hide();
+                    } else {
+                        player.setCurrentRegion(player.getCurrentRegion());
+                        game.setPlayer(player);
+                        trav = new TravelDisplay(game, dist);
+                        hide();
+                    }
                 }
             }
         });
     }
-    private void hide() {
-        frame.setVisible(false);
-        frame.dispose();
+        private void hide() {
+            frame.setVisible(false);
+            frame.dispose();
+        }
+
+        private void showButtons(JButton button, Region region) {
+            button.setFont(new Font("Calibri (Body)", Font.BOLD, 12));
+            button.setSize(200, 100);
+            button.setLocation((int) (region.getX() * 3.0) + 50,
+                    (int) (region.getY() * 3.0) + 50);
+
+            button.setBackground(region.getColor());
+        }
+
+        private void frameStuff() {
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(cont);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
+
+
     }
-
-    private void showButtons(JButton button, Region region) {
-        button.setFont(new Font("Calibri (Body)", Font.BOLD, 12));
-        button.setSize(200, 100);
-        button.setLocation((int) (region.getX() * 3.0) + 50,
-                (int) (region.getY() * 3.0) + 50);
-
-        button.setBackground(region.getColor());
-    }
-
-    private void frameStuff() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(cont);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-
-}
