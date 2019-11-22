@@ -24,11 +24,11 @@ public class Universe {
         }
         return uni;
     }
-    public Region getRegion(int n) {
+    Region getRegion(int n) {
         return regions.get(n);
     }
 
-    public Region[] getRegions() {
+    Region[] getRegions() {
         Region[] tmp = new Region[regions.size()];
         int cnt = 0;
         for (Region r : regions) {
@@ -42,7 +42,7 @@ public class Universe {
         return regions.size();
     }
 
-    public void doStuff(String[] names) {
+    private void doStuff(String[] names) {
         for (int i = 0; i < 10; i++) {
             Region start = new Region(0, 0,
                     "null", TechLevel.PREAG);
