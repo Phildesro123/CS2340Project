@@ -3,8 +3,11 @@ import models.Item;
 import models.Karma;
 import models.Player;
 import models.enums.ItemData;
+import screens.GameOver;
+
 import java.util.ArrayList;
 import java.util.Random;
+
 public class Trader extends NPC {
     private ArrayList<Item> wares;
     private boolean angry;
@@ -64,6 +67,9 @@ public class Trader extends NPC {
         } else {
             //Do a random # of damage (between 100-300)
             player.getShip().setHealth(player.getShip().getHealth() - (rand.nextInt(201) + 100));
+            if (player.getShip().getHealth() <= 0) {
+                GameOver end = new GameOver(false);
+            }
         }
         //continue to travel
     }
