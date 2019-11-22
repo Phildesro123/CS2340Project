@@ -53,6 +53,7 @@ public class RegionDisplay {
         return panel;
     }
 
+<<<<<<< HEAD
     private void hide() {
         f.setVisible(false);
         f.dispose();
@@ -61,4 +62,6 @@ public class RegionDisplay {
 //    public static void main(String[] args) {
 //        RegionDisplay rg = new RegionDisplay();
 //    }
+=======
+>>>>>>> Region display in branch
 }
