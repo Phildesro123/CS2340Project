@@ -2,6 +2,7 @@ package screens;
 import javax.swing.*;
 
 import models.*;
+import models.enums.ItemType;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,15 @@ public class Map {
         player = game.getPlayer();
         travel = new Travel(game.getDifficulty().modifier(), player.getSkillSet());
         Region[] regions = new Region[game.getRegions().length - 1];
+        Random rand = new Random();
+        int win = rand.nextInt(10);
+        if (win <= 3) {
+            Item[] newItems = game.getRegions()[6].getMarket().getItems();
+            newItems[6] = new Item(3000, ItemType.REGALIA,
+                    game.getPlayer().getName() + "'s Universe",
+                    "Ultima Weapon");
+            game.getRegions()[6].getMarket().setItems(newItems);
+        }
         int cnt = 0;
         for (Region region: game.getRegions()) {
             if (!region.equals(player.getCurrentRegion())) {
