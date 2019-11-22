@@ -101,6 +101,60 @@ public class RegionDisplay {
         frame.dispose();
     }
 
+    private JButton createRefuel(JLabel creds) {
+        double maxFuel = player.getShip().getMaxFuel();
+        double basereFuel = (maxFuel > 1000) ? maxFuel / 100 : maxFuel / 10;
+        System.out.println(basereFuel);
+        double modifiedreFuel = basereFuel * region.getInflationB();
+        double price = modifiedreFuel * (1 + region.getInflationS());
+        return new JButton(new AbstractAction(String.format("Refuel %.2f for %.2f credits.", modifiedreFuel, price)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.getShip().getFuel() == player.getShip().getMaxFuel()) {
+                    JOptionPane.showMessageDialog(frame, "Any more fuel, and you'll combust.");
+                } else if (player.getCredits() < price) {
+                    JOptionPane.showMessageDialog(frame, "You don't have enough cash.");
+                } else {
+                    player.setCredits(player.getCredits() - price);
+                    creds.setText(String.format("Current Credits: %.2f (- %.2f)",player.getCredits(), price));
+                    if (player.getShip().getFuel() + modifiedreFuel
+                            > player.getShip().getMaxFuel()) {
+                        player.getShip().setFuel(player.getShip().getMaxFuel());
+                    } else {
+                        player.getShip().setFuel(player.getShip().getFuel() + modifiedreFuel);
+                    }
+                }
+            }
+        });
+    }
+
+    private JButton createRepair(JLabel creds) {
+        int baseRepair = player.getShip().getMaxHealth() / 20;
+        //This is just because it's much higher in high tech level regions.
+        int modifiedRepair = (int) (baseRepair * region.getInflationB());
+        double price = modifiedRepair / 5 + (player.getSkillSet()[3] > 0
+                ? player.getSkillSet()[3] : 0);
+
+        return new JButton(new AbstractAction(String.format("Repair %d health points for %.2f credits.", modifiedRepair, price)) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (player.getShip().getHealth() == player.getShip().getMaxHealth()) {
+                    JOptionPane.showMessageDialog(frame, "You're capped out!");
+                } else if (player.getCredits() < price) {
+                    JOptionPane.showMessageDialog(frame, "Get some more cash.");
+                } else {
+                    player.setCredits(player.getCredits() - price);
+                    creds.setText(String.format("Current Credits: %.2f (-%.2f)", player.getCredits(), price));
+                    if (player.getShip().getHealth() + modifiedRepair > player.getShip().getMaxHealth()) {
+                        player.getShip().setHealth(player.getShip().getMaxHealth());
+                    } else {
+                        player.getShip().setHealth(player.getShip().getHealth() + modifiedRepair);
+                    }
+                }
+            }
+        });
+
+    }
     /**
      * Creates a new market button
      * @param item item to look at
