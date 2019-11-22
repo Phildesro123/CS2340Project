@@ -135,8 +135,16 @@ public class Ship {
         return maxFuel;
     }
 
+    public int getMaxHealth() {
+        return this.getShipType().shipHealth();
+    }
+
     public boolean canAddCargo() {
         return cargo.size() + 1 < maxCargo;
+    }
+
+    public int getDamageMod() {
+        return this.getShipType().getDamageMod();
     }
 
     public ShipType getShipType() {

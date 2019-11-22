@@ -30,7 +30,6 @@ public class EncounterDisplay {
         String[] policeOptions = {"Forfeit", "Flee", "Fight"};
         if (npc instanceof Bandit) {
             Bandit bandit = (Bandit) npc;
-            ImageIcon icon = new ImageIcon("src/assets.img/bandit.png");
             bandit.setPlayer(game.getPlayer());
             selectedValue = JOptionPane.showOptionDialog(null,
                     "Gimme ya money clown!",

@@ -52,7 +52,7 @@ public class Trader extends NPC {
         //fighter value skill check
         int num = rand.nextInt(11); //traders aren't great fighters
         //if player wins
-        if (num <= player.getSkillSet()[1]) {
+        if (num <= player.getSkillSet()[1] + player.getShip().getDamageMod()) {
             //Random number between 1-3 items
             for (int i = 0; i < (rand.nextInt(3) + 1); i++) {
                 player.getShip().addCargo(wares.remove(rand.nextInt(wares.size())));

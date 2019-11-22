@@ -32,7 +32,7 @@ public class Bandit extends NPC {
         //bandit's fighter skill is random between 0-15
         int num = gen.nextInt(16);
         //if player loses
-        if (num > player.getSkillSet()[1]) {
+        if (num > player.getSkillSet()[1] + player.getShip().getDamageMod()) {
             //lose the fight
             //lose ALL credits
             player.setCredits(0);
