@@ -51,7 +51,13 @@ public class Map {
         fuelDisp.add(fuel);
         fuelDisp.add(health);
         fuelDisp.add(currentCredit);
-        JButton currentRegion = new JButton("You are here");
+        JButton currentRegion = new JButton(new AbstractAction("You are here") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RegionDisplay(game);
+                hide();
+            }
+        });
         JButton firstRegion = buttons(0, game);
         JButton secondRegion = buttons(1, game);
         JButton thirdRegion = buttons(2, game);

@@ -1,6 +1,9 @@
 package models;
+import models.NPC.Bandit;
+import models.NPC.NPC;
+import models.NPC.Trader;
+
 import java.util.Random;
-import models.NPC.*;
 
 public class Encounter {
     private double diff;

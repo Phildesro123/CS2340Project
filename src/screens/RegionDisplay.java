@@ -14,25 +14,16 @@ import javax.swing.*;
 public class RegionDisplay {
     //This will display the region's market and stuff
     //Should display player's fuel
-<<<<<<< HEAD
-    //Will handle price calculation(?)
-=======
-
 
     //Getting rid of player instance variable soon
     //Should not have an instance of player, just get it from the game
     private CalculatorController calc;
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
     private Player player;
     private Region region;
     private JPanel holder = new JPanel();
     private JFrame frame = new JFrame("Current Region");
 
     public RegionDisplay(Game game) {
-<<<<<<< HEAD
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        this.player = game.getPlayer();
-=======
         calc = new CalculatorController();
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
@@ -43,7 +34,6 @@ public class RegionDisplay {
         holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         //Make a method that returns a panel and add it to buttons
         player = game.getPlayer();
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
         region = player.getCurrentRegion();
         JLabel regionName = new JLabel("Region: " + region.getName() + "\n");
         JLabel xCoor = new JLabel("X Coordinate: " + region.getX() + "\n");
@@ -105,7 +95,7 @@ public class RegionDisplay {
         return holder;
     }
 
-<<<<<<< HEAD
+
     private void hide() {
         frame.setVisible(false);
         frame.dispose();
@@ -177,13 +167,4 @@ public class RegionDisplay {
             });
         }
     }
-
-<<<<<<< HEAD
-//    public static void main(String[] args) {
-//        RegionDisplay rg = new RegionDisplay();
-//    }
-=======
->>>>>>> Region display in branch
-=======
->>>>>>> 1f51a90e32352eaa87c1e2c7552b15131f7de36d
 }
