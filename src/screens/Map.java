@@ -100,11 +100,6 @@ public class Map {
                     if (20 * game.getDifficulty().modifier() > 1) {
                         Encounter newEncounter =
                                 new Encounter(game);
-
-                        EncounterDisplay encounterDisplay
-                                = new EncounterDisplay(newEncounter, game);
-                    }
-
                     travel.traveling(player.getShip(), dist);
                     player.setCurrentRegion(regions[n]);
                     game.setPlayer(player);
