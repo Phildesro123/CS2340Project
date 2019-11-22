@@ -1,11 +1,9 @@
 package models;
 
-import models.enums.ItemType;
 import models.enums.TechLevel;
 
 import java.awt.Color;
 
-import java.util.Random;
 
 public class Region {
 
