@@ -1,5 +1,6 @@
 package models.NPC;
 import models.Item;
+import models.Karma;
 import models.Player;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Police extends NPC {
     private List<Item> contraband;
     private Random gen = new Random();
     private Player player;
+    private Karma karma;
 
     public Police(Player player) {
         super("Seteth", "assets/img/cop.png", player);
@@ -35,7 +37,14 @@ public class Police extends NPC {
                 contraband.add(cargo.get(i));
             }
         } else {
-            for (int i = 0; i < gen.nextInt(3) + 1; i++) {
+            int howMuch = gen.nextInt(3) - karma.getKarma();
+            if (howMuch > cargo.size()) {
+                howMuch = cargo.size();
+            }
+            if (howMuch <= 0) {
+                howMuch = 1;
+            }
+            for (int i = 0; i < gen.nextInt(howMuch); i++) {
                 int num = gen.nextInt();
                 contraband.add(cargo.get((i + num) % cargo.size()));
             }
@@ -47,7 +56,8 @@ public class Police extends NPC {
     public void interact() {
         System.out.println("Wee woo wee woo");
         //displays whichItems() that the police think you stole
-        //choose whether to forfeit items, flee from the police, or fight them off
+        //choose whether to forfeit items, flee from the police, or fight
+        // them off
     }
 
     /**
@@ -57,6 +67,7 @@ public class Police extends NPC {
         for (Item i : contraband) { //I have no idea if this works for a map tbh
             player.getShip().removeCargo(i);
         }
+        karma.addKarma();
         //continue traveling
     }
 
@@ -68,6 +79,7 @@ public class Police extends NPC {
         //police's fighter skill is random between 0-15
         int num = gen.nextInt(16);
         //if player loses
+        karma.remKarma();
         if (num > player.getSkillSet()[1] + player.getShip().getDamageMod()) {
             //lose the fight
             //the rubric doesn't say what to do if this happens so
@@ -97,13 +109,15 @@ public class Police extends NPC {
             //get evasion fined
             player.setCredits(player.getCredits() - 100);
             //lose health
-            player.getShip().setHealth(player.getShip().getHealth() - (gen.nextInt(201) + 100));
+            player.getShip().setHealth(player.getShip().getHealth()
+                    - (gen.nextInt(201) + 100));
             //return to previous region
         } else {
             return;
             //dip out
             //return to original region,
-            // while still using up the same amount of fuel as if they traveled to the destination
+            // while still using up the same amount of fuel
+            // as if they traveled to the destination
             //keep all items
         }
     }
