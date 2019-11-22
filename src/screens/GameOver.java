@@ -13,11 +13,11 @@ public class GameOver {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     null,
                     options, options[0]);
-                    if (selectedValue == 0) {
-                        Welcome welcomeScreen = new Welcome();
-                    } else {
-                        JOptionPane.getRootFrame().dispose();
-                    }
+            if (selectedValue == 0) {
+                Welcome welcomeScreen = new Welcome();
+            } else {
+                JOptionPane.getRootFrame().dispose();
+            }
         } else {
             String[] options = {"Restart", "Nah I'm Good"};
             int selectedValue = JOptionPane.showOptionDialog(null,

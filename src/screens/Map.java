@@ -95,8 +95,7 @@ public class Map {
                 if (player.getShip().getHealth() <= 0) {
                     hide();
                     GameOver end = new GameOver(false);
-                }
-                else if (travel.canTravel(player.getShip(), dist)) {
+                } else if (travel.canTravel(player.getShip(), dist)) {
                     Random rand = new Random();
                     int encounterChance = rand.nextInt(100);
                     if (20 * game.getDifficulty().modifier() > 1) {
